@@ -1,0 +1,360 @@
+---
+import BaseDark from '../layouts/BaseDark.astro';
+import HomeCaseTile from '../components/HomeCaseTile.astro';
+import Marquee from '../components/Marquee.astro';
+import LiveClock from '../components/LiveClock.svelte';
+import ScrambleText from '../components/ScrambleText.svelte';
+import NameCard from '../components/NameCard.astro';
+
+interface Chunk {
+  text: string;
+  variant: 'bold' | 'italic';
+  startDelay: number;
+  step: number;
+  muted?: boolean;
+}
+// Eyebrow: "UX / UI research designer" — small line above the big name
+const heroChunks: Chunk[] = [
+  { text: 'UX / UI ',   variant: 'bold',   startDelay: 120, step: 28, muted: true },
+  { text: 'research ',  variant: 'italic', startDelay: 344, step: 34 },
+  { text: 'designer',   variant: 'bold',   startDelay: 650, step: 28, muted: true },
+];
+// Big name: "Jielle Lu" — the hero anchor
+const nameLetters = 'Jielle Lu';
+const nameStart = 700;
+const nameStep = 55;
+
+const marqueeItems = [
+  'Open to 2026 full-time roles',
+  'UX design · user research · learning sciences',
+  'Currently interning at PictureCook',
+  'NTNU · exchange at NJU',
+  'Figma, Python, SPSS, and the space between them',
+  'Research-led design, designer-grade research',
+];
+---
+
+<BaseDark title="Jielle Lu — UX / UI Research Designer">
+  <main class="relative z-10 min-h-screen flex flex-col px-6 md:px-10 lg:px-14 py-8 md:py-10">
+
+    <!-- TOP CHROME -->
+    <header class="fade-up flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em] text-neutral-400" style="animation-delay: 0ms">
+      <div class="space-y-0.5 leading-[1.5]">
+        <div class="text-white">portfolio of</div>
+        <div class="text-neutral-200">jielle lu</div>
+        <div class="text-neutral-500">呂筱婕 · ntnu '26</div>
+      </div>
+      <div class="text-right space-y-0.5 leading-[1.5]">
+        <div class="flex items-center gap-1.5 justify-end text-neutral-200">
+          <LiveClock client:load />
+        </div>
+        <div class="text-neutral-500">ux · research · learning sci.</div>
+        <div class="text-neutral-500">jielle2453@gmail.com</div>
+      </div>
+    </header>
+
+    <!-- HERO — tagline + h1 bottom-aligned; Currently below fold -->
+    <section class="relative flex-1 flex flex-col justify-end pb-2 md:pb-4 pt-12 md:pt-20">
+
+      <div class="fade-up font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F3EFE6]/60 mb-4 md:mb-6 flex items-center gap-2" style="animation-delay: 60ms">
+        <span class="text-[#d4a017] text-base leading-none">◆</span>
+        <span>Research-led design, designer-grade research.</span>
+      </div>
+
+      <h1 class="font-sans font-black tracking-[-0.055em] text-white">
+        <!-- eyebrow -->
+        <span class="block leading-[2] text-[clamp(14px,1.8vw,22px)]">
+          {heroChunks.map((chunk) => (
+            <span class:list={[
+              chunk.variant === 'italic' ? 'font-light italic text-[#d4a017]' : (chunk.muted ? 'text-[#F3EFE6]/50' : 'text-[#F3EFE6]'),
+              'tracking-[-0.01em]',
+            ]}
+            style={chunk.variant === 'italic'
+              ? "font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'WONK' 1,'opsz' 144;"
+              : undefined}
+            >
+              {chunk.text.split('').map((ch, i) => (
+                <span class="letter" style={`animation-delay: ${chunk.startDelay + i * chunk.step}ms`}>{ch === ' ' ? ' ' : ch}</span>
+              ))}
+            </span>
+          ))}
+        </span>
+        <!-- big name -->
+        <span class="block leading-[0.86] text-[clamp(80px,14vw,210px)]">
+          {nameLetters.split('').map((ch, i) => (
+            <span class="letter" style={`animation-delay: ${nameStart + i * nameStep}ms`}>{ch === ' ' ? ' ' : ch}</span>
+          ))}
+        </span>
+      </h1>
+
+    </section>
+
+    <!-- Currently + description — sits below DESIGNER, outside justify-end scope -->
+    <div class="mt-8 md:mt-10 pb-6 md:pb-10 grid grid-cols-12 gap-6">
+      <div class="fade-up col-span-12 md:col-span-5" style="animation-delay: 1200ms">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F3EFE6]/60 mb-3">
+          Currently —
+        </div>
+        <div class="glass-badge">
+          <ScrambleText
+            client:load
+            words={['UX designer at PictureCook', 'UX researcher in learning sciences', 'designer who ships interfaces', 'interface designer + coder']}
+            interval={3200}
+            scrambleDuration={820}
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MARQUEE — between hero and work -->
+    <div class="fade-up my-2 md:my-4" style="animation-delay: 1500ms">
+      <Marquee items={marqueeItems} durationSec={58} />
+    </div>
+
+    <!-- WORK — three tiles with scroll reveal + rich hover -->
+    <section id="work" class="mt-10 md:mt-14">
+      <div class="reveal flex items-end justify-between mb-6 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#F3EFE6]/60" data-reveal>
+        <span><span class="text-[#F3EFE6]">§ work</span> — three studies</span>
+        <span class="text-[#F3EFE6]/40 hidden md:inline">hover to preview</span>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 md:gap-5 items-stretch">
+        <div class="col-span-12 md:col-span-4 flex flex-col">
+          <HomeCaseTile
+            no="01"
+            year="2024"
+            title="LinePay redesign"
+            subtitle="Taiwan's most-used mobile payment app, redesigned around saving money effortlessly."
+            meta={['SUS  52.5 → 72.5', 'task time  −46s', 'completion  100%']}
+            href="/linepay"
+            revealDelay={0}
+            accent="#06C755"
+            previewImg="/img/line_pay_background.png"
+          />
+        </div>
+        <div class="col-span-12 md:col-span-4 flex flex-col">
+          <HomeCaseTile
+            no="02"
+            year="2025"
+            title="Fidgi Grow"
+            subtitle="An ADHD support app that never mentions ADHD on its cover. With a physical fidget toy."
+            meta={['hormone-aware planner', 'smart task breakdown', 'NFC fidget hardware']}
+            href="/fidgi"
+            revealDelay={110}
+            accent="#38BDF8"
+            previewImg="/img/fidgi_grow_background.png"
+          />
+        </div>
+        <div class="col-span-12 md:col-span-4 flex flex-col">
+          <HomeCaseTile
+            no="03"
+            year="2025—"
+            title="PictureCook"
+            subtitle="AI-generated picture books. UI + brand for an early-stage consumer product."
+            meta={['intern · design lead', 'user flows · prototyping', 'brand + marketing']}
+            revealDelay={220}
+            accent="#FF6B9D"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + CONTACT -->
+    <section id="about" class="mt-16 md:mt-24">
+      <div class="reveal flex items-end justify-between mb-8 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#F3EFE6]/60" data-reveal>
+        <span><span class="text-[#F3EFE6]">§ about</span> — jielle lu</span>
+      </div>
+
+      <!-- display tagline -->
+      <div class="reveal mb-10 md:mb-14 flex justify-center" data-reveal style="--reveal-delay: 40ms">
+        <p class="text-[#F3EFE6]/90 leading-[1.05] max-w-[20ch] text-center"
+           style="font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'opsz' 144;font-size:clamp(28px,4vw,52px);letter-spacing:-0.025em;font-style:italic;">
+          Research-led design,<br/>
+          <span style="color:#d4a017">designer</span>-grade research.
+        </p>
+      </div>
+
+      <!-- bio + quick facts -->
+      <div class="reveal flex flex-col items-center text-center mb-10 max-w-[680px] mx-auto" data-reveal style="--reveal-delay: 100ms">
+        <p class="font-sans text-[15px] leading-[1.68] text-[#ffffff] mb-8">
+          Approaches design through the lens of human-centric analysis. Bridges the gap between aesthetics and technology by combining UI proficiency with technical skills in data analysis and programming. Proficient in leveraging generative AI to conceptualize and develop initial prototypes, allowing for the delivery of design solutions that seamlessly merge aesthetic innovation with rigorous quantitative validation.
+        </p>
+        
+        <!-- Resume Download Button -->
+        <a 
+          href="https://drive.google.com/file/d/1oN3fPk1B53t4IPU_RrNUBKRVa9pgAH5O/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="resume-button group inline-flex items-center gap-2.5 px-6 py-3 mb-8 font-mono text-[11px] uppercase tracking-[0.2em] text-[#F3EFE6] border border-[#d4a017]/40 rounded-full hover:border-[#d4a017] hover:bg-[#d4a017]/10 transition-all duration-300"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 10v2.667A1.333 1.333 0 0 1 12.667 14H3.333A1.333 1.333 0 0 1 2 12.667V10"/>
+            <path d="M4.667 6.667L8 10l3.333-3.333"/>
+            <path d="M8 10V2"/>
+          </svg>
+          <span>Download Resume</span>
+        </a>
+        
+        <div class="flex flex-col md:flex-row gap-8 w-full">
+          <div class="flex-1">
+            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Currently</div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">UX intern · PictureCook<br/><span class="text-[#F3EFE6]/55">Taipei</span></div>
+          </div>
+          <div class="flex-1">
+            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Education</div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">NTNU Learning Sciences '26<br/><span class="text-[#F3EFE6]/55">Exchange · Nanjing Univ.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- tools strip -->
+      <div class="reveal flex flex-col items-center mb-10 max-w-[680px] mx-auto" data-reveal style="--reveal-delay: 160ms">
+        <div class="font-mono text-[9.5px] uppercase tracking-[0.26em] text-[#F3EFE6]/40 mb-3">Tools &amp; methods</div>
+        <div class="flex flex-wrap gap-2 justify-center">
+          {['Figma', 'Prototyping', 'User Interviews', 'SUS', 'SPSS', 'Python', 'Usability Testing', 'Information Architecture'].map(t => (
+            <span class="inline-block px-3 py-1 rounded-full border border-[#F3EFE6]/10 font-mono text-[9.5px] uppercase tracking-[0.16em] text-[#F3EFE6]/50 hover:border-[#d4a017] hover:text-[#d4a017] transition-colors">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- NameCard -->
+      <div class="flex justify-center max-w-[1200px] mx-auto">
+        <NameCard revealDelay={220} centered />
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- Custom cursor ring -->
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll reveal observer -->
+  <script is:inline>
+    (() => {
+      if (typeof window === 'undefined') return;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const els = document.querySelectorAll('[data-reveal]');
+      if (prefersReduced) {
+        els.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+      els.forEach((el) => io.observe(el));
+    })();
+  </script>
+
+  <!-- Cursor + magnetic tile interactions -->
+  <script is:inline>
+    (() => {
+      if (typeof window === 'undefined') return;
+      // only on pointer-fine devices (mouse, not touchscreen)
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+
+      // ── Custom cursor ring ──────────────────────────────────────────
+      const ring = document.getElementById('cursor-ring');
+      document.documentElement.classList.add('has-custom-cursor');
+
+      let visible = false;
+      const move = (e) => {
+        ring.style.left = e.clientX + 'px';
+        ring.style.top  = e.clientY + 'px';
+        if (!visible) { ring.classList.add('is-visible'); visible = true; }
+      };
+      document.addEventListener('mousemove', move, { passive: true });
+      document.addEventListener('mouseleave', () => {
+        ring.classList.remove('is-visible');
+        visible = false;
+      });
+
+      // enlarge ring on interactive elements
+      document.querySelectorAll('a, button').forEach((el) => {
+        el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
+      });
+
+      // ── Magnetic 3-D tilt on case tiles ────────────────────────────
+      document.querySelectorAll('.case-tile').forEach((tile) => {
+        tile.addEventListener('mouseenter', () => {
+          // disable the transform portion of the CSS transition while the
+          // mouse is inside so each frame updates instantly (no smearing)
+          tile.style.transitionProperty = 'border-color, background-color, box-shadow';
+          ring.classList.add('is-hover');
+        });
+
+        tile.addEventListener('mousemove', (e) => {
+          const r = tile.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width  - 0.5;  // -0.5…0.5
+          const y = (e.clientY - r.top)  / r.height - 0.5;
+          tile.style.transform =
+            `perspective(900px) rotateY(${x * 9}deg) rotateX(${-y * 6}deg) translateY(-5px)`;
+        });
+
+        tile.addEventListener('mouseleave', () => {
+          // restore transform to the CSS transition so the return is smooth
+          tile.style.transitionProperty = '';
+          tile.style.transform = '';
+          ring.classList.remove('is-hover');
+        });
+      });
+    })();
+  </script>
+
+  <style is:global>
+    /* hide system cursor on pointer-fine devices when custom cursor is active */
+    html.has-custom-cursor,
+    html.has-custom-cursor * { cursor: none !important; }
+
+    #cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 26px; height: 26px;
+      border: 1px solid rgba(255,255,255,0.30);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition:
+        width  0.28s cubic-bezier(0.22,1,0.36,1),
+        height 0.28s cubic-bezier(0.22,1,0.36,1),
+        border-color 0.28s,
+        opacity 0.35s;
+    }
+    #cursor-ring.is-visible { opacity: 1; }
+    #cursor-ring.is-hover {
+      width: 50px; height: 50px;
+      border-color: rgba(255,255,255,0.55);
+    }
+
+    /* ── Frosted glass badge (Currently section) ──────────────────── */
+    .glass-badge {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(24px) saturate(0.9);
+      -webkit-backdrop-filter: blur(24px) saturate(0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 4px 24px rgba(0,0,0,0.3);
+      font-family: 'Fraunces', serif;
+      font-variation-settings: 'SOFT' 100, 'opsz' 144;
+      font-size: clamp(20px, 3vw, 30px);
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+  </style>
+</BaseDark>

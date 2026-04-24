@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Portfolio of Jielle Lu — cinematic edition.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="theme-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <style is:global>
+      html.theme-dark {
+        background-color: #1a1a1a;
+        color: #F3EFE6;
+      }
+      html.theme-dark body {
+        background: #1a1a1a;
+      }
+      html.theme-dark ::selection {
+        background-color: #F3EFE6;
+        color: #1a1a1a;
+      }
+    </style>
+  </head>
+  <body class="relative min-h-screen overflow-x-hidden">
+    <slot />
+
+    <!-- subtle grain overlay -->
+    <div class="pointer-events-none fixed inset-0 z-[60] opacity-[0.08] mix-blend-overlay" aria-hidden="true">
+      <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+        <filter id="case-grain">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.75"
+            numOctaves="3"
+            seed="9"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix
+            values="0 0 0 0 0.5
+                    0 0 0 0 0.5
+                    0 0 0 0 0.5
+                    0 0 0 0.4 0"
+          />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#case-grain)" />
+      </svg>
+    </div>
+  </body>
+</html>

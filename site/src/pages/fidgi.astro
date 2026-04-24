@@ -1,0 +1,652 @@
+---
+import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
+
+const pains = [
+  { t: 'Weak working memory', d: 'Plans and detailed steps vanish the moment you stop actively holding them.' },
+  { t: 'Gendered presentation', d: 'Symptoms read as inattentive rather than hyperactive, so they go unnamed.' },
+  { t: 'Misinterpretation', d: 'Executive-function failures mistaken for laziness, eroding self-confidence.' },
+  { t: 'Time blindness', d: 'Inability to accurately sense how long tasks will take.' },
+  { t: 'Daily forgetfulness', d: 'Chronic struggles with remembering tasks, items, and appointments.' },
+  { t: 'Planning burnout', d: 'Exhaustion from the mental effort of organising thought itself.' },
+];
+
+const voices = [
+  '"I\'m quiet and seem calm, but my mind is always running — like too many browser tabs open at once."',
+  '"I thought I was lazy and undisciplined. After years of mistakes and being fired, I finally realised my attention was never really online."',
+  '"This fits me perfectly, but I\'m still scared I\'m just overthinking it and don\'t actually have ADHD."',
+  '"I can see what I need to do, but I can\'t find the key to start. The anxiety builds, but my body won\'t move."',
+];
+
+const values = [
+  {
+    t: 'Cognitive accessibility',
+    d: 'Bright colours, high contrast, and clear colour coding to reduce cognitive load. For ADHD or dyslexia traits, immediate visual cues outperform minimalist interfaces — which meant resisting the urge to make it look like a generic Scandinavian wellness app.',
+  },
+  {
+    t: 'Positive reinforcement',
+    d: 'No streaks that punish you for missing a day. Gamified elements as gentle motivation, not surveillance. The design prioritises encouragement over productivity guilt.',
+  },
+  {
+    t: 'Readability',
+    d: 'Larger, rounded typography to reduce visual strain during attention fatigue, supporting users with reading difficulty or cognitive overload.',
+  },
+];
+---
+
+<BaseCaseStudy title="Fidgi Grow — Jielle Lu">
+  <main class="relative z-10 mx-auto max-w-[1200px] min-h-screen px-6 md:px-12 lg:px-16 pt-8 md:pt-10 pb-24">
+
+    <!-- TOP CHROME -->
+    <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
+      <a href="/" class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+        <span>←</span> Home
+      </a>
+      <div class="text-right space-y-0.5 text-white/55">
+        <div class="text-white/80">§ 02 — Case study</div>
+        <div>Vol. I · 2025 · Interdisciplinary studio</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="mt-16 md:mt-24 grid grid-cols-12 gap-6 md:gap-10">
+      <div class="col-span-12 md:col-span-8">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-4 flex items-center gap-2">
+          <span class="text-white text-base leading-none">◆</span>
+          <span>Chapter Two — Fidgi Grow</span>
+        </div>
+
+        <h1 class="font-sans font-black tracking-[-0.055em] leading-[0.88] text-white text-[clamp(64px,11vw,176px)]">
+          <span class="block">Fidgi</span>
+          <span
+            class="block font-light italic text-white/60 tracking-[-0.025em]"
+            style="font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;"
+          >
+            Grow.
+          </span>
+        </h1>
+
+        <p class="mt-10 max-w-[52ch] text-[17px] leading-[1.55] text-white/80">
+          An ADHD support app that
+          <span class="italic text-white" style="font-family:'Fraunces',serif">never mentions ADHD</span>
+          on its cover.
+        </p>
+      </div>
+
+      <aside class="col-span-12 md:col-span-4 md:pt-16">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50 border-b border-white/15 pb-2 mb-5">
+          Reader's guide
+        </div>
+        <ul class="space-y-4 text-[15px] leading-[1.4] text-white/75" style="font-family:'Fraunces',serif;font-style:italic">
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§1 the week research broke our brief.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§2 the positioning statement that carried the whole thing.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§3 – §4 design decisions and features in full.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§5 an iteration, and what it taught us.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- META + MY ROLE -->
+    <section class="mt-20 md:mt-28 grid grid-cols-12 gap-10">
+      <div class="col-span-12 md:col-span-4">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
+          <span class="text-white/80">§</span> Project meta
+        </div>
+        <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Year</dt><dd>2025 · Interdisciplinary studio</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Team</dt><dd>5 — UI, research, writing, industrial design</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Role</dt><dd>UI design · Research & strategy</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tools</dt><dd>Figma</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tags</dt><dd class="text-white/55">Mobile · Healthcare · ADHD · Inclusive · Hardware × software</dd></div>
+        </dl>
+      </div>
+
+      <div class="col-span-12 md:col-span-8">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
+          <span class="text-white/80">§</span> My role
+        </div>
+        <p class="text-[15.5px] leading-[1.6] text-white/80 max-w-[62ch]">
+          A 5-person team project across UX research, UI design, writing, and industrial design.
+          My specific contributions:
+        </p>
+        <ul class="mt-5 space-y-3 text-[15px] leading-[1.55] text-white/85">
+          <li class="flex gap-3">
+            <span class="text-white/60 font-mono mt-[2px]">·</span>
+            <span><strong class="text-white">Research synthesis</strong> — organised findings into the six pain points that drove the design priorities, and helped shape the "Real Voice of ADHD" evidence that anchored our brief.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-white/60 font-mono mt-[2px]">·</span>
+            <span><strong class="text-white">UI design</strong> — onboarding flow (gender-inclusive registration), the hormone-aware calendar, and the gamified tracking overview.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-white/60 font-mono mt-[2px]">·</span>
+            <span><strong class="text-white">Strategy discussions</strong> — participated in shaping the "Optimized for ADHD women, built for everyone" positioning, which defined how the product framed itself.</span>
+          </li>
+        </ul>
+        <p class="mt-5 text-[14px] leading-[1.55] text-white/55 max-w-[62ch]">
+          The physical fidget toy was led by our industrial design teammate; I contributed to how the toy's data integrated into the app UI.
+        </p>
+      </div>
+    </section>
+
+    <!-- THE QUESTION -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§</span> The question
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        Most ADHD apps <span class="italic text-white/60">announce it on the cover.</span>
+      </h2>
+      <p class="mt-8 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
+        Notion for ADHD. Tiimo for ADHD. Inflow for ADHD.
+        We spent the first week of the project assuming we'd do the same —
+        <em class="italic text-white" style="font-family:'Fraunces',serif">and then the research broke that assumption.</em>
+      </p>
+    </section>
+
+    <!-- §1 RESEARCH -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 01</span> — What the research showed
+      </div>
+
+      <!-- Competitor landscape -->
+      <div class="grid grid-cols-12 gap-8 mb-16">
+        <div class="col-span-12 md:col-span-4">
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">A saturated market with a specific blind spot</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8">
+          <p class="text-[15px] leading-[1.65] text-white/80 max-w-[60ch] mb-6">
+            The productivity market is crowded with task and focus tools, and there's a smaller neurodivergent-specific segment. Both are useful, but share the same gap: they treat ADHD symptoms as static and universal, and rarely account for <strong class="text-white">hormonal fluctuation</strong> or <strong class="text-white">internalized symptom patterns</strong> — exactly the things that make ADHD look different in women.
+          </p>
+          <div class="rounded-[12px] border border-white/12 overflow-hidden text-[13.5px]">
+            <table class="w-full">
+              <thead class="bg-white/[0.05] font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
+                <tr>
+                  <th class="text-left py-3 px-4 font-normal">Category</th>
+                  <th class="text-left py-3 px-4 font-normal">Strength</th>
+                  <th class="text-left py-3 px-4 font-normal">Weakness</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-white/[0.015]">
+                  <td class="py-3 px-4 text-white font-medium">Robust platforms <span class="text-white/50 font-normal">(Todoist, Notion)</span></td>
+                  <td class="py-3 px-4 text-white/70">Flexible, powerful, huge user base</td>
+                  <td class="py-3 px-4 text-white/50">Too overwhelming for exec dysfunction; no ADHD-specific tooling</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 text-white font-medium">Neurodivergent tools <span class="text-white/50 font-normal">(Inflow, Tiimo)</span></td>
+                  <td class="py-3 px-4 text-white/70">Timers, routines, education</td>
+                  <td class="py-3 px-4 text-white/50">Expensive; less focus on inattentive presentations</td>
+                </tr>
+                <tr class="bg-white/[0.015]">
+                  <td class="py-3 px-4 text-white font-medium">Single-purpose <span class="text-white/50 font-normal">(Forest)</span></td>
+                  <td class="py-3 px-4 text-white/70">Excellent at one thing</td>
+                  <td class="py-3 px-4 text-white/50">Forces users to juggle multiple apps</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Women's ADHD blind spot -->
+      <div class="grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-4">
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Women's ADHD is a gendered blind spot</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8">
+          <p class="text-[15px] leading-[1.65] text-white/80 max-w-[60ch]">
+            ADHD in women isn't rarer — it's under-recognised. The childhood diagnosis ratio skews male 2:1,
+            but in adulthood the ratio balances out. That gap is a story about what gets seen, not what exists.
+            Women's symptoms tend to be internalised rather than hyperactive: distractibility, forgetfulness,
+            planning paralysis. These look less like "ADHD" and more like
+            <em class="italic text-white" style="font-family:'Fraunces',serif">"bad at life"</em> — which is exactly how many women come to describe themselves.
+          </p>
+          <figure class="mt-6 border-l-2 border-white/35 pl-6">
+            <blockquote class="text-white max-w-[30ch]" style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,2.2vw,24px);line-height:1.35;letter-spacing:-0.02em">
+              How might we design adaptive support for women with ADHD that responds to changing cognitive and emotional states?
+            </blockquote>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Voices -->
+      <div class="mt-16 grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-4">
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">The voices that changed our direction</h3>
+          <p class="mt-3 text-[14px] leading-[1.6] text-white/55 max-w-[32ch]">
+            Posts collected from Chinese-language ADHD communities (Dcard, PTT, forums).
+            A recurring pattern: suspect, then doubt, then dismiss.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-8 space-y-5">
+          {voices.map((v) => (
+            <blockquote class="border-l-2 border-white/35 pl-5 text-white/85" style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(16px,1.8vw,20px);line-height:1.5;letter-spacing:-0.01em">
+              {v}
+            </blockquote>
+          ))}
+          <p class="mt-6 text-[15px] leading-[1.65] text-white/80 max-w-[60ch]">
+            Many women suspect, then doubt, then dismiss. They won't download an app labelled "ADHD" —
+            doing so would be admitting something they've been trained to see as a character flaw.
+            <strong class="text-white">This was the research moment that changed our brief.</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Six pain points -->
+      <div class="mt-16">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-4">The six pain points · each maps to a later design feature</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {pains.map((p, i) => (
+            <article class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">0{i + 1}</div>
+              <h4 class="font-sans font-semibold text-[16px] text-white">{p.t}</h4>
+              <p class="mt-2 text-[13.5px] leading-[1.55] text-white/60">{p.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- §2 STRATEGY -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 02</span> — The strategic decision
+      </div>
+
+      <figure class="my-6 border-l-2 border-white/40 pl-6 md:pl-10">
+        <blockquote class="text-white leading-[1.0] max-w-[18ch]" style="font-family:'Fraunces',serif;font-size:clamp(40px,6.5vw,72px);letter-spacing:-0.03em">
+          Optimized for ADHD women.
+          <span class="italic block text-white/60">Built for everyone.</span>
+        </blockquote>
+      </figure>
+
+      <p class="mt-8 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
+        We chose not to put ADHD in the product name or the front-page copy. The reasoning had two sides.
+      </p>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="rounded-[14px] border border-white/12 bg-white/[0.04] p-6 md:p-7">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-3">Empathy reason</div>
+          <p class="text-[14.5px] leading-[1.65] text-white/80">
+            Many of our target users don't yet know they have ADHD. Labelling the app would activate
+            the very self-doubt we were trying to relieve. A woman quietly wondering if she's
+            <em class="italic text-white" style="font-family:'Fraunces',serif">"just bad at life"</em> isn't going to search for "ADHD app."
+          </p>
+        </article>
+        <article class="rounded-[14px] border border-white/12 bg-white/[0.04] p-6 md:p-7">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-3">Strategic reason</div>
+          <p class="text-[14.5px] leading-[1.65] text-white/80">
+            A neurotypical-friendly productivity app with ADHD-informed design serves both populations.
+            An ADHD-branded app only serves the already-diagnosed.
+            <strong class="text-white">Most competitors made the second choice.</strong>
+          </p>
+        </article>
+      </div>
+
+      <p class="mt-8 text-[15.5px] leading-[1.65] text-white/60 max-w-[62ch]">
+        This is the spine of the whole project. Every feature below exists because we committed to this position.
+      </p>
+    </section>
+
+    <!-- §3 THREE DESIGN DECISIONS -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 03</span> — Three decisions that carry the strategy
+      </div>
+
+      <!-- 3.1 -->
+      <article class="grid grid-cols-12 gap-6 md:gap-8 mb-20">
+        <div class="col-span-12 md:col-span-4">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">3.1</div>
+          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">Gender-inclusive registration</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8 space-y-5">
+          <figure class="rounded-[16px] border border-white/12 overflow-hidden">
+            <div class="bg-white p-4 md:p-6">
+              <img
+                src="/img/registration.png"
+                alt="Gender-inclusive registration flow — three onboarding screens"
+                class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                loading="lazy"
+              />
+            </div>
+            <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+              Fig 3.1 — Onboarding · sex field & optional cycle logging
+            </div>
+          </figure>
+          <p class="text-[15px] leading-[1.65] text-white/85 max-w-[62ch]">
+            Onboarding asks for sex (woman / man / trans woman / trans man), then optionally logs
+            the user's last menstrual cycle before generating a personalised plan.
+          </p>
+          <ul class="space-y-3 text-[14.5px] leading-[1.6] text-white/70">
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">For women with ADHD</strong>, hormone fluctuations measurably affect attention, emotional regulation, and executive function — ignoring this is a common failure mode of generic productivity apps.</span></li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">For trans users</strong>, a four-option sex field (rather than a binary) signals the product was designed with them in mind, not retrofitted.</span></li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">The skip button is non-negotiable.</strong> Forcing disclosure before the app has earned trust would break it at the door.</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 3.2 -->
+      <article class="grid grid-cols-12 gap-6 md:gap-8 mb-20">
+        <div class="col-span-12 md:col-span-4">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">3.2</div>
+          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">Hormone-aware calendar</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8 space-y-5">
+          <figure class="rounded-[16px] border border-white/12 overflow-hidden">
+            <div class="bg-white p-4 md:p-6">
+              <img
+                src="/img/calender.png"
+                alt="Hormone-aware calendar showing phase labels alongside tasks"
+                class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                loading="lazy"
+              />
+            </div>
+            <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+              Fig 3.2 — Calendar · task colour coding + hormone phase close-up
+            </div>
+          </figure>
+          <p class="text-[15px] leading-[1.65] text-white/85 max-w-[62ch]">
+            The calendar doesn't just show tasks — it shows hormone phase alongside them. When the user enters
+            the luteal phase (often associated with heightened inattention and emotional dysregulation for ADHD
+            women), the calendar surfaces a gentle acknowledgment:
+          </p>
+          <blockquote class="text-white/90 border-l-2 border-white/40 pl-5 max-w-[46ch]" style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);line-height:1.4;letter-spacing:-0.01em">
+            "You'll likely be more emotional than usual. Be nicer to yourself."
+          </blockquote>
+          <p class="text-[15px] leading-[1.65] text-white/65 max-w-[62ch]">
+            What we were trying to avoid: a warning or disability notice.
+            What we wanted: something closer to a weather forecast — information that helps you plan,
+            without telling you how to feel.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">Visibility vs. privacy</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/65">Easy to reach, but not front-and-centre. Someone using the app at work shouldn't have their cycle plastered across the home screen.</p>
+            </div>
+            <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">Informative vs. prescriptive</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/65">We only tell users what's likely — never what they should do. The app gives data, and lets them decide.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3.3 -->
+      <article class="grid grid-cols-12 gap-6 md:gap-8">
+        <div class="col-span-12 md:col-span-4">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">3.3</div>
+          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">Fidget toy + gamified tracking</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8 space-y-5">
+          <figure class="rounded-[16px] border border-white/12 overflow-hidden">
+            <div class="grid grid-cols-2">
+              <div class="bg-white p-4 md:p-6">
+                <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/35 mb-3 flex items-center gap-1.5">
+                  <span class="size-1.5 rounded-full bg-black/25 inline-block"></span>
+                  Hardware
+                </div>
+                <img
+                  src="/img/fidget_toy.png"
+                  alt="Physical fidget toy — attaches to back of phone via magnetic snap"
+                  class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                  loading="lazy"
+                />
+              </div>
+              <div class="bg-white p-4 md:p-6 border-l border-black/[0.06]">
+                <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/60 mb-3 flex items-center gap-1.5">
+                  <span class="size-1.5 rounded-full bg-black/55 inline-block"></span>
+                  App
+                </div>
+                <img
+                  src="/img/tracking_system.png"
+                  alt="Gamified tracking system — weekly overview and hamster avatar"
+                  class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+              Fig 3.3 — Physical fidget toy (NFC snap) · tracking overview & avatar system
+            </div>
+          </figure>
+          <p class="text-[15px] leading-[1.65] text-white/85 max-w-[62ch]">
+            Fidgeting is a common self-regulation behaviour for ADHD — but most productivity apps treat it as
+            a distraction to eliminate. <strong class="text-white">We wanted the opposite: let fidgeting count as engagement.</strong>
+          </p>
+          <div class="space-y-4">
+            <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">The hardware</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/70">A physical fidget toy (designed by our industrial design teammate) attaches to the back of the phone via magnetic snap and mechanical clip. Inside: embedded magnets and NFC zones. Comes in multiple colour profiles, which also unlock as the user levels up.</p>
+            </div>
+            <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">The app side</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/70">When the toy detects movement, it feeds the user's virtual hamster avatar. The weekly overview shows fidget cycles per day — making attention habits visible without conscious logging. Achievement milestones, not streaks: hitting a level doesn't punish you for the days you missed.</p>
+            </div>
+          </div>
+          <p class="text-[13.5px] leading-[1.55] text-white/50 max-w-[62ch]">
+            My contribution was on the app side: the weekly overview layout, the collection grid, and how achievement states communicated progress without tipping into pressure.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- §4 OTHER FEATURES -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 04</span> — Other features
+      </div>
+
+      <div class="space-y-14">
+        <!-- 4.1 Manage Task -->
+        <article class="grid grid-cols-12 gap-6 md:gap-8">
+          <div class="col-span-12 md:col-span-4">
+            <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">4.1</div>
+            <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Manage Task — smart breakdown</h3>
+            <p class="mt-3 text-[14px] leading-[1.6] text-white/60">Auto-decomposes complex tasks into steps, lowering the activation energy to start.</p>
+            <div class="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white/40 leading-[1.6]">
+              Addresses:<br/>Daily Forgetfulness · Planning Burnout · Time Blindness
+            </div>
+          </div>
+          <div class="col-span-12 md:col-span-8 space-y-5">
+            <figure class="rounded-[16px] border border-white/12 overflow-hidden">
+              <div class="bg-white p-4 md:p-6">
+                <img
+                  src="/img/manage_task.png"
+                  alt="Manage Task — task list, focus session, and smart breakdown screens"
+                  class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                  loading="lazy"
+                />
+              </div>
+              <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+                Fig 4.1 — Task list · focus session · smart breakdown
+              </div>
+            </figure>
+            <ul class="space-y-3 text-[14.5px] leading-[1.6] text-white/80">
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>Today's tasks with colour-coded status (tracking / overdue / complete); each expands into a focus session with the hamster avatar and quick "Take a Break" + "Take a Note" buttons.</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">Smart Breakdown</strong> — system automatically deconstructs a complex task into smaller steps. Shifts the question from "how do I even begin?" to "which small thing do I do first."</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>Progress ring with deadline and time-spent data — so users can see how estimates compare to reality. Over time, builds a more accurate sense of how long things actually take.</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 4.2 Widgets -->
+        <article class="grid grid-cols-12 gap-6 md:gap-8">
+          <div class="col-span-12 md:col-span-4">
+            <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">4.2</div>
+            <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Customisable widgets</h3>
+            <p class="mt-3 text-[14px] leading-[1.6] text-white/60">Keeps tasks visible outside the app — countering the out-of-sight, out-of-mind failure mode.</p>
+            <div class="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white/40 leading-[1.6]">
+              Addresses:<br/>Weak Working Memory · Daily Forgetfulness
+            </div>
+          </div>
+          <div class="col-span-12 md:col-span-8 space-y-5">
+            <figure class="rounded-[16px] border border-white/12 overflow-hidden">
+              <div class="bg-white p-4 md:p-6">
+                <img
+                  src="/img/widget.png"
+                  alt="Customisable widgets — fidget tracker, task tracker, calendar on home and lock screen"
+                  class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                  loading="lazy"
+                />
+              </div>
+              <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+                Fig 4.2 — Widget types · home screen + lock screen implementation
+              </div>
+            </figure>
+            <ul class="space-y-3 text-[14.5px] leading-[1.6] text-white/80">
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">Fidget Tracker</strong> — focus ring and running timer; <strong class="text-white">Task Tracker</strong> — today's tasks with status and "Start Tracking" button; <strong class="text-white">Calendar</strong> — month view with due / overdue / finished colour coding.</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>Lock screen implementation keeps the plan on the surface of the phone. For a user whose working memory can't hold plans between glances, this is structural, not cosmetic.</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 4.3 Supporting features -->
+        <div>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-4">4.3 Supporting features</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <article class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
+              <h4 class="font-sans font-semibold text-[16px] text-white">Educational blogs</h4>
+              <p class="mt-2 text-[13.5px] leading-[1.55] text-white/65">Clarify ADHD misconceptions (executive dysfunction, rejection sensitivity) and gently encourage formal diagnosis when patterns resonate. Positioned inside the app so they surface at the right moment.</p>
+            </article>
+            <article class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
+              <h4 class="font-sans font-semibold text-[16px] text-white">Cycle Record</h4>
+              <p class="mt-2 text-[13.5px] leading-[1.55] text-white/65">Logs menstrual flow and today's symptoms (inattention spikes, emotional dysregulation, forgetfulness), feeding into the calendar's hormone-phase layer. Users can select common symptoms or add their own.</p>
+            </article>
+          </div>
+          <p class="mt-4 text-[13.5px] leading-[1.55] text-white/50">Each addresses a specific pain point from §01.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- §5 DESIGN ITERATION -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 05</span> — Design iteration
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        V1 leaned pink. <span class="italic text-white/60">V2 leaned purposeful.</span>
+      </h2>
+      <p class="mt-8 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
+        An earlier version of the app leaned pink and soft, with a feed-style home screen mixing smart
+        reminders, a hormone tracker, a social community, and blog posts. We rebuilt the visual system
+        around our three design values: higher-contrast blue and yellow, a focus-forward home screen
+        anchored by the hamster avatar and focus timer, and a cleaner task list.
+      </p>
+      <p class="mt-4 text-[15px] leading-[1.65] text-white/60 max-w-[62ch]">
+        The iteration sharpened what the app was <em class="italic text-white" style="font-family:'Fraunces',serif">for</em> — less wellness-feed, more daily companion.
+      </p>
+      <figure class="mt-10 rounded-[16px] border border-white/12 overflow-hidden">
+        <div class="bg-white p-4 md:p-6">
+          <img
+            src="/img/iteration.png"
+            alt="Design iteration — V1 pink feed-style vs V2 focus-forward layout"
+            class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+            loading="lazy"
+          />
+        </div>
+        <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+          Fig 5 — Design iteration · V1 (feed-style) vs. V2 (focus-forward)
+        </div>
+      </figure>
+    </section>
+
+    <!-- §6 USER TESTING -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 06</span> — User testing
+      </div>
+      <p class="text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
+        Qualitative testing with participants who self-identify as having ADHD.
+        A full SUS-style quantitative comparison wasn't in scope — what we were testing was whether the
+        product's <em class="italic text-white" style="font-family:'Fraunces',serif">core premise</em> resonated.
+      </p>
+      <figure class="mt-10 border-l-2 border-white/40 pl-6 md:pl-10">
+        <blockquote class="text-white/90 max-w-[30ch]" style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,3.2vw,34px);line-height:1.3;letter-spacing:-0.02em">
+          "As someone with ADHD, I think this design is incredibly ADHD-friendly. The toy and hormone function differentiate the app from other productivity apps."
+        </blockquote>
+      </figure>
+      <p class="mt-6 text-[14.5px] leading-[1.6] text-white/60 max-w-[60ch]">
+        The second sentence is what mattered to us most. The differentiation we'd been arguing about in team
+        meetings for weeks had actually landed.
+      </p>
+    </section>
+
+    <!-- §7 VALUES -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 07</span> — Design values
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {values.map((v, i) => (
+          <article>
+            <div class="text-white leading-none text-[52px]" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">0{i + 1}</div>
+            <h3 class="mt-3 font-sans font-semibold text-[18px] text-white">{v.t}</h3>
+            <p class="mt-2 text-[14px] leading-[1.6] text-white/65">{v.d}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- §8 REFLECTION -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 08</span> — Reflection
+      </div>
+      <div class="space-y-10 max-w-[64ch]">
+        <div>
+          <h3 class="font-sans font-semibold text-[19px] text-white mb-2">What the project taught me.</h3>
+          <p class="text-[15px] leading-[1.65] text-white/75">
+            The most valuable moment of the project wasn't a design decision — it was the research finding
+            that forced us to rewrite our brief. We'd started assuming we were building
+            <em class="italic text-white" style="font-family:'Fraunces',serif">"an ADHD app for women."</em> We ended up building
+            <em class="italic text-white" style="font-family:'Fraunces',serif">"a productivity app that happens to be ADHD-informed"</em> —
+            because we'd learned that the first framing would have excluded the users we most wanted to reach.
+          </p>
+          <p class="mt-4 text-[15px] leading-[1.65] text-white/85">
+            Research isn't a box to check before design starts. It can — and should — reshape the fundamental
+            premise of what you're making.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-semibold text-[19px] text-white mb-2">What I'd do differently.</h3>
+          <p class="text-[15px] leading-[1.65] text-white/75">
+            We didn't run a head-to-head test against a competitor (Todoist, Tiimo) to validate that our
+            specific design choices made the ADHD-women use case measurably easier. Without it, the honest
+            version of our claim is "our target users found it differentiated," not "they found it more effective."
+            <strong class="text-white">Good case studies say both.</strong>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-sans font-semibold text-[19px] text-white mb-2">What I'll bring forward.</h3>
+          <p class="text-[15px] leading-[1.65] text-white/75">
+            Inclusive design decisions (like the four-option sex field) are cheap to make at design time and
+            costly to retrofit later. This project pushed me to make them at the start, not as a later
+            accessibility pass.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDITS -->
+    <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55 space-y-3 max-w-[74ch]">
+      <p>
+        Team project, 2025. Industrial design (fidget toy) led by Pei-Hua. UI design led by Raven and Jielle.
+        Writing led by Jidapa. My specific contributions are listed in the "My role" section.
+      </p>
+      <p class="normal-case tracking-normal font-sans text-[13px] text-white/60 leading-[1.55]">
+        An independent academic design project. <strong>Not a medical product</strong> — not intended to
+        diagnose, treat, or substitute professional care for ADHD. Users who recognise their patterns in the
+        app's content are always encouraged to seek formal evaluation from qualified healthcare providers.
+      </p>
+      <div class="pt-4 flex items-center justify-between">
+        <a href="/linepay" class="text-white/70 hover:text-white transition-colors">← §01 LinePay redesign</a>
+        <a href="/" class="text-white/70 hover:text-white transition-colors">Back to home →</a>
+      </div>
+    </footer>
+
+  </main>
+</BaseCaseStudy>

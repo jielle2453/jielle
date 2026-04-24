@@ -1,0 +1,52 @@
+---
+interface Props {
+  items: string[];
+  durationSec?: number;
+  /** Tone: 'muted' (faint label style) | 'strong' (larger display serif) */
+  tone?: 'muted' | 'strong';
+}
+
+const { items, durationSec = 52, tone = 'muted' } = Astro.props;
+// duplicate the list so translateX(-50%) produces a seamless loop
+const doubled = [...items, ...items];
+---
+
+<div
+  class:list={[
+    'marquee relative overflow-hidden select-none',
+    tone === 'strong' ? 'py-6 border-y border-white/12' : 'py-3 border-y border-white/10',
+  ]}
+>
+  <div
+    class="marquee-track inline-flex whitespace-nowrap"
+    style={`--marquee-duration: ${durationSec}s`}
+  >
+    {doubled.map((item, i) => (
+      <span
+        class:list={[
+          'inline-flex items-center',
+          tone === 'strong'
+            ? 'mx-6 text-white/85 text-[clamp(28px,3.6vw,56px)] leading-none'
+            : 'mx-5 font-mono text-[10.5px] uppercase tracking-[0.28em] text-white/60',
+        ]}
+        style={tone === 'strong'
+          ? "font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'opsz' 144;letter-spacing:-0.025em"
+          : undefined}
+      >
+        {item}
+        <span
+          class:list={[
+            tone === 'strong' ? 'mx-6 text-white/30 text-[0.55em]' : 'ml-5 text-white/25',
+          ]}
+          aria-hidden="true"
+        >
+          {tone === 'strong' ? '◆' : '·'}
+        </span>
+      </span>
+    ))}
+  </div>
+
+  <!-- soft edges fading into background -->
+  <div class="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#020204] to-transparent"></div>
+  <div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#020204] to-transparent"></div>
+</div>

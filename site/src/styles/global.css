@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Caveat:wght@400..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #F3EEE3;
+    color: #1A1814;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    font-feature-settings: 'ss02';
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #C04A1E;
+    color: #F3EEE3;
+  }
+
+  /* Dark theme accent color - Electric Blue */
+  html.theme-dark {
+    --accent: #00D9FF;
+    --accent-dim: #0099CC;
+    --accent-glow: rgba(0, 217, 255, 0.15);
+  }
+
+  html.theme-dark .text-accent {
+    color: var(--accent);
+  }
+}
+
+@layer components {
+  .display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+    letter-spacing: -0.035em;
+    line-height: 0.88;
+  }
+
+  .display-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+    letter-spacing: -0.025em;
+    line-height: 0.88;
+  }
+
+  .label-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+}
+
+/* ── Motion primitives ───────────────────────────────────────────────
+   Dynamic homepage needs on-load and on-scroll reveals that respect
+   users who've opted out of motion. Inner case-study pages deliberately
+   omit these classes to stay calm.
+*/
+@layer utilities {
+  /* line / letter stagger on load */
+  @keyframes letter-rise {
+    from { transform: translateY(115%) rotate(2deg); opacity: 0; }
+    to   { transform: translateY(0)    rotate(0);    opacity: 1; }
+  }
+  .letter {
+    display: inline-block;
+    transform: translateY(115%) rotate(2deg);
+    opacity: 0;
+    animation: letter-rise 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* fade-up for blocks */
+  @keyframes fade-up {
+    from { transform: translateY(16px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .fade-up {
+    opacity: 0;
+    animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* seamless marquee — content duplicated, travels from 0 to -50% */
+  @keyframes marquee-slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee-slide var(--marquee-duration, 48s) linear infinite;
+    will-change: transform;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* scroll reveal driven by IntersectionObserver in index.astro */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .letter, .fade-up, .reveal {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+    .marquee-track { animation: none !important; }
+  }
+}

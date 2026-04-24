@@ -1,0 +1,40 @@
+---
+interface Item {
+  text: string;
+  arrow?: string;
+  emphasis?: boolean;
+}
+
+interface Props {
+  items: Item[];
+  label?: string;
+}
+
+const { items, label = 'Marginalia' } = Astro.props;
+---
+
+<div>
+  <div class="label-mono text-ink-faint border-b border-ink/20 pb-2 mb-5">
+    <span class="text-rust">§</span> {label}
+  </div>
+
+  <ul class="space-y-5">
+    {items.map(({ text, arrow = '→', emphasis }) => (
+      <li class="flex gap-2.5 items-start">
+        <span class={`font-hand text-[22px] leading-none pt-1 ${emphasis ? 'text-rust' : 'text-rust/80'}`}>
+          {arrow}
+        </span>
+        <span
+          class:list={[
+            'font-hand leading-[1.3]',
+            emphasis
+              ? 'text-ink text-[24px]'
+              : 'text-ink-soft text-[21px]',
+          ]}
+        >
+          {text}
+        </span>
+      </li>
+    ))}
+  </ul>
+</div>

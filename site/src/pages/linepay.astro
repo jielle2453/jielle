@@ -1,0 +1,689 @@
+---
+import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
+
+const glance = [
+  { label: 'avg task time', before: "2'45''", after: "1'59''", delta: '−46s' },
+  { label: 'completion rate', before: '92.75%', after: '100%', delta: '+7.25' },
+  { label: 'sus score', before: '52.5', after: '72.5', delta: '+20' },
+];
+
+const participants = [
+  { id: 'A', bg: '20 y/o college student', note: 'Familiar with LinePay App', freq: '9 / wk' },
+  { id: 'B', bg: '26 y/o fresh graduate', note: 'Experienced with multiple payment apps', freq: '4 / wk' },
+  { id: 'C', bg: '33 y/o civil servant', note: "Matches LinePay's core age demographic", freq: '6 / wk' },
+  { id: 'D', bg: '45 y/o middle-school teacher', note: 'Heavy user of promo campaigns', freq: '1 / wk' },
+];
+
+const pains = [
+  {
+    k: 'A',
+    t: 'Card and payment code live on different pages',
+    d: 'Paying actually means "pick a card → show its matching code." The original version split those two steps across pages — counterintuitive every time.',
+  },
+  {
+    k: 'B',
+    t: 'The home page demotes the highest-frequency action',
+    d: 'Activity banners, message centre, secondary icons crowd the home. The one thing users open the app to do — pay — gets visually downgraded.',
+  },
+  {
+    k: 'C',
+    t: 'Promo information scattered across the app',
+    d: 'Industry data says savings is the #1 reason people choose mobile payment. LinePay\'s app makes that information the hardest to find.',
+  },
+];
+
+const solutions = [
+  {
+    no: '4.1',
+    title: 'Home — rebalancing primary vs. secondary',
+    problem: 'The main payment function got a tiny slice of the screen, squeezed by announcements and secondary modules.',
+    moves: [
+      'Home keeps only "pay + favourite functions" — open the app, pay immediately.',
+      'Unified card layout; modular blocks that increase swipeable area.',
+    ],
+    fig: 'Home redesign · before ↔ after',
+    beforeImg: '/img/before_home.png',
+    afterVideo: '/img/after_home.mp4',
+  },
+  {
+    no: '4.2',
+    title: 'All Functions — change how a feature gets pinned',
+    problem: 'A "star to favourite" affordance that never felt intuitive; a plain text list with no visual hierarchy.',
+    moves: [
+      'Replaced the star with a "+" — matches the universal "+ = add" mental model.',
+      'Functions now shown as icon + label in clean categories — quick to scan.',
+    ],
+    fig: 'All-features page · add-interaction redesign',
+    beforeImg: '/img/before_all_function.png',
+    afterVideo: '/img/after_all_function.mp4',
+  },
+  {
+    no: '4.3',
+    title: 'Good-Deals Map — make coupons findable',
+    problem: 'Filter sub-buttons hard to distinguish; too much visual noise on the map.',
+    moves: [
+      'Filter menu turned into a bottom sheet — reduces first-load visual load.',
+      "Added a 'active filter' summary so users can see what's currently applied.",
+    ],
+    fig: 'Map · filter sheet & active-filter summary',
+    pain: 'C',
+    beforeImg: '/img/before_map.png',
+    afterVideo: '/img/after_map.mp4',
+  },
+  {
+    no: '4.4',
+    title: 'Coupons — reorder information hierarchy',
+    problem: "Info ordering was chaotic — users couldn't quickly judge where a coupon applied.",
+    moves: [
+      'Reordered: merchant → offer → conditions → expiry.',
+      'Surfaced remaining points; raised image utilisation for scannability.',
+    ],
+    fig: 'Coupon card · information hierarchy',
+    pain: 'C',
+    beforeImg: '/img/before_coupon.png',
+    afterVideo: '/img/after_coupon.mp4',
+  },
+  {
+    no: '4.5',
+    title: 'Activities Feed — better promo discovery',
+    problem: "Hard to find activities; unclear which ones a user could actually join.",
+    moves: [
+      'Added an "eligible activities" tab so relevant promos never get missed.',
+      'Reflowed dense activity details so high-value info is readable at a glance.',
+    ],
+    fig: 'Activities feed · eligible-activities tab',
+    pain: 'C',
+    beforeImg: '/img/before_activity.png',
+    afterVideo: '/img/after_activity.mp4',
+  },
+  {
+    no: '4.6',
+    title: 'Financial Services — tighter information ordering',
+    problem: 'Tab buttons taking up too much vertical space.',
+    moves: [
+      'Converted to a tabbed layout; "trending rankings" earns the first-view slot.',
+      'Added a filter summary for quick scoping.',
+    ],
+    fig: 'Financial services · tabbed layout',
+    beforeImg: '/img/before_finance.png',
+    afterVideo: '/img/after_finance.mp4',
+  },
+];
+
+const voices = {
+  positive: [
+    '"Way easier than the original — simplified so many things."',
+    '"It just feels intuitive now."',
+    '"It makes me want to try functions beyond payment."',
+  ],
+  negative: [
+    '"Some info-block boundaries aren\'t clear enough."',
+    "\"At first glance, the home doesn't immediately read as a payment screen.\"",
+    '"Missing search and filter."',
+    '"Primary vs. secondary could be sharper."',
+  ],
+};
+---
+
+<BaseCaseStudy title="LinePay redesign — Jielle Lu">
+  <main class="relative z-10 mx-auto max-w-[1200px] min-h-screen px-6 md:px-12 lg:px-16 pt-8 md:pt-10 pb-24">
+
+    <!-- TOP CHROME -->
+    <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
+      <a href="/" class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+        <span>←</span> Home
+      </a>
+      <div class="text-right space-y-0.5 text-white/55">
+        <div class="text-white/80">§ 01 — Case study</div>
+        <div>Vol. I · 2024 · NTNU</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="mt-16 md:mt-24 grid grid-cols-12 gap-6 md:gap-10">
+      <div class="col-span-12 md:col-span-8">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-4 flex items-center gap-2">
+          <span class="text-white text-base leading-none">◆</span>
+          <span>Chapter One — LinePay redesign</span>
+        </div>
+
+        <h1 class="font-sans font-black tracking-[-0.055em] leading-[0.88] text-white text-[clamp(64px,11vw,176px)]">
+          <span class="block">LinePay</span>
+          <span
+            class="block font-light italic text-white/60 tracking-[-0.025em]"
+            style="font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;"
+          >
+            redesign.
+          </span>
+        </h1>
+
+        <p class="mt-10 max-w-[52ch] text-[17px] leading-[1.55] text-white/80">
+          Redesigning Taiwan's most-used mobile payment app around one user goal —
+          <span class="italic text-white" style="font-family:'Fraunces',serif">saving money effortlessly.</span>
+        </p>
+      </div>
+
+      <aside class="col-span-12 md:col-span-4 md:pt-16">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50 border-b border-white/15 pb-2 mb-5">
+          Reader's guide
+        </div>
+        <ul class="space-y-4 text-[15px] leading-[1.4] text-white/75" style="font-family: 'Fraunces', serif; font-style: italic;">
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§1 the context nobody on the team questioned.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§5 where a 52.5 became a 72.5.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§6 the redesign I'm proudest of — because V1 failed.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- AT A GLANCE -->
+    <section class="mt-20 md:mt-28">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-8 flex items-center justify-between">
+        <span><span class="text-white">§ at a glance</span> — measured against the original LinePay</span>
+        <span class="text-white/40">n = 4 · task time, completion, SUS</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {glance.map((g) => (
+          <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 md:p-7
+                          shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+            <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50">{g.label}</div>
+            <div class="mt-5 flex items-baseline gap-3">
+              <span class="font-mono text-[12px] text-white/45 line-through">{g.before}</span>
+              <span class="font-mono text-[11px] text-white/50">→</span>
+              <span class="text-white leading-none text-[46px] md:text-[54px]" style="font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'opsz' 144;letter-spacing:-0.03em">
+                {g.after}
+              </span>
+            </div>
+            <div class="mt-4 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white">Δ {g.delta}</div>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-6 text-[14px] leading-[1.55] text-white/60 max-w-[68ch]">
+        Four participants — different ages and usage habits — completing the same four tasks on the
+        original LinePay vs. our redesign. SUS moved from 52.5 ("OK") into 72.5 ("good") — a meaningful jump across SUS bands.
+      </p>
+    </section>
+
+    <!-- META + MY ROLE -->
+    <section class="mt-20 md:mt-28 grid grid-cols-12 gap-10">
+      <div class="col-span-12 md:col-span-4">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
+          <span class="text-white/80">§</span> Project meta
+        </div>
+        <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Course</dt><dd>UI/UX Design · 2024</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Team</dt><dd>5 members</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Role</dt><dd>Research · UX design · Usability testing</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tools</dt><dd>Figma · Miro · Notion</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tags</dt><dd class="text-white/55">Mobile · FinTech · Usability testing · Research-led</dd></div>
+        </dl>
+      </div>
+
+      <div class="col-span-12 md:col-span-8">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
+          <span class="text-white/80">§</span> My role
+        </div>
+        <p class="text-[15.5px] leading-[1.6] text-white/80 max-w-[62ch]">
+          5-person team project, full process shared. The parts I personally led:
+        </p>
+        <ul class="mt-5 space-y-2.5 text-[15px] leading-[1.55] text-white/85">
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>Persona synthesis & journey map integration</li>
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>V1 / V2 iteration on the home screen</li>
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>SUS analysis and chart-making for the usability study</li>
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>Final case-study documentation and deck design</li>
+        </ul>
+        <p class="mt-5 text-[14px] leading-[1.55] text-white/55 max-w-[62ch]">
+          Shared across the team: App Store review coding, six-page redesign ideation, four-participant usability study.
+        </p>
+      </div>
+    </section>
+
+    <!-- §1 CONTEXT -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 01</span> — Context
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[24ch]" style="font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'opsz' 144;letter-spacing:-0.03em;font-size:clamp(32px,5vw,56px)">
+        Taiwan's most ubiquitous payment app —
+        <span class="italic text-white/60"> and no one opens its app.</span>
+      </h2>
+      <p class="mt-8 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
+        LinePay is one of Taiwan's most embedded mobile-payment brands — 1 in 2 people use it, and a LinePay
+        transaction happens every 0.03 seconds nationwide. But we found an interesting disconnect:
+      </p>
+
+      <figure class="my-10 border-l-2 border-white/40 pl-6 md:pl-8">
+        <blockquote class="text-white leading-[1.15] max-w-[32ch]" style="font-family:'Fraunces',serif;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.02em">
+          12.5 million people use LinePay.
+          <span class="italic text-white/60 block">Only 2 million use the LinePay app.</span>
+        </blockquote>
+      </figure>
+
+      <p class="text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
+        The standalone app has never anchored real value for most users — it's the "only when I have to" tool,
+        not "the thing I reach for." That was our project's entry question:
+        <span class="italic text-white" style="font-family:'Fraunces',serif">
+          what kind of experience takes LinePay's app from necessary evil to a thing people open willingly?
+        </span>
+      </p>
+    </section>
+
+    <!-- §2 RESEARCH -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 02</span> — Research
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        Four axes, <span class="italic text-white/60">layered from macro to one user.</span>
+      </h2>
+
+      <!-- 2.1 -->
+      <div class="mt-12 grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-4">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.1</div>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Industry data — why do people use mobile payment?</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8">
+          <p class="text-[15px] leading-[1.65] text-white/80 max-w-[60ch]">
+            A 2023 survey (n=931) from the Key Issues Research Center found that the #1 motivation for using
+            mobile payment in Taiwan is <strong class="text-white">"rebates & promotions (24.17%)"</strong> —
+            ahead of convenience. The implication: users pick LinePay mostly to save money, but the app doesn't
+            make that experience feel good. That gave us a sharp design entry point.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2.2 -->
+      <div class="mt-14 grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-4">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.2</div>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">App Store review coding</h3>
+          <p class="mt-4 text-[13.5px] leading-[1.55] text-white/60 max-w-[30ch]">
+            Systematic thematic clustering of publicly available App Store reviews. We were honest about the
+            limits: review skew is bimodal (very happy / very angry), so you can't extrapolate volume — only
+            categorise the <em>kinds</em> of complaints.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-8 space-y-5">
+          {pains.map((p) => (
+            <article class="border-l-2 border-white/30 pl-5">
+              <div class="flex items-baseline gap-3 mb-1">
+                <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-white">{p.k}</span>
+                <h4 class="font-sans font-semibold text-[17px] text-white">{p.t}</h4>
+              </div>
+              <p class="text-[14.5px] leading-[1.6] text-white/65 max-w-[58ch]">{p.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- 2.3 Persona -->
+      <div class="mt-14 grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-4">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.3</div>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Persona — Kobayashi</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8">
+          <article class="rounded-[14px] border border-white/12 bg-white/[0.04] p-6 md:p-7">
+            <div class="text-white leading-[1.05]" style="font-family:'Fraunces',serif;font-size:28px;letter-spacing:-0.02em">
+              Kobayashi <span class="italic text-white/55 text-[22px]">· 21 · Da'an District, Taipei</span>
+            </div>
+            <p class="mt-3 text-[14.5px] leading-[1.55] text-white/80">
+              College student with a part-time job to cover tuition and living costs. Tight budget, constantly
+              hunting for discounts.
+            </p>
+            <dl class="mt-5 space-y-2 text-[13.5px] leading-[1.5] text-white/75">
+              <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 w-[64px] shrink-0 pt-[3px]">Goal</dt><dd>Save on daily expenses — use LINE Pay's discounts and rebates to spend less.</dd></div>
+              <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 w-[64px] shrink-0 pt-[3px]">Pain</dt><dd>Promos are complicated — unclear conditions, high thresholds — real savings are hard to claim.</dd></div>
+              <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 w-[64px] shrink-0 pt-[3px]">Quote</dt><dd class="italic text-white/60" style="font-family:'Fraunces',serif">"I just want to save a bit, quietly, inside my everyday habits."</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+
+      <!-- 2.4 Journey -->
+      <div class="mt-14 grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-4">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.4</div>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Journey map — four friction points</h3>
+        </div>
+        <div class="col-span-12 md:col-span-8">
+          <ol class="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">① Open app</div>
+              <div class="text-white/65 text-[13px]">"Home feels cluttered."</div>
+            </li>
+            <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">② Pick points/promo</div>
+              <div class="text-white/65 text-[13px]">Cognitive load is high.</div>
+            </li>
+            <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">③ Check eligibility</div>
+              <div class="text-white/65 text-[13px]">"Which coupon works here?"</div>
+            </li>
+            <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">④ Show code</div>
+              <div class="text-white/65 text-[13px]">"Too much back-and-forth."</div>
+            </li>
+          </ol>
+          <p class="mt-5 text-[14.5px] leading-[1.6] text-white/65 max-w-[60ch]">
+            Journey map points straight at the six pages we needed to fix: home, all functions, good-deals map,
+            coupons, activities feed, and financial services.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- §3 PRINCIPLES -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 03</span> — Design principles
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article>
+          <div class="text-white leading-none text-[52px]" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">01</div>
+          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">Clear primary vs. secondary</h3>
+          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">Home serves the "open → pay" 90% case. Everything else yields.</p>
+        </article>
+        <article>
+          <div class="text-white leading-none text-[52px]" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">02</div>
+          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">Bound semantics</h3>
+          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">The full payment action (card + code) must be designed as a single unit.</p>
+        </article>
+        <article>
+          <div class="text-white leading-none text-[52px]" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">03</div>
+          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">Promos made visible</h3>
+          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">Kobayashi's savings should be surfaced, not searched.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- §4 SOLUTIONS -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 04</span> — Design solutions · six pages
+      </div>
+      <div class="space-y-14">
+        {solutions.map((s) => (
+          <article class="grid grid-cols-12 gap-6 md:gap-8">
+            <div class="col-span-12 md:col-span-4">
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">
+                {s.no}{s.pain && <span class="text-white/45 ml-3">→ Pain {s.pain}</span>}
+              </div>
+              <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">{s.title}</h3>
+              <p class="mt-3 text-[14px] leading-[1.6] text-white/60">{s.problem}</p>
+            </div>
+            <div class="col-span-12 md:col-span-8">
+              <ul class="space-y-2 mb-5 text-[14.5px] leading-[1.55] text-white/85">
+                {s.moves.map((m) => (
+                  <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>{m}</li>
+                ))}
+              </ul>
+              {'beforeImg' in s && s.beforeImg && 'afterVideo' in s && s.afterVideo ? (
+                <figure class="rounded-[16px] border border-white/12 overflow-hidden">
+                  {/* White-background before/after comparison */}
+                  <div class="grid grid-cols-2">
+                    {/* BEFORE — static screenshot */}
+                    <div class="bg-white p-4 md:p-6">
+                      <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/35 mb-3 flex items-center gap-1.5">
+                        <span class="size-1.5 rounded-full bg-black/25 inline-block"></span>
+                        Before
+                      </div>
+                      <img
+                        src={s.beforeImg}
+                        alt={`${s.title} — before redesign`}
+                        class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                        loading="lazy"
+                      />
+                    </div>
+                    {/* AFTER — prototype video */}
+                    <div class="bg-white p-4 md:p-6 border-l border-black/[0.06]">
+                      <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/60 mb-3 flex items-center gap-1.5">
+                        <span class="size-1.5 rounded-full bg-black/55 inline-block"></span>
+                        After
+                      </div>
+                      <video
+                        src={s.afterVideo}
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+                      />
+                    </div>
+                  </div>
+                  {/* Caption bar */}
+                  <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+                    Fig {s.no} — {s.fig}
+                  </div>
+                </figure>
+              ) : (
+                <figure class="rounded-[12px] border border-white/12 bg-white/[0.03] aspect-[16/9] flex items-center justify-center">
+                  <span class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/45">Figure — {s.fig}</span>
+                </figure>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- §5 USABILITY TESTING -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 05</span> — Usability testing
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[24ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        We didn't stop at <span class="italic text-white/60">"feels better."</span>
+      </h2>
+      <p class="mt-6 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
+        Before/after usability test combining three methods: think-aloud protocol, SUS questionnaire, and
+        post-test interview across eight dimensions — process, errors, efficiency, learnability, memorability,
+        satisfaction, effectiveness, improvement.
+      </p>
+
+      <!-- Participants -->
+      <div class="mt-10">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.2 Participants · n = 4 · age 20 – 45</div>
+        <div class="rounded-[12px] border border-white/12 overflow-hidden">
+          <table class="w-full text-[14px]">
+            <thead class="bg-white/[0.05] font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
+              <tr>
+                <th class="text-left py-3 px-4 font-normal">ID</th>
+                <th class="text-left py-3 px-4 font-normal">Background</th>
+                <th class="text-left py-3 px-4 font-normal">Notes</th>
+                <th class="text-left py-3 px-4 font-normal">Freq</th>
+              </tr>
+            </thead>
+            <tbody>
+              {participants.map((p, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white/[0.015]' : 'bg-white/0'}>
+                  <td class="py-3 px-4 font-mono text-white">{p.id}</td>
+                  <td class="py-3 px-4 text-white/85">{p.bg}</td>
+                  <td class="py-3 px-4 text-white/60">{p.note}</td>
+                  <td class="py-3 px-4 font-mono text-white/80">{p.freq}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50">
+          Participant C fits LinePay's published core-user age band (31 – 40).
+        </p>
+      </div>
+
+      <!-- Tasks -->
+      <div class="mt-12">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.3 Tasks · covering Kobayashi's full journey</div>
+        <ol class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[14.5px] text-white/85">
+          <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
+            <span class="font-mono text-white mr-2">01</span>Anniversary promo — find Shinsei Bank card activity info and nearby eligible stores.
+          </li>
+          <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
+            <span class="font-mono text-white mr-2">02</span>Hungry — filter for Japanese restaurants and download a sushi-shop "spend 300, get 100 off" coupon.
+          </li>
+          <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
+            <span class="font-mono text-white mr-2">03</span>At checkout — select that coupon and present the barcode to pay.
+          </li>
+          <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
+            <span class="font-mono text-white mr-2">04</span>Ledger — add the transaction to a favourite/custom function.
+          </li>
+        </ol>
+      </div>
+
+      <!-- Quant results -->
+      <div class="mt-12">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.4 Quantitative results</div>
+        <figure class="rounded-[12px] border border-white/12 overflow-hidden">
+          <img
+            src="/img/Quantitative results.png"
+            alt="Quantitative results — task-time line chart before vs. after"
+            class="w-full h-auto"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+
+      <!-- Qual feedback -->
+      <div class="mt-12 grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-6">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.5 Positive</div>
+          <ul class="space-y-3 text-[15px] leading-[1.55]" style="font-family:'Fraunces',serif;font-style:italic;letter-spacing:-0.01em">
+            {voices.positive.map((q) => (
+              <li class="text-white/85">{q}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="col-span-12 md:col-span-6">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.5 Negative · listed honestly</div>
+          <ul class="space-y-3 text-[15px] leading-[1.55]" style="font-family:'Fraunces',serif;font-style:italic;letter-spacing:-0.01em">
+            {voices.negative.map((q) => (
+              <li class="text-white/75">{q}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <p class="mt-10 border-l-2 border-white/40 pl-6 text-[16px] leading-[1.6] text-white/85 max-w-[62ch]">
+        The most telling one was the second: <strong class="text-white">users opening the home screen didn't
+        immediately read it as a payment screen.</strong> That single piece of feedback drove the next home iteration.
+      </p>
+    </section>
+
+    <!-- §6 ITERATION -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 06</span> — Iteration · home-screen redesign
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        V1 failed. <span class="italic text-white/60">It had to.</span>
+      </h2>
+
+      <div class="mt-12 grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-6">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">V1 — vertically-swipable card stack</div>
+          <p class="text-[14.5px] leading-[1.65] text-white/85"><strong>Hypothesis.</strong> Turning the card carrier into a vertically-swipable stack should reduce info density.</p>
+          <p class="mt-2 text-[14.5px] leading-[1.65] text-white/65"><strong>Result.</strong> Still too crowded, still not clear.</p>
+          <p class="mt-4 text-[14.5px] leading-[1.65] text-white/85">
+            <strong>Lesson.</strong> We'd framed the problem as "layout is cluttered," so our solution was
+            "rearrange the layout." V1 showed us
+            <em class="italic text-white" style="font-family:'Fraunces',serif">the problem wasn't layout at all.</em>
+            The real issue was the payment mental model — "pick a card" and "present a code" were treated as
+            two separate things, forcing users to switch. If you don't fix the mental model, no layout will save you.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-6">
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">V2 — card and code fused into one unit</div>
+          <p class="text-[14.5px] leading-[1.65] text-white/85">
+            <strong>New hypothesis.</strong> The complete payment action is "one card + its code" — so design
+            them as a single unit.
+          </p>
+          <ul class="mt-3 space-y-1.5 text-[14.5px] leading-[1.55] text-white/75">
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>Card and code merged into the same module.</li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>Switching the card swaps its code automatically.</li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>Home divided into three regions: favourites │ pay │ carrier.</li>
+          </ul>
+          <p class="mt-4 text-[14.5px] leading-[1.65] text-white/85">
+            <strong>Result.</strong> Direct. Paying went from "find card → switch page → find code" to one continuous screen.
+          </p>
+        </div>
+      </div>
+
+      <figure class="mt-10 rounded-[16px] border border-white/12 overflow-hidden">
+        <div class="grid grid-cols-2">
+          <div class="bg-white p-4 md:p-6">
+            <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/35 mb-3 flex items-center gap-1.5">
+              <span class="size-1.5 rounded-full bg-black/25 inline-block"></span>
+              V1
+            </div>
+            <img
+              src="/img/v1.png"
+              alt="V1 — vertically-swipable card stack"
+              class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+              loading="lazy"
+            />
+          </div>
+          <div class="bg-white p-4 md:p-6 border-l border-black/[0.06]">
+            <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/60 mb-3 flex items-center gap-1.5">
+              <span class="size-1.5 rounded-full bg-black/55 inline-block"></span>
+              V2
+            </div>
+            <img
+              src="/img/v2.png"
+              alt="V2 — card and code fused into one unit"
+              class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
+          Fig — V1 vs. V2 home-screen iteration
+        </div>
+      </figure>
+    </section>
+
+    <!-- §7 REFLECTION -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">§ 07</span> — Reflection
+      </div>
+      <div class="grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-8 space-y-8">
+          <div>
+            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">The biggest lesson — don't mistake symptoms for causes.</h3>
+            <p class="text-[15px] leading-[1.65] text-white/70 max-w-[58ch]">
+              V1's clutter looked like a layout problem. It wasn't — it was a mental-model problem. Since then,
+              every design call I make starts with the same check:
+              <em class="italic text-white" style="font-family:'Fraunces',serif">am I solving the symptom, or the cause?</em>
+            </p>
+          </div>
+          <div>
+            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">If I'd had more time.</h3>
+            <p class="text-[15px] leading-[1.65] text-white/70 max-w-[58ch]">
+              I'd have run a second SUS round on V2 to verify whether the "home doesn't read as a payment screen"
+              feedback actually got resolved. An iteration without a close-of-loop isn't really finished.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDITS -->
+    <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55 space-y-3 max-w-[74ch]">
+      <p>
+        Independent academic redesign exploration conducted as part of a UX course in 2024.
+        Team project — my specific contributions are in the "My role" section above.
+      </p>
+      <p class="normal-case tracking-normal font-sans text-[13px] text-white/60 leading-[1.55]">
+        Not affiliated with, endorsed by, or commissioned by LINE Pay Taiwan or its parent company.
+        All trademarks belong to their respective owners.
+      </p>
+      <div class="pt-4 flex items-center justify-between">
+        <a href="/" class="text-white/70 hover:text-white transition-colors">← Back to home</a>
+        <a href="/fidgi" class="text-white/70 hover:text-white transition-colors">Next — §02 Fidgi Grow →</a>
+      </div>
+    </footer>
+
+  </main>
+</BaseCaseStudy>

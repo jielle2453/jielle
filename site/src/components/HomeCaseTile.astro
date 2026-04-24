@@ -1,0 +1,151 @@
+---
+interface Props {
+  no: string;
+  title: string;
+  italicWord?: string;
+  subtitle: string;
+  meta?: string[];
+  href?: string;
+  year?: string;
+  revealDelay?: number;
+  accent?: string;     // CSS color — top bar, meta dots, corner lines
+  previewImg?: string; // hover-reveal screenshot path
+}
+
+const {
+  no,
+  title,
+  italicWord,
+  subtitle,
+  meta = [],
+  href = '#',
+  year,
+  revealDelay = 0,
+  accent = 'rgba(255,255,255,0.4)',
+  previewImg,
+} = Astro.props;
+
+const isLink = href !== '#';
+const Tag = isLink ? 'a' : 'div';
+---
+
+<Tag
+  {...(isLink ? { href } : {})}
+  class="case-tile reveal group relative block rounded-[16px] border border-white/10
+         p-6 md:p-8 min-h-[260px] h-full overflow-hidden
+         transition-[transform,border-color,background-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]
+         hover:border-white/20 hover:-translate-y-1"
+  style={`--reveal-delay: ${revealDelay}ms; --tile-accent: ${accent}`}
+  data-reveal
+>
+  <!-- top accent bar — colored line, brightens on hover -->
+  <span class="tile-accent-bar absolute top-0 left-0 right-0 h-px pointer-events-none"></span>
+
+  <!-- hover-reveal preview image (right-side bleed with left mask) -->
+  {previewImg && (
+    <img
+      src={previewImg}
+      alt=""
+      aria-hidden="true"
+      draggable="false"
+      loading="lazy"
+      class="tile-preview-img absolute bottom-0 right-0 w-[52%] h-[88%] object-cover object-top pointer-events-none select-none rounded-tl-[10px]"
+    />
+  )}
+
+  <header class="relative z-10 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
+    <span><span class="text-white">§</span> {no}</span>
+    {year && <span>{year}</span>}
+  </header>
+
+  <h3 class="relative z-10 font-sans font-bold text-[30px] md:text-[38px] leading-[1.02] text-white mt-8 tracking-[-0.02em]">
+    {title}
+  </h3>
+
+  <p class="relative z-10 font-sans text-[13px] text-white/65 mt-3 leading-snug max-w-[32ch]">
+    {subtitle}
+  </p>
+
+  {meta.length > 0 && (
+    <ul class="relative z-10 mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50 space-y-1.5">
+      {meta.map((m, i) => (
+        <li
+          class="flex items-center gap-2 transition-transform duration-[500ms] ease-out"
+          style={`transition-delay: ${i * 40}ms`}
+        >
+          <span class="tile-meta-dot size-1 rounded-full bg-white/45 transition-colors duration-500 group-hover:bg-white"></span>
+          <span class="tile-meta transition-transform duration-[500ms] ease-out">{m}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <!-- "Open / Soon →" CTA -->
+  <span class="tile-cta absolute bottom-6 right-6 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/65 group-hover:text-white transition-colors duration-500">
+    <span class="relative inline-block h-[1.1em] overflow-hidden">
+      <span class="block transition-transform duration-[500ms] ease-[cubic-bezier(0.5,1,0.5,1)] group-hover:-translate-y-full">{isLink ? 'Open' : 'Soon'}</span>
+      <span class="block transition-transform duration-[500ms] ease-[cubic-bezier(0.5,1,0.5,1)] group-hover:-translate-y-full">{isLink ? 'Read' : 'In progress'}</span>
+    </span>
+    <span class="inline-block transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-rotate-[35deg]">→</span>
+  </span>
+
+  <!-- corner accent lines -->
+  <span class="tile-corner-h absolute top-0 left-0 h-px w-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+  <span class="tile-corner-v absolute top-0 left-0 w-px h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+</Tag>
+
+<style>
+  .case-tile {
+    isolation: isolate;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(40px) saturate(0.8) brightness(0.7);
+    -webkit-backdrop-filter: blur(40px) saturate(0.8) brightness(0.7);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 0 40px rgba(0, 0, 0, 0.15),
+      0 4px 30px rgba(0, 0, 0, 0.25);
+  }
+  .case-tile:hover {
+    background: rgba(255, 255, 255, 0.065);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 0 40px rgba(0, 0, 0, 0.1),
+      0 8px 40px rgba(0, 0, 0, 0.35);
+  }
+  .case-tile:hover .tile-meta { transform: translateX(4px); }
+
+  /* top accent bar */
+  .tile-accent-bar {
+    background: linear-gradient(to right, var(--tile-accent), transparent 70%);
+    opacity: 0.45;
+    transition: opacity 0.5s;
+  }
+  .case-tile:hover .tile-accent-bar { opacity: 1; }
+
+  /* hover-reveal preview image */
+  .tile-preview-img {
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-mask-image: linear-gradient(to left, black 45%, transparent 100%);
+    mask-image: linear-gradient(to left, black 45%, transparent 100%);
+  }
+  .case-tile:hover .tile-preview-img { opacity: 0.22; }
+
+  /* meta dot → accent on hover */
+  .case-tile:hover .tile-meta-dot {
+    background-color: var(--tile-accent);
+  }
+
+  /* corner lines → accent */
+  .tile-corner-h {
+    background: linear-gradient(to right, var(--tile-accent), transparent);
+  }
+  .tile-corner-v {
+    background: linear-gradient(to bottom, var(--tile-accent), transparent);
+  }
+
+  /* touch: always show CTA at readable opacity */
+  @media (hover: none) {
+    .tile-cta { color: rgba(255, 255, 255, 0.75); }
+  }
+</style>

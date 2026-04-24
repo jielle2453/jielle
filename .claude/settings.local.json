@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:eszterbial.com)",
+      "WebFetch(domain:www.velizardelyanov.com)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/130.0.0.0 Safari/537.36\" https://eszterbial.com/)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/130.0.0.0 Safari/537.36\" https://www.velizardelyanov.com/)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 Chrome/130.0.0.0\" https://www.velizardelyanov.com/)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 Chrome/130.0.0.0\" https://eszterbial.com/)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -A \"Mozilla/5.0 Chrome/130.0\" https://www.velizardelyanov.com/)",
+      "Bash(curl -s -A \"Mozilla/5.0 Chrome/130.0\" https://eszterbial.com/)",
+      "Bash(curl -s https://eszterbial.com/js/script.js)",
+      "Bash(command -v python python3)",
+      "Bash(pdftotext -layout \"LinePay Redesign.pdf\" -)",
+      "Bash(pdftotext -layout \"fidgi grow2.pdf\" -)",
+      "Bash(npm -v)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -w \"\\\\n---HTTP %{http_code}---\\\\n\" http://localhost:4321/)",
+      "Bash(curl -s http://localhost:4321/ -o /dev/stdout)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code} size=%{size_download}\\\\n\" http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"scramble_svelte=%{http_code}\\\\n\" \"http://localhost:4321/src/components/ScrambleText.svelte\")",
+      "Bash(curl -s http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code} size=%{size_download}\\\\n\" http://localhost:4321/bold)"
+    ]
+  }
+}
