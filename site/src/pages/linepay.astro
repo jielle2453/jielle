@@ -1,6 +1,8 @@
 ---
 import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
 
+const base = import.meta.env.BASE_URL;
+
 const glance = [
   { label: 'avg task time', before: "2'45''", after: "1'59''", delta: '−46s' },
   { label: 'completion rate', before: '92.75%', after: '100%', delta: '+7.25' },
@@ -42,8 +44,8 @@ const solutions = [
       'Unified card layout; modular blocks that increase swipeable area.',
     ],
     fig: 'Home redesign · before ↔ after',
-    beforeImg: '/img/before_home.png',
-    afterVideo: '/img/after_home.mp4',
+    beforeImg: `${base}img/before_home.png`,
+    afterVideo: `${base}img/after_home.mp4`,
   },
   {
     no: '4.2',
@@ -54,8 +56,8 @@ const solutions = [
       'Functions now shown as icon + label in clean categories — quick to scan.',
     ],
     fig: 'All-features page · add-interaction redesign',
-    beforeImg: '/img/before_all_function.png',
-    afterVideo: '/img/after_all_function.mp4',
+    beforeImg: `${base}img/before_all_function.png`,
+    afterVideo: `${base}img/after_all_function.mp4`,
   },
   {
     no: '4.3',
@@ -67,8 +69,8 @@ const solutions = [
     ],
     fig: 'Map · filter sheet & active-filter summary',
     pain: 'C',
-    beforeImg: '/img/before_map.png',
-    afterVideo: '/img/after_map.mp4',
+    beforeImg: `${base}img/before_map.png`,
+    afterVideo: `${base}img/after_map.mp4`,
   },
   {
     no: '4.4',
@@ -80,8 +82,8 @@ const solutions = [
     ],
     fig: 'Coupon card · information hierarchy',
     pain: 'C',
-    beforeImg: '/img/before_coupon.png',
-    afterVideo: '/img/after_coupon.mp4',
+    beforeImg: `${base}img/before_coupon.png`,
+    afterVideo: `${base}img/after_coupon.mp4`,
   },
   {
     no: '4.5',
@@ -93,8 +95,8 @@ const solutions = [
     ],
     fig: 'Activities feed · eligible-activities tab',
     pain: 'C',
-    beforeImg: '/img/before_activity.png',
-    afterVideo: '/img/after_activity.mp4',
+    beforeImg: `${base}img/before_activity.png`,
+    afterVideo: `${base}img/after_activity.mp4`,
   },
   {
     no: '4.6',
@@ -105,8 +107,8 @@ const solutions = [
       'Added a filter summary for quick scoping.',
     ],
     fig: 'Financial services · tabbed layout',
-    beforeImg: '/img/before_finance.png',
-    afterVideo: '/img/after_finance.mp4',
+    beforeImg: `${base}img/before_finance.png`,
+    afterVideo: `${base}img/after_finance.mp4`,
   },
 ];
 
@@ -537,7 +539,7 @@ const voices = {
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.4 Quantitative results</div>
         <figure class="rounded-[12px] border border-white/12 overflow-hidden">
           <img
-            src="/img/Quantitative results.png"
+            src={`${base}img/Quantitative results.png`}
             alt="Quantitative results — task-time line chart before vs. after"
             class="w-full h-auto"
             loading="lazy"
@@ -618,7 +620,7 @@ const voices = {
               V1
             </div>
             <img
-              src="/img/v1.png"
+              src={`${base}img/v1.png`}
               alt="V1 — vertically-swipable card stack"
               class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
               loading="lazy"
@@ -630,7 +632,7 @@ const voices = {
               V2
             </div>
             <img
-              src="/img/v2.png"
+              src={`${base}img/v2.png`}
               alt="V2 — card and code fused into one unit"
               class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
               loading="lazy"

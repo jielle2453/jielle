@@ -1,6 +1,8 @@
 ---
 import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
 
+const base = import.meta.env.BASE_URL;
+
 const pains = [
   { t: 'Weak working memory', d: 'Plans and detailed steps vanish the moment you stop actively holding them.' },
   { t: 'Gendered presentation', d: 'Symptoms read as inattentive rather than hyperactive, so they go unnamed.' },
@@ -305,7 +307,7 @@ const values = [
           <figure class="rounded-[16px] border border-white/12 overflow-hidden">
             <div class="bg-white p-4 md:p-6">
               <img
-                src="/img/registration.png"
+                src={`${base}img/registration.png`}
                 alt="Gender-inclusive registration flow — three onboarding screens"
                 class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                 loading="lazy"
@@ -337,7 +339,7 @@ const values = [
           <figure class="rounded-[16px] border border-white/12 overflow-hidden">
             <div class="bg-white p-4 md:p-6">
               <img
-                src="/img/calender.png"
+                src={`${base}img/calender.png`}
                 alt="Hormone-aware calendar showing phase labels alongside tasks"
                 class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                 loading="lazy"
@@ -388,7 +390,7 @@ const values = [
                   Hardware
                 </div>
                 <img
-                  src="/img/fidget_toy.png"
+                  src={`${base}img/fidget_toy.png`}
                   alt="Physical fidget toy — attaches to back of phone via magnetic snap"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
@@ -400,7 +402,7 @@ const values = [
                   App
                 </div>
                 <img
-                  src="/img/tracking_system.png"
+                  src={`${base}img/tracking_system.png`}
                   alt="Gamified tracking system — weekly overview and hamster avatar"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
@@ -453,7 +455,7 @@ const values = [
             <figure class="rounded-[16px] border border-white/12 overflow-hidden">
               <div class="bg-white p-4 md:p-6">
                 <img
-                  src="/img/manage_task.png"
+                  src={`${base}img/manage_task.png`}
                   alt="Manage Task — task list, focus session, and smart breakdown screens"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
@@ -485,7 +487,7 @@ const values = [
             <figure class="rounded-[16px] border border-white/12 overflow-hidden">
               <div class="bg-white p-4 md:p-6">
                 <img
-                  src="/img/widget.png"
+                  src={`${base}img/widget.png`}
                   alt="Customisable widgets — fidget tracker, task tracker, calendar on home and lock screen"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
@@ -540,7 +542,7 @@ const values = [
       <figure class="mt-10 rounded-[16px] border border-white/12 overflow-hidden">
         <div class="bg-white p-4 md:p-6">
           <img
-            src="/img/iteration.png"
+            src={`${base}img/iteration.png`}
             alt="Design iteration — V1 pink feed-style vs V2 focus-forward layout"
             class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
             loading="lazy"
