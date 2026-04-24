@@ -132,7 +132,7 @@ const voices = {
 
     <!-- TOP CHROME -->
     <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
-      <a href="/" class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+      <a href={base} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
         <span>←</span> Home
       </a>
       <div class="text-right space-y-0.5 text-white/55">
@@ -682,8 +682,8 @@ const voices = {
         All trademarks belong to their respective owners.
       </p>
       <div class="pt-4 flex items-center justify-between">
-        <a href="/" class="text-white/70 hover:text-white transition-colors">← Back to home</a>
-        <a href="/fidgi" class="text-white/70 hover:text-white transition-colors">Next — §02 Fidgi Grow →</a>
+        <a href={base} class="text-white/70 hover:text-white transition-colors">← Back to home</a>
+        <a href={`${base}fidgi`} class="text-white/70 hover:text-white transition-colors">Next — §02 Fidgi Grow →</a>
       </div>
     </footer>
 

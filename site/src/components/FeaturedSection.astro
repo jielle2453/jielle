@@ -1,7 +1,5 @@
 ---
-// The "featured study" block — demonstrates the frosted-glass card
-// layered over a decorative data pattern (the actual LinePay usability metrics,
-// re-purposed as typographic texture).
+const base = import.meta.env.BASE_URL;
 
 const bars = [
   { label: 'before_completion_rate', pct: 92.75, val: '92.75%' },
@@ -96,7 +94,7 @@ const metrics = [
         </div>
 
         <a
-          href="/linepay"
+          href={`${base}linepay`}
           class="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-ink hover:text-rust transition-colors self-start md:self-end whitespace-nowrap"
         >
           Read study

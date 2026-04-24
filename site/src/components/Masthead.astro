@@ -1,5 +1,5 @@
 ---
-// Research-journal-style masthead. Sits above the hero.
+const base = import.meta.env.BASE_URL;
 ---
 
 <header class="flex items-start justify-between gap-6">
@@ -10,8 +10,8 @@
   </div>
 
   <nav class="label-mono text-right space-y-0.5 text-ink-soft">
-    <div><a href="/linepay" class="hover:text-rust transition-colors"><span class="text-rust">§ 01</span> — LinePay redesign</a></div>
-    <div><a href="/fidgi" class="hover:text-rust transition-colors"><span class="text-rust">§ 02</span> — Fidgi Grow</a></div>
+    <div><a href={`${base}linepay`} class="hover:text-rust transition-colors"><span class="text-rust">§ 01</span> — LinePay redesign</a></div>
+    <div><a href={`${base}fidgi`} class="hover:text-rust transition-colors"><span class="text-rust">§ 02</span> — Fidgi Grow</a></div>
     <div><span class="text-rust">§ 03</span> — PictureCook</div>
     <div class="mt-1.5 pt-1.5 border-t border-ink/15">About · Contact</div>
   </nav>

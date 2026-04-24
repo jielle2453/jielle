@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://jielle2453.github.io',
-  base: '/jielle',
+  base: '/jielle/',
   integrations: [
     svelte(),
     tailwind({ applyBaseStyles: false }),
