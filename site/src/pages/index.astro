@@ -27,9 +27,9 @@ const nameStep = 55;
 const marqueeItems = [
   'Open to 2026 full-time roles',
   'UX design · user research · learning sciences',
-  'Currently interning at PictureCook',
+  'Building Emotion Shredder — an emotional-release app',
   'NTNU · exchange at NJU',
-  'Figma, Python, SPSS, and the space between them',
+  'Figma, React, Python, SPSS, and the space between them',
   'Research-led design, designer-grade research',
 ];
 ---
@@ -98,7 +98,7 @@ const marqueeItems = [
         <div class="glass-badge">
           <ScrambleText
             client:load
-            words={['UX designer at PictureCook', 'UX researcher in learning sciences', 'designer who ships interfaces', 'interface designer + coder']}
+            words={['freelance · personal projects', 'UX researcher in learning sciences', 'designer who ships interfaces', 'interface designer + coder']}
             interval={3200}
             scrambleDuration={820}
           />
@@ -149,12 +149,14 @@ const marqueeItems = [
         <div class="col-span-12 md:col-span-4 flex flex-col">
           <HomeCaseTile
             no="03"
-            year="2025—"
-            title="PictureCook"
-            subtitle="AI-generated picture books. UI + brand for an early-stage consumer product."
-            meta={['intern · design lead', 'user flows · prototyping', 'brand + marketing']}
+            year="2026—"
+            title="Emotion Shredder"
+            subtitle="An emotional-release ritual app. Write it, shred it, watch it bloom into a flower."
+            meta={['solo project · UX + dev', 'AI emotion analysis', 'React · Vite · Supabase']}
+            href={`${import.meta.env.BASE_URL}emotion-shredder`}
             revealDelay={220}
-            accent="#FF6B9D"
+            accent="#FBBFCA"
+            previewImg={`${import.meta.env.BASE_URL}img/es_cover.png`}
           />
         </div>
       </div>
@@ -199,11 +201,15 @@ const marqueeItems = [
         <div class="flex flex-col md:flex-row gap-8 w-full">
           <div class="flex-1">
             <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Currently</div>
-            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">UX intern · PictureCook<br/><span class="text-[#F3EFE6]/55">Taipei</span></div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">Freelance · personal projects<br/><span class="text-[#F3EFE6]/55">2026 — present</span></div>
           </div>
           <div class="flex-1">
             <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Education</div>
-            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">NTNU Learning Sciences '26<br/><span class="text-[#F3EFE6]/55">Exchange · Nanjing Univ.</span></div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">B.S. Informatics · NTNU '26<br/><span class="text-[#F3EFE6]/55">Exchange · Nanjing Univ.</span></div>
+          </div>
+          <div class="flex-1">
+            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Experience</div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">Design Intern · PictureCook<br/><span class="text-[#F3EFE6]/55">2025.08 — 2026.02</span></div>
           </div>
         </div>
       </div>
