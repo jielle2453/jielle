@@ -48,8 +48,8 @@ const marqueeItems = [
         <div class="flex items-center gap-1.5 justify-end text-neutral-200">
           <LiveClock client:load />
         </div>
-        <div class="text-neutral-500">ux · research · learning sci.</div>
-        <div class="text-neutral-500">jielle2453@gmail.com</div>
+        <div class="text-neutral-500 hidden sm:block">ux · research · learning sci.</div>
+        <div class="text-neutral-500 hidden sm:block">jielle2453@gmail.com</div>
       </div>
     </header>
 
@@ -91,7 +91,7 @@ const marqueeItems = [
 
     <!-- Currently + description — sits below DESIGNER, outside justify-end scope -->
     <div class="mt-8 md:mt-10 pb-6 md:pb-10 grid grid-cols-12 gap-6">
-      <div class="fade-up col-span-12 md:col-span-5" style="animation-delay: 1200ms">
+      <div class="fade-up col-span-12 md:col-span-6" style="animation-delay: 1200ms">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F3EFE6]/60 mb-3">
           Currently —
         </div>
@@ -339,8 +339,8 @@ const marqueeItems = [
 
     /* ── Frosted glass badge (Currently section) ──────────────────── */
     .glass-badge {
-      display: inline-block;
-      padding: 12px 20px;
+      display: block;
+      padding: 14px 20px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(24px) saturate(0.9);
@@ -351,9 +351,13 @@ const marqueeItems = [
         0 4px 24px rgba(0,0,0,0.3);
       font-family: 'Fraunces', serif;
       font-variation-settings: 'SOFT' 100, 'opsz' 144;
-      font-size: clamp(20px, 3vw, 30px);
+      font-size: clamp(18px, 4.5vw, 30px);
       letter-spacing: -0.02em;
       color: #fff;
+      /* Lock height so scrambling text never shifts layout */
+      min-height: 2.2em;
+      display: flex;
+      align-items: center;
     }
 
   </style>

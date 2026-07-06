@@ -51,4 +51,4 @@
   });
 </script>
 
-<span class="inline-block">{display}</span>
+<span style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{display}</span>

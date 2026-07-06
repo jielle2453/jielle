@@ -22,7 +22,21 @@
       "Bash(curl -s -o /dev/null -w \"status=%{http_code} size=%{size_download}\\\\n\" http://localhost:4321/)",
       "Bash(curl -s -o /dev/null -w \"scramble_svelte=%{http_code}\\\\n\" \"http://localhost:4321/src/components/ScrambleText.svelte\")",
       "Bash(curl -s http://localhost:4321/)",
-      "Bash(curl -s -o /dev/null -w \"status=%{http_code} size=%{size_download}\\\\n\" http://localhost:4321/bold)"
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code} size=%{size_download}\\\\n\" http://localhost:4321/bold)",
+      "WebFetch(domain:jielle2453.github.io)",
+      "Bash(curl -sL https://jielle2453.github.io/jielle/)",
+      "Bash(curl -sI https://jielle2453.github.io/jielle/_astro/LiquidShader.DJUuc7Zq.js)",
+      "Bash(curl -sL https://jielle2453.github.io/jielle/_astro/LiquidShader.DJUuc7Zq.js)",
+      "Bash(tasklist)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //PID 36308 //F)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:4321/jielle/)",
+      "Bash(curl -sL http://localhost:4321/jielle/)",
+      "Bash(curl -s -o /dev/null -w \"root: %{http_code}\\\\n\" \"http://localhost:4321/src/components/LiquidShader.svelte\")",
+      "Bash(curl -s -o /dev/null -w \"with base: %{http_code}\\\\n\" \"http://localhost:4321/jielle/src/components/LiquidShader.svelte\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
