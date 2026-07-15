@@ -1,11 +1,11 @@
 ---
-import BaseDark from '../layouts/BaseDark.astro';
-import HomeCaseTile from '../components/HomeCaseTile.astro';
-import Marquee from '../components/Marquee.astro';
-import LiveClock from '../components/LiveClock.svelte';
-import ScrambleText from '../components/ScrambleText.svelte';
-import NameCard from '../components/NameCard.astro';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import BaseDark from '../../layouts/BaseDark.astro';
+import HomeCaseTile from '../../components/HomeCaseTile.astro';
+import Marquee from '../../components/Marquee.astro';
+import LiveClock from '../../components/LiveClock.svelte';
+import ScrambleText from '../../components/ScrambleText.svelte';
+import NameCard from '../../components/NameCard.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 
 interface Chunk {
   text: string;
@@ -26,12 +26,12 @@ const nameStart = 700;
 const nameStep = 55;
 
 const marqueeItems = [
-  'Open to 2026 full-time roles',
-  'UX design · user research · learning sciences',
-  'Building Emotion Shredder — an emotional-release app',
-  'NTNU · exchange at NJU',
-  'Figma, React, Python, SPSS, and the space between them',
-  'Research-led design, designer-grade research',
+  '2026 應屆畢業，尋求全職 UX/UI 設計機會',
+  'UX 設計 · 使用者研究 · 學習科學',
+  '目前正在開發情緒釋放 APP — Emotion Shredder',
+  '台師大 · 曾赴南京大學交換',
+  '精通 Figma, React, Python 與 SPSS，善於跨領域整合',
+  '以研究驅動設計，兼具研究深度與設計美感',
 ];
 ---
 
@@ -61,7 +61,7 @@ const marqueeItems = [
 
       <div class="fade-up font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F3EFE6]/60 mb-4 md:mb-6 flex items-center gap-2" style="animation-delay: 60ms">
         <span class="text-[#d4a017] text-base leading-none">◆</span>
-        <span>Research-led design, designer-grade research.</span>
+        <span>以研究驅動設計，兼具研究深度與設計美感。</span>
       </div>
 
       <h1 class="font-sans font-black tracking-[-0.055em] text-white">
@@ -96,12 +96,12 @@ const marqueeItems = [
     <div class="mt-8 md:mt-10 pb-6 md:pb-10 grid grid-cols-12 gap-6">
       <div class="fade-up col-span-12 md:col-span-6" style="animation-delay: 1200ms">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F3EFE6]/60 mb-3">
-          Currently —
+          目前狀態 —
         </div>
         <div class="glass-badge">
           <ScrambleText
             client:load
-            words={['freelance · personal projects', 'UX researcher in learning sciences', 'designer who ships interfaces', 'interface designer + coder']}
+            words={['接案 · 個人專案', '學習科學背景的使用者研究員', '能把介面落地的設計師', '介面設計師 + 前端開發']}
             interval={3200}
             scrambleDuration={820}
           />
@@ -118,8 +118,8 @@ const marqueeItems = [
     <!-- WORK — three tiles with scroll reveal + rich hover -->
     <section id="work" class="mt-10 md:mt-14">
       <div class="reveal flex items-end justify-between mb-6 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#F3EFE6]/60" data-reveal>
-        <span><span class="text-[#F3EFE6]">§ work</span> — three studies</span>
-        <span class="text-[#F3EFE6]/40 hidden md:inline">hover to preview</span>
+        <span><span class="text-[#F3EFE6]">§ 作品</span> — 三個案例研究</span>
+        <span class="text-[#F3EFE6]/40 hidden md:inline">懸停以預覽</span>
       </div>
 
       <div class="grid grid-cols-12 gap-4 md:gap-5 items-stretch">
@@ -127,10 +127,10 @@ const marqueeItems = [
           <HomeCaseTile
             no="01"
             year="2024"
-            title="LinePay redesign"
-            subtitle="Taiwan's most-used mobile payment app, redesigned around saving money effortlessly."
-            meta={['SUS  52.5 → 72.5', 'task time  −46s', 'completion  100%']}
-            href={`${import.meta.env.BASE_URL}linepay`}
+            title="LinePay APP 改版"
+            subtitle="針對台灣市佔率最高的行動支付 APP 進行改版，主打「無痛省錢」的核心體驗。"
+            meta={['SUS 易用性分數 52.5 → 72.5', '任務完成時間減少 46 秒', '任務完成率 100%']}
+            href={`${import.meta.env.BASE_URL}zh/linepay`}
             revealDelay={0}
             accent="#06C755"
             previewImg={`${import.meta.env.BASE_URL}img/line_pay_background.png`}
@@ -141,9 +141,9 @@ const marqueeItems = [
             no="02"
             year="2025"
             title="Fidgi Grow"
-            subtitle="An ADHD support app that never mentions ADHD on its cover. With a physical fidget toy."
-            meta={['hormone-aware planner', 'smart task breakdown', 'NFC fidget hardware']}
-            href={`${import.meta.env.BASE_URL}fidgi`}
+            subtitle="一款絕口不提 ADHD、卻處處為 ADHD 著想的日常輔助 APP，結合專屬的實體舒壓玩具。"
+            meta={['結合賀爾蒙週期的日曆設計', 'AI 智能任務拆解', '結合 NFC 實體玩具']}
+            href={`${import.meta.env.BASE_URL}zh/fidgi`}
             revealDelay={110}
             accent="#38BDF8"
             previewImg={`${import.meta.env.BASE_URL}img/fidgi_grow_background.png`}
@@ -154,36 +154,37 @@ const marqueeItems = [
             no="03"
             year="2026—"
             title="Emotion Shredder"
-            subtitle="An emotional-release ritual app. Write it, shred it, watch it bloom into a flower."
-            meta={['solo project · UX + dev', 'AI emotion analysis', 'React · Vite · Supabase']}
-            href={`${import.meta.env.BASE_URL}emotion-shredder`}
+            subtitle="一款主打「情緒釋放儀式」的 APP。寫下煩惱、將其粉碎，然後看著它綻放成一朵花。"
+            meta={['個人獨立開發專案', '結合 LLM 進行情緒分析', 'React · Vite · Supabase']}
+            href={`${import.meta.env.BASE_URL}zh/emotion-shredder`}
             revealDelay={220}
             accent="#FBBFCA"
             previewImg={`${import.meta.env.BASE_URL}img/es_cover.png`}
           />
         </div>
+
       </div>
     </section>
 
     <!-- ABOUT + CONTACT -->
     <section id="about" class="mt-16 md:mt-24">
       <div class="reveal flex items-end justify-between mb-8 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#F3EFE6]/60" data-reveal>
-        <span><span class="text-[#F3EFE6]">§ about</span> — jielle lu</span>
+        <span><span class="text-[#F3EFE6]">§ 關於</span> — jielle lu</span>
       </div>
 
       <!-- display tagline -->
       <div class="reveal mb-10 md:mb-14 flex justify-center" data-reveal style="--reveal-delay: 40ms">
         <p class="text-[#F3EFE6]/90 leading-[1.05] max-w-[20ch] text-center"
            style="font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'opsz' 144;font-size:clamp(28px,4vw,52px);letter-spacing:-0.025em;font-style:italic;">
-          Research-led design,<br/>
-          <span style="color:#d4a017">designer</span>-grade research.
+          以研究驅動設計，<br/>
+          兼具<span style="color:#d4a017">設計師</span>水準的研究。
         </p>
       </div>
 
       <!-- bio + quick facts -->
       <div class="reveal flex flex-col items-center text-center mb-10 max-w-[680px] mx-auto" data-reveal style="--reveal-delay: 100ms">
-        <p class="font-sans text-[15px] leading-[1.68] text-[#ffffff] mb-8">
-          Approaches design through the lens of human-centric analysis. Bridges the gap between aesthetics and technology by combining UI proficiency with technical skills in data analysis and programming. Proficient in leveraging generative AI to conceptualize and develop initial prototypes, allowing for the delivery of design solutions that seamlessly merge aesthetic innovation with rigorous quantitative validation.
+        <p class="font-sans text-[15px] leading-[1.68] text-[#ffffff] mb-8 text-left md:text-center">
+          我具備學習科學與使用者研究背景，習慣以分析的視角切入設計。結合扎實的 UI 實務能力、數據分析與前端開發技術，致力於彌平美學與技術的落差。此外，我也擅長運用生成式 AI 加速概念發想與原型製作，為團隊交付兼具視覺創新與量化驗證的設計方案。
         </p>
         
         <!-- Resume Download Button -->
@@ -198,21 +199,21 @@ const marqueeItems = [
             <path d="M4.667 6.667L8 10l3.333-3.333"/>
             <path d="M8 10V2"/>
           </svg>
-          <span>Download Resume</span>
+          <span>下載個人簡歷</span>
         </a>
         
         <div class="flex flex-col md:flex-row gap-8 w-full">
           <div class="flex-1">
-            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Currently</div>
-            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">Freelance · personal projects<br/><span class="text-[#F3EFE6]/55">2026 — present</span></div>
+            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">目前狀態</div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">接案 · 個人專案<br/><span class="text-[#F3EFE6]/55">2026 — 至今</span></div>
           </div>
           <div class="flex-1">
-            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Education</div>
-            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">B.S. Informatics · NTNU '26<br/><span class="text-[#F3EFE6]/55">Exchange · Nanjing Univ.</span></div>
+            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">教育背景</div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">台師大 資訊學士 '26<br/><span class="text-[#F3EFE6]/55">南京大學交換生</span></div>
           </div>
           <div class="flex-1">
-            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Experience</div>
-            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">Design Intern · PictureCook<br/><span class="text-[#F3EFE6]/55">2025.08 — 2026.02</span></div>
+            <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">經歷</div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">設計實習生 · PictureCook<br/><span class="text-[#F3EFE6]/55">2025.08 — 2026.02</span></div>
           </div>
         </div>
       </div>

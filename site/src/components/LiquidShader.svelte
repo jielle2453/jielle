@@ -173,6 +173,10 @@
     let running = true;
     const loop = (ts) => {
       if (!running) return;
+      if (window.innerWidth < 768) {
+        requestAnimationFrame(loop);
+        return;
+      }
       mx += (tx - mx) * 0.012;
       my += (ty - my) * 0.012;
       program.uniforms.uMouse.value = [mx, my];
@@ -192,5 +196,5 @@
 
 <canvas
   bind:this={canvas}
-  class="fixed inset-0 w-screen h-screen block -z-10 bg-black"
+  class="fixed inset-0 w-screen h-screen hidden md:block -z-10 bg-black"
 ></canvas>

@@ -1,113 +1,113 @@
 ---
-import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import BaseCaseStudy from '../../layouts/BaseCaseStudy.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 
 const base = import.meta.env.BASE_URL;
 
 const glance = [
-  { label: 'avg task time', before: "2'45''", after: "1'59''", delta: '−46s' },
-  { label: 'completion rate', before: '92.75%', after: '100%', delta: '+7.25' },
-  { label: 'sus score', before: '52.5', after: '72.5', delta: '+20' },
+  { label: '平均任務時間', before: "2'45''", after: "1'59''", delta: '−46s' },
+  { label: '任務完成率', before: '92.75%', after: '100%', delta: '+7.25' },
+  { label: 'SUS 分數', before: '52.5', after: '72.5', delta: '+20' },
 ];
 
 const participants = [
-  { id: 'A', bg: '20 y/o college student', note: 'Familiar with LinePay App', freq: '9 / wk' },
-  { id: 'B', bg: '26 y/o fresh graduate', note: 'Experienced with multiple payment apps', freq: '4 / wk' },
-  { id: 'C', bg: '33 y/o civil servant', note: "Matches LinePay's core age demographic", freq: '6 / wk' },
-  { id: 'D', bg: '45 y/o middle-school teacher', note: 'Heavy user of promo campaigns', freq: '1 / wk' },
+  { id: 'A', bg: '20 歲 大學生', note: '熟悉 LinePay', freq: '9 次/週' },
+  { id: 'B', bg: '26 歲 社會新鮮人', note: '有多種支付 APP 使用經驗', freq: '4 次/週' },
+  { id: 'C', bg: '33 歲 公務員', note: "符合 LinePay 核心年齡層", freq: '6 次/週' },
+  { id: 'D', bg: '45 歲 國中教師', note: '重度優惠活動使用者', freq: '1 次/週' },
 ];
 
 const pains = [
   {
     k: 'A',
-    t: 'Card and payment code live on different pages',
-    d: 'Paying actually means "pick a card → show its matching code." The original version split those two steps across pages — counterintuitive every time.',
+    t: '卡片和付款條碼分散在不同頁面',
+    d: '付款實際上意味著「選擇卡片 → 出示對應條碼」。原版將這兩個步驟拆分在不同頁面——每次操作都很反直覺。',
   },
   {
     k: 'B',
-    t: 'The home page demotes the highest-frequency action',
-    d: 'Activity banners, message centre, secondary icons crowd the home. The one thing users open the app to do — pay — gets visually downgraded.',
+    t: '首頁弱化了最高頻的操作',
+    d: '活動橫幅、訊息中心、次要功能圖示擠滿了首頁。用戶打開 APP 唯一想做的事——付款——在視覺上反而被降級了。',
   },
   {
     k: 'C',
-    t: 'Promo information scattered across the app',
-    d: 'Industry data says savings is the #1 reason people choose mobile payment. LinePay\'s app makes that information the hardest to find.',
+    t: '優惠資訊散落各處',
+    d: '產業數據指出，節省開銷是用戶選擇行動支付的首要原因。但 LinePay 的 APP 卻讓這些資訊最難被找到。',
   },
 ];
 
 const solutions = [
   {
     no: '4.1',
-    title: 'Home — rebalancing primary vs. secondary',
-    problem: 'The main payment function got a tiny slice of the screen, squeezed by announcements and secondary modules.',
+    title: '首頁 — 重新平衡主要與次要功能',
+    problem: '主要的付款功能只佔了極小的螢幕空間，被公告和次要模組擠壓。',
     moves: [
-      'Home keeps only "pay + favourite functions" — open the app, pay immediately.',
-      'Unified card layout; modular blocks that increase swipeable area.',
+      '首頁只保留「付款 + 常用功能」——打開 APP，立即付款。',
+      '統一卡片佈局；模組化區塊增加可滑動面積。',
     ],
-    fig: 'Home redesign · before ↔ after',
+    fig: '首頁改版 · 改版前後對比',
     beforeImg: `${base}img/before_home.png`,
     afterVideo: `${base}img/after_home.mp4`,
   },
   {
     no: '4.2',
-    title: 'All Functions — change how a feature gets pinned',
-    problem: 'A "star to favourite" affordance that never felt intuitive; a plain text list with no visual hierarchy.',
+    title: '全部功能 — 改變功能的釘選方式',
+    problem: '「星號標記最愛」的提示一直不夠直覺；純文字列表缺乏視覺層級。',
     moves: [
-      'Replaced the star with a "+" — matches the universal "+ = add" mental model.',
-      'Functions now shown as icon + label in clean categories — quick to scan.',
+      '將星號替換為「+」——符合通用的「+ = 新增」心智模型。',
+      '功能現在以「圖示 + 標籤」的清晰分類呈現——方便快速掃視。',
     ],
-    fig: 'All-features page · add-interaction redesign',
+    fig: '全部功能頁 · 新增互動改版',
     beforeImg: `${base}img/before_all_function.png`,
     afterVideo: `${base}img/after_all_function.mp4`,
   },
   {
     no: '4.3',
-    title: 'Good-Deals Map — make coupons findable',
-    problem: 'Filter sub-buttons hard to distinguish; too much visual noise on the map.',
+    title: '好康地圖 — 讓優惠券更容易被找到',
+    problem: '篩選次選單難以辨識；地圖上的視覺雜訊過多。',
     moves: [
-      'Filter menu turned into a bottom sheet — reduces first-load visual load.',
-      "Added a 'active filter' summary so users can see what's currently applied.",
+      '篩選選單改為底部彈出視窗——減少初次載入的視覺負擔。',
+      "新增了「啟用中的篩選」摘要，讓用戶能看見目前套用的條件。",
     ],
-    fig: 'Map · filter sheet & active-filter summary',
+    fig: '地圖 · 篩選視窗與條件摘要',
     pain: 'C',
     beforeImg: `${base}img/before_map.png`,
     afterVideo: `${base}img/after_map.mp4`,
   },
   {
     no: '4.4',
-    title: 'Coupons — reorder information hierarchy',
-    problem: "Info ordering was chaotic — users couldn't quickly judge where a coupon applied.",
+    title: '優惠券 — 重新排序資訊層級',
+    problem: "資訊排序混亂——用戶無法快速判斷優惠券的適用範圍。",
     moves: [
-      'Reordered: merchant → offer → conditions → expiry.',
-      'Surfaced remaining points; raised image utilisation for scannability.',
+      '重新排序：商家 → 優惠 → 條件 → 期限。',
+      '突顯剩餘點數；提高圖像使用率以利快速掃視。',
     ],
-    fig: 'Coupon card · information hierarchy',
+    fig: '優惠券卡片 · 資訊層級',
     pain: 'C',
     beforeImg: `${base}img/before_coupon.png`,
     afterVideo: `${base}img/after_coupon.mp4`,
   },
   {
     no: '4.5',
-    title: 'Activities Feed — better promo discovery',
-    problem: "Hard to find activities; unclear which ones a user could actually join.",
+    title: '活動動態 — 更好的優惠探索',
+    problem: "難以找到活動；不清楚用戶實際上能參與哪些活動。",
     moves: [
-      'Added an "eligible activities" tab so relevant promos never get missed.',
-      'Reflowed dense activity details so high-value info is readable at a glance.',
+      '新增了「適用活動」分頁，讓相關優惠不再被錯過。',
+      '重排密集的活動資訊，讓高價值資訊能一目了然。',
     ],
-    fig: 'Activities feed · eligible-activities tab',
+    fig: '活動動態 · 適用活動分頁',
     pain: 'C',
     beforeImg: `${base}img/before_activity.png`,
     afterVideo: `${base}img/after_activity.mp4`,
   },
   {
     no: '4.6',
-    title: 'Financial Services — tighter information ordering',
-    problem: 'Tab buttons taking up too much vertical space.',
+    title: '金融服務 — 更緊湊的資訊排序',
+    problem: '分頁按鈕佔據了過多垂直空間。',
     moves: [
-      'Converted to a tabbed layout; "trending rankings" earns the first-view slot.',
-      'Added a filter summary for quick scoping.',
+      '改為標籤式佈局；「熱門排行」佔據首屏位置。',
+      '新增篩選摘要以利快速篩選。',
     ],
-    fig: 'Financial services · tabbed layout',
+    fig: '金融服務 · 標籤式佈局',
     beforeImg: `${base}img/before_finance.png`,
     afterVideo: `${base}img/after_finance.mp4`,
   },
@@ -115,15 +115,15 @@ const solutions = [
 
 const voices = {
   positive: [
-    '"Way easier than the original — simplified so many things."',
-    '"It just feels intuitive now."',
-    '"It makes me want to try functions beyond payment."',
+    '"比原版容易多了——簡化了好多東西。"',
+    '"現在感覺很直覺。"',
+    '"這會讓我想要嘗試付款以外的功能。"',
   ],
   negative: [
-    '"Some info-block boundaries aren\'t clear enough."',
-    "\"At first glance, the home doesn't immediately read as a payment screen.\"",
-    '"Missing search and filter."',
-    '"Primary vs. secondary could be sharper."',
+    '"有些資訊區塊的邊界不夠清晰。"',
+    "\"乍看之下，首頁不會立刻讓人覺得是付款畫面。\"",
+    '"缺少搜尋和篩選功能。"',
+    '"主要與次要功能的區分可以更鮮明。"',
   ],
 };
 ---
@@ -133,12 +133,12 @@ const voices = {
 
     <!-- TOP CHROME -->
     <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
-      <a href={base} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
-        <span>←</span> Home
+      <a href={`${base}zh/`} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+        <span>←</span> 回到首頁
       </a>
       <div class="text-right space-y-0.5 text-white/55">
-        <div class="text-white/80">§ 01 — Case study</div>
-        <div>Vol. I · 2024 · NTNU</div>
+        <div class="text-white/80">§ 01 — 案例研究</div>
+        <div>Vol. I · 2024 · 台灣師範大學</div>
         <LanguageSwitcher class="mt-4 justify-end" />
       </div>
     </header>
@@ -148,7 +148,7 @@ const voices = {
       <div class="col-span-12 md:col-span-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-4 flex items-center gap-2">
           <span class="text-white text-base leading-none">◆</span>
-          <span>Chapter One — LinePay redesign</span>
+          <span>Chapter One — LinePay 改版設計</span>
         </div>
 
         <h1 class="font-sans font-black tracking-[-0.055em] leading-[0.88] text-white text-[clamp(64px,11vw,176px)]">
@@ -162,19 +162,19 @@ const voices = {
         </h1>
 
         <p class="mt-10 max-w-[52ch] text-[17px] leading-[1.55] text-white/80">
-          Redesigning Taiwan's most-used mobile payment app around one user goal —
-          <span class="italic text-white" style="font-family:'Fraunces',serif">saving money effortlessly.</span>
+          圍繞著一個核心用戶目標，重新設計台灣最多人使用的行動支付 APP ——
+          <span class="italic text-white" style="font-family:'Fraunces',serif">毫不費力地省錢。</span>
         </p>
       </div>
 
       <aside class="col-span-12 md:col-span-4 md:pt-16">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50 border-b border-white/15 pb-2 mb-5">
-          Reader's guide
+          導讀
         </div>
         <ul class="space-y-4 text-[15px] leading-[1.4] text-white/75" style="font-family: 'Fraunces', serif; font-style: italic;">
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>§1 defining the real problem beyond usability.</span></li>
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>§4 key design solutions across six screens.</span></li>
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>§6 a failed iteration and what it taught us.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§1 重新定義真正的設計挑戰。</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§4 六個關鍵畫面的設計解決方案。</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§6 從一次失敗的迭代中學到的事。</span></li>
         </ul>
         <a
           href="https://www.figma.com/proto/J7rPN0mPb7Iytetn7OzUlo/LinePay?node-id=518-2849&page-id=0%3A1&starting-point-node-id=518%3A2849&t=eysSerxFDqtM8Ala-1"
@@ -191,8 +191,8 @@ const voices = {
     <!-- AT A GLANCE -->
     <section class="mt-20 md:mt-28">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-8 flex items-center justify-between">
-        <span><span class="text-white">§ at a glance</span> — measured against the original LinePay</span>
-        <span class="text-white/40">n = 4 · task time, completion, SUS</span>
+        <span><span class="text-white">§ 數據一覽</span> — 與原版 LinePay 的比較</span>
+        <span class="text-white/40">n = 4 · 任務時間, 完成率, SUS</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -213,8 +213,7 @@ const voices = {
       </div>
 
       <p class="mt-6 text-[14px] leading-[1.55] text-white/60 max-w-[68ch]">
-        Four participants — different ages and usage habits — completing the same four tasks on the
-        original LinePay vs. our redesign. SUS moved from 52.5 ("OK") into 72.5 ("good") — a meaningful jump across SUS bands.
+        四位參與者——不同年齡與使用習慣——在原版與改版 APP 上完成相同的四個任務。SUS 系統可用性分數從 52.5（尚可）躍升至 72.5（良好）——這是一個跨越量表區間的顯著進步。
       </p>
     </section>
 
@@ -222,32 +221,32 @@ const voices = {
     <section class="mt-20 md:mt-28 grid grid-cols-12 gap-10">
       <div class="col-span-12 md:col-span-4">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> Project meta
+          <span class="text-white/80">§</span> 專案資訊
         </div>
         <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Course</dt><dd>UI/UX Design · 2024</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Team</dt><dd>5 members</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Role</dt><dd>Research · UX design · Usability testing</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tools</dt><dd>Figma · Miro · Notion</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tags</dt><dd class="text-white/55">Mobile · FinTech · Usability testing · Research-led</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">課程</dt><dd>UI/UX 設計 · 2024</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">團隊</dt><dd>5 人</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">角色</dt><dd>研究 · UX 設計 · 易用性測試</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">工具</dt><dd>Figma · Miro · Notion</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">標籤</dt><dd class="text-white/55">行動裝置 · 金融科技 · 易用性測試 · 研究導向</dd></div>
         </dl>
       </div>
 
       <div class="col-span-12 md:col-span-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> My role
+          <span class="text-white/80">§</span> 我的貢獻
         </div>
         <p class="text-[15.5px] leading-[1.6] text-white/80 max-w-[62ch]">
-          5-person team project, full process shared. The parts I personally led:
+          這是一個 5 人團隊專案，流程為共同參與。以下是我個人主導的部分：
         </p>
         <ul class="mt-5 space-y-2.5 text-[15px] leading-[1.55] text-white/85">
-          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>Persona synthesis & journey map integration</li>
-          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>V1 / V2 iteration on the home screen</li>
-          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>SUS analysis and chart-making for the usability study</li>
-          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>Final case-study documentation and deck design</li>
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>人物誌 (Persona) 收斂與顧客旅程地圖整合</li>
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>首頁的 V1 / V2 設計迭代</li>
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>易用性測試的 SUS 分析與圖表製作</li>
+          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>最終案例研究文件與簡報設計</li>
         </ul>
         <p class="mt-5 text-[14px] leading-[1.55] text-white/55 max-w-[62ch]">
-          Shared across the team: App Store review coding, six-page redesign ideation, four-participant usability study.
+          團隊共同完成：App Store 評論編碼、六個頁面的改版發想、四人易用性測試。
         </p>
       </div>
     </section>
@@ -255,50 +254,46 @@ const voices = {
     <!-- §1 CONTEXT -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 01</span> — Context
+        <span class="text-white">§ 01</span> — 背景脈絡
       </div>
       <h2 class="text-white leading-[0.95] max-w-[24ch]" style="font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'opsz' 144;letter-spacing:-0.03em;font-size:clamp(32px,5vw,56px)">
-        Taiwan's most ubiquitous payment app —
-        <span class="italic text-white/60"> and no one opens its app.</span>
+        台灣最普及的支付 APP ——
+        <span class="italic text-white/60"> 卻沒有人願意主動打開它。</span>
       </h2>
       <p class="mt-8 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        LinePay is one of Taiwan's most embedded mobile-payment brands — 1 in 2 people use it, and a LinePay
-        transaction happens every 0.03 seconds nationwide. But we found an interesting disconnect:
+        LinePay 是台灣最深植人心的行動支付品牌之一——每 2 人就有 1 人使用，全國每 0.03 秒就有一筆 LinePay 交易。但我們發現了一個有趣的斷層：
       </p>
 
       <figure class="my-10 border-l-2 border-white/40 pl-6 md:pl-8">
         <blockquote class="text-white leading-[1.15] max-w-[32ch]" style="font-family:'Fraunces',serif;font-size:clamp(26px,3.6vw,38px);letter-spacing:-0.02em">
-          12.5 million people use LinePay.
-          <span class="italic text-white/60 block">Only 2 million use the LinePay app.</span>
+          1250 萬人使用 LinePay 服務。
+          <span class="italic text-white/60 block">但只有 200 萬人下載 LinePay 獨立 APP。</span>
         </blockquote>
       </figure>
 
       <p class="text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        The app was considered a "necessary evil", not a tool of choice. Our goal: <span class="italic text-white" style="font-family:'Fraunces',serif">Transform the LinePay app into a daily companion people willingly open.</span>
+        對大多數用戶而言，這個獨立 APP 從未提供真正的價值——它是個「非不得已才用」的工具。我們的目標是： <span class="italic text-white" style="font-family:'Fraunces',serif">將 LinePay APP 轉變為人們願意主動打開的日常夥伴。</span>
       </p>
     </section>
 
     <!-- §2 RESEARCH -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 02</span> — Research
+        <span class="text-white">§ 02</span> — 研究
       </div>
       <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        Four axes, <span class="italic text-white/60">layered from macro to one user.</span>
+        四個維度，<span class="italic text-white/60">從宏觀到個體層層遞進。</span>
       </h2>
 
       <!-- 2.1 -->
       <div class="mt-12 grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-4">
           <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.1</div>
-          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Industry data — why do people use mobile payment?</h3>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">產業數據 — 人們為何使用行動支付？</h3>
         </div>
         <div class="col-span-12 md:col-span-8">
           <p class="text-[15px] leading-[1.65] text-white/80 max-w-[60ch]">
-            A 2023 survey (n=931) from the Key Issues Research Center found that the #1 motivation for using
-            mobile payment in Taiwan is <strong class="text-white">"rebates & promotions (24.17%)"</strong> —
-            ahead of convenience. The implication: users pick LinePay mostly to save money, but the app doesn't
-            make that experience feel good. That gave us a sharp design entry point.
+            資策會 2023 年的調查 (n=931) 指出，台灣人使用行動支付的首要動機是<strong class="text-white">「回饋與優惠 (24.17%)」</strong>——甚至高於便利性。這意味著：用戶選擇 LinePay 主要是為了省錢，但目前的 APP 卻沒有讓這件事變得容易。這給了我們一個明確的切入點。
           </p>
         </div>
       </div>
@@ -307,11 +302,9 @@ const voices = {
       <div class="mt-14 grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-4">
           <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.2</div>
-          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">App Store review coding</h3>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">App Store 評論編碼</h3>
           <p class="mt-4 text-[13.5px] leading-[1.55] text-white/60 max-w-[30ch]">
-            Systematic thematic clustering of publicly available App Store reviews. We were honest about the
-            limits: review skew is bimodal (very happy / very angry), so you can't extrapolate volume — only
-            categorise the <em>kinds</em> of complaints.
+            我們對公開的 App Store 評論進行系統性的主題分群。儘管評論通常偏向極端（極好 / 極差），無法推斷整體比例，但能幫助我們將抱怨的<em>類型</em>進行分類。
           </p>
         </div>
         <div class="col-span-12 md:col-span-8 space-y-5">
@@ -331,17 +324,17 @@ const voices = {
       <div class="mt-14 grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-4">
           <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.3</div>
-          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Persona</h3>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">人物誌 (Persona)</h3>
         </div>
         <div class="col-span-12 md:col-span-8">
 
           <article class="mt-4 rounded-[14px] border border-white/12 bg-white/[0.04] p-6 md:p-7">
             <div class="text-white leading-[1.05]" style="font-family:'Fraunces',serif;font-size:28px;letter-spacing:-0.02em">
-              Kobayashi <span class="italic text-white/55 text-[22px]">· 21 · Student</span>
+              Kobayashi <span class="italic text-white/55 text-[22px]">· 21 · 大學生</span>
             </div>
             <dl class="mt-5 space-y-2 text-[13.5px] leading-[1.5] text-white/75">
-              <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 w-[64px] shrink-0 pt-[3px]">Goal</dt><dd>Save on daily expenses effortlessly.</dd></div>
-              <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 w-[64px] shrink-0 pt-[3px]">Pain</dt><dd>Promo conditions are too complex to claim real savings.</dd></div>
+              <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 w-[64px] shrink-0 pt-[3px]">目標</dt><dd>毫不費力地節省日常開銷。</dd></div>
+              <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 w-[64px] shrink-0 pt-[3px]">痛點</dt><dd>優惠條件太複雜，難以獲得實質的節省。</dd></div>
             </dl>
           </article>
         </div>
@@ -351,26 +344,26 @@ const voices = {
       <div class="mt-14 grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-4">
           <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">2.4</div>
-          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Journey map</h3>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">顧客旅程地圖</h3>
         </div>
         <div class="col-span-12 md:col-span-8 space-y-4">
 
           <ol class="grid grid-cols-1 md:grid-cols-4 gap-3">
             <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
-              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">① Open app</div>
-              <div class="text-white/65 text-[13px]">"Home feels cluttered."</div>
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">① 打開 APP</div>
+              <div class="text-white/65 text-[13px]">「首頁感覺很雜亂。」</div>
             </li>
             <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
-              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">② Pick promo</div>
-              <div class="text-white/65 text-[13px]">Cognitive load is high.</div>
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">② 尋找優惠</div>
+              <div class="text-white/65 text-[13px]">認知負擔很高。</div>
             </li>
             <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
-              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">③ Check rule</div>
-              <div class="text-white/65 text-[13px]">"Which coupon works?"</div>
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">③ 確認條件</div>
+              <div class="text-white/65 text-[13px]">「這張券可以用嗎？」</div>
             </li>
             <li class="border border-white/15 bg-white/[0.03] rounded-md p-4">
-              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">④ Show code</div>
-              <div class="text-white/65 text-[13px]">"Too much back-and-forth."</div>
+              <div class="font-mono text-[10px] uppercase tracking-[0.22em] text-white mb-2">④ 出示條碼</div>
+              <div class="text-white/65 text-[13px]">「切換頁面太麻煩了。」</div>
             </li>
           </ol>
         </div>
@@ -380,23 +373,23 @@ const voices = {
     <!-- §3 PRINCIPLES -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 03</span> — Design principles
+        <span class="text-white">§ 03</span> — 設計原則
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <article>
           <div class="text-white leading-none text-[52px]" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">01</div>
-          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">Clear primary vs. secondary</h3>
-          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">Home serves the "open → pay" 90% case. Everything else yields.</p>
+          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">釐清主要與次要功能</h3>
+          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">首頁必須服務「打開 → 付款」這個 90% 的使用情境。其他功能都應退居次位。</p>
         </article>
         <article>
           <div class="text-white leading-none text-[52px]" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">02</div>
-          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">Bound semantics</h3>
-          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">The full payment action (card + code) must be designed as a single unit.</p>
+          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">綁定語意模型</h3>
+          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">完整的付款動作（卡片 + 條碼）必須被設計為單一元件。</p>
         </article>
         <article>
           <div class="text-white leading-none text-[52px]" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">03</div>
-          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">Promos made visible</h3>
-          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">Kobayashi's savings should be surfaced, not searched.</p>
+          <h3 class="mt-3 font-sans font-semibold text-[19px] text-white">讓優惠清晰可見</h3>
+          <p class="mt-2 text-[14.5px] leading-[1.6] text-white/65">用戶的省錢機會應該被主動呈現，而非要求他們自行尋找。</p>
         </article>
       </div>
     </section>
@@ -404,14 +397,14 @@ const voices = {
     <!-- §4 SOLUTIONS -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 04</span> — Design solutions · six pages
+        <span class="text-white">§ 04</span> — 設計方案 · 六大頁面
       </div>
       <div class="space-y-14">
         {solutions.map((s) => (
           <article class="grid grid-cols-12 gap-6 md:gap-8">
             <div class="col-span-12 md:col-span-4">
               <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">
-                {s.no}{s.pain && <span class="text-white/45 ml-3">→ Pain {s.pain}</span>}
+                {s.no}{s.pain && <span class="text-white/45 ml-3">→ 痛點 {s.pain}</span>}
               </div>
               <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">{s.title}</h3>
               <p class="mt-3 text-[14px] leading-[1.6] text-white/60">{s.problem}</p>
@@ -430,7 +423,7 @@ const voices = {
                     <div class="bg-white p-4 md:p-6">
                       <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/35 mb-3 flex items-center gap-1.5">
                         <span class="size-1.5 rounded-full bg-black/25 inline-block"></span>
-                        Before
+                        原版
                       </div>
                       <img
                         src={s.beforeImg}
@@ -443,7 +436,7 @@ const voices = {
                     <div class="bg-white p-4 md:p-6 border-l border-black/[0.06]">
                       <div class="font-mono text-[9px] uppercase tracking-[0.22em] text-black/60 mb-3 flex items-center gap-1.5">
                         <span class="size-1.5 rounded-full bg-black/55 inline-block"></span>
-                        After
+                        改版
                       </div>
                       <video
                         src={s.afterVideo}
@@ -474,28 +467,26 @@ const voices = {
     <!-- §5 USABILITY TESTING -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 05</span> — Usability testing
+        <span class="text-white">§ 05</span> — 易用性測試
       </div>
       <h2 class="text-white leading-[0.95] max-w-[24ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        We didn't stop at <span class="italic text-white/60">"feels better."</span>
+        我們不滿足於<span class="italic text-white/60">「感覺變好了」。</span>
       </h2>
       <p class="mt-6 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        Before/after usability test combining three methods: think-aloud protocol, SUS questionnaire, and
-        post-test interview across eight dimensions — process, errors, efficiency, learnability, memorability,
-        satisfaction, effectiveness, improvement.
+        我們結合了三種方法進行改版前後的測試：放聲思考法 (Think-aloud)、SUS 問卷，以及涵蓋八個維度的測試後訪談——流程、錯誤、效率、易學性、記憶性、滿意度、有效性與改進空間。
       </p>
 
       <!-- Participants -->
       <div class="mt-10">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.2 Participants · n = 4 · age 20 – 45</div>
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.2 參與者 · n = 4 · 年齡 20 – 45</div>
         <div class="rounded-[12px] border border-white/12 overflow-hidden">
           <table class="w-full text-[14px]">
             <thead class="bg-white/[0.05] font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
               <tr>
                 <th class="text-left py-3 px-4 font-normal">ID</th>
-                <th class="text-left py-3 px-4 font-normal">Background</th>
-                <th class="text-left py-3 px-4 font-normal">Notes</th>
-                <th class="text-left py-3 px-4 font-normal">Freq</th>
+                <th class="text-left py-3 px-4 font-normal">背景</th>
+                <th class="text-left py-3 px-4 font-normal">備註</th>
+                <th class="text-left py-3 px-4 font-normal">頻率</th>
               </tr>
             </thead>
             <tbody>
@@ -511,32 +502,32 @@ const voices = {
           </table>
         </div>
         <p class="mt-3 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50">
-          Participant C fits LinePay's published core-user age band (31 – 40).
+          參與者 C 符合 LinePay 官方公布的核心用戶年齡區間 (31 – 40)。
         </p>
       </div>
 
       <!-- Tasks -->
       <div class="mt-12">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.3 Tasks · covering Kobayashi's full journey</div>
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.3 測試任務 · 涵蓋 Kobayashi 的完整旅程</div>
         <ol class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[14.5px] text-white/85">
           <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
-            <span class="font-mono text-white mr-2">01</span>Anniversary promo — find Shinsei Bank card activity info and nearby eligible stores.
+            <span class="font-mono text-white mr-2">01</span>週年慶活動——尋找新生銀行信用卡活動資訊及附近適用店家。
           </li>
           <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
-            <span class="font-mono text-white mr-2">02</span>Hungry — filter for Japanese restaurants and download a sushi-shop "spend 300, get 100 off" coupon.
+            <span class="font-mono text-white mr-2">02</span>肚子餓了——篩選日式餐廳並下載壽司店「滿 300 折 100」優惠券。
           </li>
           <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
-            <span class="font-mono text-white mr-2">03</span>At checkout — select that coupon and present the barcode to pay.
+            <span class="font-mono text-white mr-2">03</span>結帳——選擇該張優惠券並出示條碼付款。
           </li>
           <li class="border border-white/12 rounded-md p-4 bg-white/[0.03]">
-            <span class="font-mono text-white mr-2">04</span>Ledger — add the transaction to a favourite/custom function.
+            <span class="font-mono text-white mr-2">04</span>記帳——將該筆交易加入最愛/自訂功能中。
           </li>
         </ol>
       </div>
 
       <!-- Quant results -->
       <div class="mt-12">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.4 Quantitative results</div>
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.4 量化結果</div>
         <figure class="rounded-[12px] border border-white/12 overflow-hidden">
           <img
             src={`${base}img/Quantitative results.png`}
@@ -550,7 +541,7 @@ const voices = {
       <!-- Qual feedback -->
       <div class="mt-12 grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-6">
-          <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.5 Positive</div>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.5 正面回饋</div>
           <ul class="space-y-3 text-[15px] leading-[1.55]" style="font-family:'Fraunces',serif;font-style:italic;letter-spacing:-0.01em">
             {voices.positive.map((q) => (
               <li class="text-white/85">{q}</li>
@@ -558,7 +549,7 @@ const voices = {
           </ul>
         </div>
         <div class="col-span-12 md:col-span-6">
-          <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.5 Negative · listed honestly</div>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-3">5.5 負面回饋 · 誠實記錄</div>
           <ul class="space-y-3 text-[15px] leading-[1.55]" style="font-family:'Fraunces',serif;font-style:italic;letter-spacing:-0.01em">
             {voices.negative.map((q) => (
               <li class="text-white/75">{q}</li>
@@ -568,46 +559,42 @@ const voices = {
       </div>
 
       <p class="mt-10 border-l-2 border-white/40 pl-6 text-[16px] leading-[1.6] text-white/85 max-w-[62ch]">
-        The most telling one was the second: <strong class="text-white">users opening the home screen didn't
-        immediately read it as a payment screen.</strong> That single piece of feedback drove the next home iteration.
+        最發人深省的是第二條回饋：<strong class="text-white">用戶打開首頁時，並沒有立刻意識到這是一個付款畫面。</strong>這項回饋直接推動了首頁的下一次迭代。
       </p>
     </section>
 
     <!-- §6 ITERATION -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 06</span> — Iteration · home-screen redesign
+        <span class="text-white">§ 06</span> — 迭代 · 首頁改版
       </div>
       <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        V1 failed. <span class="italic text-white/60">It had to.</span>
+        V1 失敗了。<span class="italic text-white/60">這是必經之路。</span>
       </h2>
 
       <div class="mt-12 grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-6">
-          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">V1 — vertically-swipable card stack</div>
-          <p class="text-[14.5px] leading-[1.65] text-white/85"><strong>Hypothesis.</strong> Turning the card carrier into a vertically-swipable stack should reduce info density.</p>
-          <p class="mt-2 text-[14.5px] leading-[1.65] text-white/65"><strong>Result.</strong> Still too crowded, still not clear.</p>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">V1 — 垂直滑動卡片堆疊</div>
+          <p class="text-[14.5px] leading-[1.65] text-white/85"><strong>假設：</strong> 將卡片區域改為可垂直滑動的堆疊，應該能減少資訊密度。</p>
+          <p class="mt-2 text-[14.5px] leading-[1.65] text-white/65"><strong>結果：</strong> 依然擁擠，依然不夠清晰。</p>
           <p class="mt-4 text-[14.5px] leading-[1.65] text-white/85">
-            <strong>Lesson.</strong> We'd framed the problem as "layout is cluttered," so our solution was
-            "rearrange the layout." V1 showed us
-            <em class="italic text-white" style="font-family:'Fraunces',serif">the problem wasn't layout at all.</em>
-            The real issue was the payment mental model — "pick a card" and "present a code" were treated as
-            two separate things, forcing users to switch. If you don't fix the mental model, no layout will save you.
+            <strong>教訓：</strong> 我們將問題定調為「版面雜亂」，所以解法是「重新排列版面」。但 V1 告訴我們：
+            <em class="italic text-white" style="font-family:'Fraunces',serif">問題根本不在於版面配置。</em>
+            真正的問題是付款的「心智模型」——「選擇卡片」和「出示條碼」被當成兩件獨立的事，強迫用戶切換。如果不解決心智模型的問題，任何版面調整都無濟於事。
           </p>
         </div>
         <div class="col-span-12 md:col-span-6">
-          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">V2 — card and code fused into one unit</div>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">V2 — 卡片與條碼合而為一</div>
           <p class="text-[14.5px] leading-[1.65] text-white/85">
-            <strong>New hypothesis.</strong> The complete payment action is "one card + its code" — so design
-            them as a single unit.
+            <strong>新假設：</strong> 完整的付款動作是「一張卡片 + 其專屬條碼」——因此應將它們設計為單一元件。
           </p>
           <ul class="mt-3 space-y-1.5 text-[14.5px] leading-[1.55] text-white/75">
-            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>Card and code merged into the same module.</li>
-            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>Switching the card swaps its code automatically.</li>
-            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>Home divided into three regions: favourites │ pay │ carrier.</li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>卡片與條碼整合至同一模組。</li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>切換卡片時會自動替換對應的條碼。</li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span>首頁劃分為三個區塊：最愛功能 │ 付款 │ 載具。</li>
           </ul>
           <p class="mt-4 text-[14.5px] leading-[1.65] text-white/85">
-            <strong>Result.</strong> Direct. Paying went from "find card → switch page → find code" to one continuous screen.
+            <strong>結果：</strong> 變得非常直接。付款從「找卡片 → 切換頁面 → 找條碼」變成了在同一個畫面上連續完成。
           </p>
         </div>
       </div>
@@ -621,7 +608,7 @@ const voices = {
             </div>
             <img
               src={`${base}img/v1.png`}
-              alt="V1 — vertically-swipable card stack"
+              alt="V1 — 垂直滑動卡片堆疊"
               class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
               loading="lazy"
             />
@@ -633,14 +620,14 @@ const voices = {
             </div>
             <img
               src={`${base}img/v2.png`}
-              alt="V2 — card and code fused into one unit"
+              alt="V2 — 卡片與條碼合而為一"
               class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
               loading="lazy"
             />
           </div>
         </div>
         <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
-          Fig — V1 vs. V2 home-screen iteration
+          Fig — V1 與 V2 首頁設計迭代
         </div>
       </figure>
     </section>
@@ -648,31 +635,29 @@ const voices = {
     <!-- §7 REFLECTION -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 07</span> — Reflection
+        <span class="text-white">§ 07</span> — 反思
       </div>
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-8 space-y-8">
           <div>
-            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">The biggest lesson — don't mistake symptoms for causes.</h3>
+            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">最大的教訓 —— 別把症狀當成病因。</h3>
             <p class="text-[15px] leading-[1.65] text-white/70 max-w-[58ch]">
-              V1's clutter looked like a layout problem. It wasn't — it was a mental-model problem. Since then,
-              every design call I make starts with the same check:
-              <em class="italic text-white" style="font-family:'Fraunces',serif">am I solving the symptom, or the cause?</em>
+              V1 的雜亂看起來像是版面問題，但其實不是——那是心智模型的問題。從那之後，我所做的每一個設計決策都會從同一個問題開始：
+              <em class="italic text-white" style="font-family:'Fraunces',serif">我現在解決的是表面的症狀，還是根本的原因？</em>
             </p>
           </div>
           <div>
-            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">If I'd had more time.</h3>
+            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">如果我有更多時間。</h3>
             <p class="text-[15px] leading-[1.65] text-white/70 max-w-[58ch]">
-              I'd have run a second SUS round on V2 to verify whether the "home doesn't read as a payment screen"
-              feedback actually got resolved. An iteration without a close-of-loop isn't really finished.
+              我會對 V2 進行第二輪 SUS 測試，以驗證「首頁不像付款畫面」的回饋是否真的被解決了。一個沒有閉環驗證的迭代，其實並不算真正完成。
             </p>
           </div>
         </div>
         <aside class="col-span-12 md:col-span-4">
           <div class="rounded-[14px] border border-white/15 bg-white/[0.04] p-5">
-            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">Status</div>
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">狀態</div>
             <p class="text-[14px] leading-[1.6] text-white/70 mb-5">
-              Completed academic project. Prototype available for review.
+              已完成的學術專案。可預覽 Prototype。
             </p>
             <a
               href="https://www.figma.com/proto/J7rPN0mPb7Iytetn7OzUlo/LinePay?node-id=518-2849&page-id=0%3A1&starting-point-node-id=518%3A2849&t=eysSerxFDqtM8Ala-1"
@@ -691,8 +676,8 @@ const voices = {
     <!-- FOOTER NAV -->
     <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">
       <div class="flex items-center justify-between">
-        <a href={base} class="text-white/70 hover:text-white transition-colors">← Back to home</a>
-        <a href={`${base}fidgi`} class="text-white/70 hover:text-white transition-colors">§02 Fidgi Grow →</a>
+        <a href={`${base}zh/`} class="text-white/70 hover:text-white transition-colors">← 回到首頁</a>
+        <a href={`${base}zh/fidgi`} class="text-white/70 hover:text-white transition-colors">§02 Fidgi Grow →</a>
       </div>
     </footer>
 

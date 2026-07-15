@@ -1,38 +1,38 @@
 ---
-import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import BaseCaseStudy from '../../layouts/BaseCaseStudy.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 
 
 const base = import.meta.env.BASE_URL;
 
 const pains = [
-  { t: 'Weak working memory', d: 'Plans and detailed steps vanish the moment you stop actively holding them.' },
-  { t: 'Gendered presentation', d: 'Symptoms read as inattentive rather than hyperactive, so they go unnamed.' },
-  { t: 'Misinterpretation', d: 'Executive-function failures mistaken for laziness, eroding self-confidence.' },
-  { t: 'Time blindness', d: 'Inability to accurately sense how long tasks will take.' },
-  { t: 'Daily forgetfulness', d: 'Chronic struggles with remembering tasks, items, and appointments.' },
-  { t: 'Planning burnout', d: 'Exhaustion from the mental effort of organising thought itself.' },
+  { t: '工作記憶弱', d: '計畫與步驟只要一停止回想，就會瞬間從腦海中消失。' },
+  { t: '性別表現差異', d: '女性症狀常表現為注意力不集中而非過動，因此容易被忽視。' },
+  { t: '被誤解', d: '執行功能障礙常被誤認為是懶惰，從而侵蝕自信心。' },
+  { t: '時間盲點', d: '無法準確感知一項任務需要花費多少時間。' },
+  { t: '日常健忘', d: '長期與忘記任務、物品和約會抗爭。' },
+  { t: '規劃倦怠', d: '光是為了組織思緒就耗盡了所有的心力。' },
 ];
 
 const voices = [
-  '"I\'m quiet and seem calm, but my mind is always running — like too many browser tabs open at once."',
-  '"I thought I was lazy and undisciplined. After years of mistakes and being fired, I finally realised my attention was never really online."',
-  '"This fits me perfectly, but I\'m still scared I\'m just overthinking it and don\'t actually have ADHD."',
-  '"I can see what I need to do, but I can\'t find the key to start. The anxiety builds, but my body won\'t move."',
+  '"我很安靜，看起來也很冷靜，但我的腦袋一直在轉——就像同時開了太多瀏覽器分頁。"',
+  '"我一直以為自己只是懶惰、沒有紀律。在犯了多年的錯甚至被解僱後，我才意識到我的注意力從未真正上線。"',
+  '"這描述完全符合我，但我還是怕自己只是想太多，根本沒有 ADHD。"',
+  '"我知道我該做什麼，但我找不到開始的鑰匙。焦慮不斷累積，但我的身體就是無法動彈。"',
 ];
 
 const values = [
   {
-    t: 'Cognitive accessibility',
-    d: 'Bright colours, high contrast, and clear colour coding to reduce cognitive load. For ADHD or dyslexia traits, immediate visual cues outperform minimalist interfaces — which meant resisting the urge to make it look like a generic Scandinavian wellness app.',
+    t: '認知無障礙',
+    d: '明亮的色彩、高對比度及清晰的顏色編碼以降低認知負荷。對於 ADHD 或閱讀障礙特質，即時的視覺提示優於極簡介面——這意味著我們必須抵抗將其設計成典型北歐風格健康 APP 的衝動。',
   },
   {
-    t: 'Positive reinforcement',
-    d: 'No streaks that punish you for missing a day. Gamified elements as gentle motivation, not surveillance. The design prioritises encouragement over productivity guilt.',
+    t: '正向增強',
+    d: '沒有會因為漏掉一天就懲罰你的連續打卡機制。遊戲化元素作為溫和的動力，而非監視。設計將鼓勵置於生產力焦慮之上。',
   },
   {
-    t: 'Readability',
-    d: 'Larger, rounded typography to reduce visual strain during attention fatigue, supporting users with reading difficulty or cognitive overload.',
+    t: '易讀性',
+    d: '更大、更圓潤的字體，以減少注意力疲乏時的視覺負擔，支援有閱讀困難或認知超載的用戶。',
   },
 ];
 ---
@@ -42,12 +42,12 @@ const values = [
 
     <!-- TOP CHROME -->
     <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
-      <a href={base} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
-        <span>←</span> Home
+      <a href={`${base}zh/`} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+        <span>←</span> 首頁
       </a>
       <div class="text-right space-y-0.5 text-white/55">
-        <div class="text-white/80">§ 02 — Case study</div>
-        <div>Vol. I · 2025 · Interdisciplinary studio</div>
+        <div class="text-white/80">§ 02 — 案例研究</div>
+        <div>Vol. I · 2025 · 跨領域設計專案</div>
         <LanguageSwitcher class="mt-4 justify-end" />
       </div>
     </header>
@@ -57,7 +57,7 @@ const values = [
       <div class="col-span-12 md:col-span-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-4 flex items-center gap-2">
           <span class="text-white text-base leading-none">◆</span>
-          <span>Chapter Two — Fidgi Grow</span>
+          <span>第二章 — Fidgi Grow</span>
         </div>
 
         <h1 class="font-sans font-black tracking-[-0.055em] leading-[0.88] text-white text-[clamp(64px,11vw,176px)]">
@@ -71,21 +71,20 @@ const values = [
         </h1>
 
         <p class="mt-10 max-w-[52ch] text-[17px] leading-[1.55] text-white/80">
-          An ADHD support app that
-          <span class="italic text-white" style="font-family:'Fraunces',serif">never mentions ADHD</span>
-          on its cover.
+          一款絕口不提 ADHD 的
+          <span class="italic text-white" style="font-family:'Fraunces',serif">ADHD 輔助應用。</span>
         </p>
       </div>
 
       <aside class="col-span-12 md:col-span-4 md:pt-16">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50 border-b border-white/15 pb-2 mb-5">
-          Reader's guide
+          閱讀指南
         </div>
         <ul class="space-y-4 text-[15px] leading-[1.4] text-white/75" style="font-family:'Fraunces',serif;font-style:italic">
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>§1 the week research broke our brief.</span></li>
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>§2 the positioning statement that carried the whole thing.</span></li>
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>§3 – §4 design decisions and features in full.</span></li>
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>§5 an iteration, and what it taught us.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§1 研究如何打破了我們的假設。</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§2 支撐整個專案的定位策略。</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§3 – §4 核心設計決策與功能。</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>§5 迭代與反思。</span></li>
         </ul>
         <a
           href="https://www.figma.com/proto/lMFiihwsdyM07jfMH6S59d/ADHD?node-id=0-468&p=f&viewport=275%2C25%2C0.19&t=MRcXL2vjFYe4No7X-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=0%3A1651&page-id=0%3A1"
@@ -103,33 +102,33 @@ const values = [
     <section class="mt-20 md:mt-28 grid grid-cols-12 gap-10">
       <div class="col-span-12 md:col-span-4">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> Project meta
+          <span class="text-white/80">§</span> 專案資訊
         </div>
         <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Year</dt><dd>2025 · Interdisciplinary studio</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Team</dt><dd>5 — UI, research, writing, industrial design</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Role</dt><dd>UI design · Research & strategy</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tools</dt><dd>Figma</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">Tags</dt><dd class="text-white/55">Mobile · Healthcare · ADHD · Inclusive · Hardware × software</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">年份</dt><dd>2025 · 跨領域設計專案</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">團隊</dt><dd>5人 — UI、研究、文案、工設</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">角色</dt><dd>UI 設計 · 研究與策略</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">工具</dt><dd>Figma</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">標籤</dt><dd class="text-white/55">Mobile · Healthcare · ADHD · Inclusive · Hardware × software</dd></div>
         </dl>
       </div>
 
       <div class="col-span-12 md:col-span-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> My role
+          <span class="text-white/80">§</span> 我的角色
         </div>
         <ul class="mt-5 space-y-3 text-[15px] leading-[1.55] text-white/85">
           <li class="flex gap-3">
             <span class="text-white/60 font-mono mt-[2px]">·</span>
-            <span><strong class="text-white">Research synthesis</strong> — Identified 6 key pain points and gathered "Real Voices of ADHD".</span>
+            <span><strong class="text-white">研究統整</strong> — 梳理 6 大痛點，並彙整出支撐專案方向的「真實 ADHD 聲音」。</span>
           </li>
           <li class="flex gap-3">
             <span class="text-white/60 font-mono mt-[2px]">·</span>
-            <span><strong class="text-white">UI design</strong> — Onboarding flow, hormone-aware calendar, and gamified tracker.</span>
+            <span><strong class="text-white">UI 設計</strong> — 包含性別友善的註冊流程、整合賀爾蒙週期的日曆，以及遊戲化的追蹤介面。</span>
           </li>
           <li class="flex gap-3">
             <span class="text-white/60 font-mono mt-[2px]">·</span>
-            <span><strong class="text-white">Strategy</strong> — Shaped the positioning: "Optimized for ADHD women, built for everyone".</span>
+            <span><strong class="text-white">策略討論</strong> — 參與制定「為 ADHD 女性優化，為所有人設計」的產品定位。</span>
           </li>
         </ul>
       </div>
@@ -139,57 +138,57 @@ const values = [
     <!-- THE QUESTION -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§</span> The question
+        <span class="text-white">§</span> 核心問題
       </div>
       <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        Most ADHD apps <span class="italic text-white/60">announce it on the cover.</span>
+        多數的 ADHD APP <span class="italic text-white/60">都會大剌剌地寫在封面上。</span>
       </h2>
       <p class="mt-8 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        Notion for ADHD. Tiimo for ADHD. Inflow for ADHD.
-        We spent the first week of the project assuming we'd do the same —
-        <em class="italic text-white" style="font-family:'Fraunces',serif">and then the research broke that assumption.</em>
+        Notion for ADHD. Tiimo for ADHD. Inflow for ADHD. 
+        我們專案第一週也理所當然地這麼假設——
+        <em class="italic text-white" style="font-family:'Fraunces',serif">直到研究結果打破了這個想法。</em>
       </p>
     </section>
 
     <!-- §1 RESEARCH -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 01</span> — What the research showed
+        <span class="text-white">§ 01</span> — 研究發現
       </div>
 
       <!-- Competitor landscape -->
       <div class="grid grid-cols-12 gap-8 mb-16">
         <div class="col-span-12 md:col-span-4">
-          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">A saturated market with a specific blind spot</h3>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">一個飽和市場中的盲點</h3>
         </div>
         <div class="col-span-12 md:col-span-8">
           <p class="text-[15px] leading-[1.65] text-white/80 max-w-[60ch] mb-6">
-            Both general productivity tools and neurodivergent-specific apps fail to account for <strong class="text-white">hormonal fluctuation</strong> and <strong class="text-white">internalised symptoms</strong> — which are defining traits of ADHD in women.
+            無論是通用生產力工具還是專為神經多樣性設計的 APP，都未能考量到 <strong class="text-white">賀爾蒙波動</strong> 與 <strong class="text-white">內化的症狀</strong> ——而這正是女性 ADHD 最顯著的特徵。
           </p>
           <div class="rounded-[12px] border border-white/12 overflow-hidden text-[13.5px]">
             <table class="w-full">
               <thead class="bg-white/[0.05] font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
                 <tr>
-                  <th class="text-left py-3 px-4 font-normal">Category</th>
-                  <th class="text-left py-3 px-4 font-normal">Strength</th>
-                  <th class="text-left py-3 px-4 font-normal">Weakness</th>
+                  <th class="text-left py-3 px-4 font-normal">類別</th>
+                  <th class="text-left py-3 px-4 font-normal">優勢</th>
+                  <th class="text-left py-3 px-4 font-normal">劣勢</th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="bg-white/[0.015]">
-                  <td class="py-3 px-4 text-white font-medium">Robust platforms <span class="text-white/50 font-normal">(Todoist, Notion)</span></td>
-                  <td class="py-3 px-4 text-white/70">Flexible, powerful, huge user base</td>
-                  <td class="py-3 px-4 text-white/50">Too overwhelming for exec dysfunction; no ADHD-specific tooling</td>
+                  <td class="py-3 px-4 text-white font-medium">大型平台 <span class="text-white/50 font-normal">(Todoist, Notion)</span></td>
+                  <td class="py-3 px-4 text-white/70">高自由度、功能強大、用戶群廣</td>
+                  <td class="py-3 px-4 text-white/50">對執行功能障礙者來說過於複雜；缺乏 ADHD 專用工具</td>
                 </tr>
                 <tr>
-                  <td class="py-3 px-4 text-white font-medium">Neurodivergent tools <span class="text-white/50 font-normal">(Inflow, Tiimo)</span></td>
-                  <td class="py-3 px-4 text-white/70">Timers, routines, education</td>
-                  <td class="py-3 px-4 text-white/50">Expensive; less focus on inattentive presentations</td>
+                  <td class="py-3 px-4 text-white font-medium">神經多樣性工具 <span class="text-white/50 font-normal">(Inflow, Tiimo)</span></td>
+                  <td class="py-3 px-4 text-white/70">計時器、日常慣例、衛教</td>
+                  <td class="py-3 px-4 text-white/50">昂貴；較少關注注意力不集中的表現</td>
                 </tr>
                 <tr class="bg-white/[0.015]">
-                  <td class="py-3 px-4 text-white font-medium">Single-purpose <span class="text-white/50 font-normal">(Forest)</span></td>
-                  <td class="py-3 px-4 text-white/70">Excellent at one thing</td>
-                  <td class="py-3 px-4 text-white/50">Forces users to juggle multiple apps</td>
+                  <td class="py-3 px-4 text-white font-medium">單一功能 <span class="text-white/50 font-normal">(Forest)</span></td>
+                  <td class="py-3 px-4 text-white/70">在單一功能上表現出色</td>
+                  <td class="py-3 px-4 text-white/50">迫使用戶在多個應用程式間切換</td>
                 </tr>
               </tbody>
             </table>
@@ -200,18 +199,21 @@ const values = [
       <!-- Women's ADHD blind spot -->
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-4">
-          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">The gendered blind spot</h3>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">性別帶來的盲區</h3>
         </div>
         <div class="col-span-12 md:col-span-8">
           <p class="text-[15px] leading-[1.65] text-white/80 max-w-[60ch]">
-            In adulthood, the 2:1 male-to-female diagnosis ratio balances out. Women's symptoms are typically internalised (distractibility, paralysis) rather than hyperactive, making them look like a "character flaw" rather than ADHD.
+            在成年後，男女性的診斷比例趨於平衡。女性的症狀通常是內化的（容易分心、癱瘓）而非過動，這讓她們看起來像是有「性格缺陷」而不是 ADHD。
           </p>
           <figure class="mt-6 border-l-2 border-white/35 pl-6">
             <blockquote class="text-white max-w-[30ch]" style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(18px,2.2vw,24px);line-height:1.35;letter-spacing:-0.02em">
-              How might we design adaptive support for women with ADHD that responds to changing cognitive and emotional states?
+              我們該如何為患有 ADHD 的女性設計出能夠適應其認知與情緒狀態變化的輔助工具？
             </blockquote>
           </figure>
-
+          <!-- IMAGE SLOT: A conceptual image showing the internalized nature of ADHD in women, e.g. a chaotic mind vs calm exterior -->
+          <div class="mt-8 rounded-[12px] border border-white/20 bg-white/5 p-8 text-center border-dashed text-white/50">
+            [待補圖片：呈現女性 ADHD 症狀內化的一面（外表平靜但內心混亂）]
+          </div>
         </div>
       </div>
 
@@ -219,9 +221,9 @@ const values = [
       <!-- Voices -->
       <div class="mt-16 grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-4">
-          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">The voices that changed our direction</h3>
+          <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">改變方向的聲音</h3>
           <p class="mt-3 text-[14px] leading-[1.6] text-white/55 max-w-[32ch]">
-            From Chinese-language ADHD communities (Dcard, PTT).
+            來自中文 ADHD 社群 (Dcard, PTT) 的真實心聲。
           </p>
         </div>
         <div class="col-span-12 md:col-span-8 space-y-5">
@@ -231,7 +233,7 @@ const values = [
             </blockquote>
           ))}
           <p class="mt-6 text-[15px] leading-[1.65] text-white/80 max-w-[60ch]">
-            Many women suspect, doubt, and then dismiss. They won't download an app labelled "ADHD". <strong class="text-white">This changed our brief completely.</strong>
+            許多女性懷疑自己，接著自我懷疑，最後否定。她們不會下載標有「ADHD」的應用程式。 <strong class="text-white">這徹底改變了我們的產品方向。</strong>
           </p>
         </div>
       </div>
@@ -239,7 +241,7 @@ const values = [
 
       <!-- Six pain points -->
       <div class="mt-16">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-4">The six pain points · each maps to a later design feature</div>
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 mb-4">六大痛點 · 每個對應到一個核心功能</div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {pains.map((p, i) => (
             <article class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
@@ -252,72 +254,75 @@ const values = [
       </div>
     </section>
 
+
     <!-- §2 STRATEGY -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 02</span> — The strategic decision
+        <span class="text-white">§ 02</span> — 策略決策
       </div>
 
       <figure class="my-6 border-l-2 border-white/40 pl-6 md:pl-10">
         <blockquote class="text-white leading-[1.0] max-w-[18ch]" style="font-family:'Fraunces',serif;font-size:clamp(40px,6.5vw,72px);letter-spacing:-0.03em">
-          Optimized for ADHD women.
-          <span class="italic block text-white/60">Built for everyone.</span>
+          為 ADHD 女性優化。
+          <span class="italic block text-white/60">為所有人設計。</span>
         </blockquote>
       </figure>
 
       <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
         <article class="rounded-[14px] border border-white/12 bg-white/[0.04] p-6 md:p-7">
-          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-3">Empathy reason</div>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-3">同理心層面</div>
           <p class="text-[14.5px] leading-[1.65] text-white/80">
-            A woman wondering if she's "just bad at life" won't search for an "ADHD app". Labelling it activates self-doubt.
+            一個懷疑自己只是「做不好事情」的女性不會去搜尋「ADHD APP」。貼上標籤只會激起自我懷疑。
           </p>
         </article>
         <article class="rounded-[14px] border border-white/12 bg-white/[0.04] p-6 md:p-7">
-          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-3">Strategic reason</div>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-3">策略層面</div>
           <p class="text-[14.5px] leading-[1.65] text-white/80">
-            An ADHD-branded app only serves the diagnosed. An ADHD-informed productivity app serves everyone.
+            主打 ADHD 的 APP 只能服務已確診者；而具備 ADHD 友善設計的生產力 APP 則能服務所有人。
           </p>
         </article>
       </div>
       
-
+      <!-- IMAGE SLOT: A diagram or visual representation of the target audience (everyone vs ADHD diagnosed) -->
+      <div class="mt-8 rounded-[12px] border border-white/20 bg-white/5 p-8 text-center border-dashed text-white/50">
+        [待補圖片：說明「為 ADHD 女性優化，為所有人設計」目標客群的圖解或插畫]
+      </div>
     </section>
 
 
     <!-- §3 THREE DESIGN DECISIONS -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 03</span> — Three decisions that carry the strategy
+        <span class="text-white">§ 03</span> — 落實策略的三個設計決策
       </div>
 
       <!-- 3.1 -->
       <article class="grid grid-cols-12 gap-6 md:gap-8 mb-20">
         <div class="col-span-12 md:col-span-4">
           <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">3.1</div>
-          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">Gender-inclusive registration</h3>
+          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">性別友善的註冊流程</h3>
         </div>
         <div class="col-span-12 md:col-span-8 space-y-5">
           <figure class="rounded-[16px] border border-white/12 overflow-hidden">
             <div class="bg-white p-4 md:p-6">
               <img
                 src={`${base}img/registration.png`}
-                alt="Gender-inclusive registration flow — three onboarding screens"
+                alt="性別友善的註冊流程 — 三個畫面"
                 class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                 loading="lazy"
               />
             </div>
             <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
-              Fig 3.1 — Onboarding · sex field & optional cycle logging
+              Fig 3.1 — 註冊 · 生理性別欄位與選擇性生理期紀錄
             </div>
           </figure>
           <p class="text-[15px] leading-[1.65] text-white/85 max-w-[62ch]">
-            Onboarding asks for sex (woman / man / trans woman / trans man), then optionally logs
-            the user's last menstrual cycle before generating a personalised plan.
+            註冊時會詢問性別，並可以選擇性記錄上一次的生理週期，藉此產生客製化的計畫。
           </p>
           <ul class="space-y-3 text-[14.5px] leading-[1.6] text-white/70">
-            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">For women with ADHD</strong>, hormone fluctuations measurably affect attention, emotional regulation, and executive function — ignoring this is a common failure mode of generic productivity apps.</span></li>
-            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">For trans users</strong>, a four-option sex field (rather than a binary) signals the product was designed with them in mind, not retrofitted.</span></li>
-            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">The skip button is non-negotiable.</strong> Forcing disclosure before the app has earned trust would break it at the door.</span></li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">對 ADHD 女性而言</strong>，賀爾蒙波動會明顯影響注意力與情緒調節——忽視這一點是市面上多數生產力 APP 的通病。</span></li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">對跨性別者而言</strong>，四個選項的性別欄位釋放出「我們在設計時有考量到你」的訊號。</span></li>
+            <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">跳過按鈕是不可或缺的。</strong> 在應用程式贏得信任之前強迫提供隱私，只會把使用者拒於門外。</span></li>
           </ul>
         </div>
       </article>
@@ -326,43 +331,39 @@ const values = [
       <article class="grid grid-cols-12 gap-6 md:gap-8 mb-20">
         <div class="col-span-12 md:col-span-4">
           <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">3.2</div>
-          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">Hormone-aware calendar</h3>
+          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">考量賀爾蒙的日曆</h3>
         </div>
         <div class="col-span-12 md:col-span-8 space-y-5">
           <figure class="rounded-[16px] border border-white/12 overflow-hidden">
             <div class="bg-white p-4 md:p-6">
               <img
                 src={`${base}img/calender.png`}
-                alt="Hormone-aware calendar showing phase labels alongside tasks"
+                alt="顯示任務與賀爾蒙週期的日曆"
                 class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                 loading="lazy"
               />
             </div>
             <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
-              Fig 3.2 — Calendar · task colour coding + hormone phase close-up
+              Fig 3.2 — 日曆 · 任務顏色編碼 + 賀爾蒙週期特寫
             </div>
           </figure>
           <p class="text-[15px] leading-[1.65] text-white/85 max-w-[62ch]">
-            The calendar doesn't just show tasks — it shows hormone phase alongside them. When the user enters
-            the luteal phase (often associated with heightened inattention and emotional dysregulation for ADHD
-            women), the calendar surfaces a gentle acknowledgment:
+            日曆不僅顯示任務，還並排顯示賀爾蒙週期。當用戶進入黃體期（ADHD 女性在這期間常有注意力不集中或情緒波動），日曆會溫柔地提示：
           </p>
           <blockquote class="text-white/90 border-l-2 border-white/40 pl-5 max-w-[46ch]" style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);line-height:1.4;letter-spacing:-0.01em">
-            "You'll likely be more emotional than usual. Be nicer to yourself."
+            "你可能會比平常更容易情緒化。請對自己溫柔一點。"
           </blockquote>
           <p class="text-[15px] leading-[1.65] text-white/65 max-w-[62ch]">
-            What we were trying to avoid: a warning or disability notice.
-            What we wanted: something closer to a weather forecast — information that helps you plan,
-            without telling you how to feel.
+            我們不希望這看起來像是一種「警告」或殘疾通知。這更像是一份天氣預報——幫助你提前規劃，而不是教你該怎麼感受。
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
             <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
-              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">Visibility vs. privacy</div>
-              <p class="text-[13.5px] leading-[1.55] text-white/65">Easy to reach, but not front-and-centre. Someone using the app at work shouldn't have their cycle plastered across the home screen.</p>
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">可見度 vs. 隱私</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/65">容易查看但不會佔據視覺焦點。在辦公室使用時，月經週期不會直接大剌剌地顯示在首頁。</p>
             </div>
             <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
-              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">Informative vs. prescriptive</div>
-              <p class="text-[13.5px] leading-[1.55] text-white/65">We only tell users what's likely — never what they should do. The app gives data, and lets them decide.</p>
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">提供資訊 vs. 說教</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/65">我們只告訴用戶「可能發生的情況」，而不是他們「該怎麼做」。我們給予數據，讓他們自己做決定。</p>
             </div>
           </div>
         </div>
@@ -372,7 +373,7 @@ const values = [
       <article class="grid grid-cols-12 gap-6 md:gap-8">
         <div class="col-span-12 md:col-span-4">
           <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">3.3</div>
-          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">Fidget toy + gamified tracking</h3>
+          <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">舒壓玩具 + 遊戲化追蹤</h3>
         </div>
         <div class="col-span-12 md:col-span-8 space-y-5">
           <figure class="rounded-[16px] border border-white/12 overflow-hidden">
@@ -384,7 +385,7 @@ const values = [
                 </div>
                 <img
                   src={`${base}img/fidget_toy.png`}
-                  alt="Physical fidget toy — attaches to back of phone via magnetic snap"
+                  alt="實體舒壓玩具"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
                 />
@@ -396,41 +397,38 @@ const values = [
                 </div>
                 <img
                   src={`${base}img/tracking_system.png`}
-                  alt="Gamified tracking system — weekly overview and hamster avatar"
+                  alt="遊戲化追蹤系統"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
                 />
               </div>
             </div>
             <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
-              Fig 3.3 — Physical fidget toy (NFC snap) · tracking overview & avatar system
+              Fig 3.3 — NFC 實體玩具與倉鼠虛擬角色
             </div>
           </figure>
           <p class="text-[15px] leading-[1.65] text-white/85 max-w-[62ch]">
-            Fidgeting is a common self-regulation behaviour for ADHD — but most productivity apps treat it as
-            a distraction to eliminate. <strong class="text-white">We wanted the opposite: let fidgeting count as engagement.</strong>
+            許多 ADHD 患者會無意識地把玩東西來集中注意力——但大部分 APP 都把它當成該被消除的干擾。<strong class="text-white">我們反向操作：讓把玩物品的行為轉換為有意義的互動。</strong>
           </p>
           <div class="space-y-4">
             <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
-              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">The hardware</div>
-              <p class="text-[13.5px] leading-[1.55] text-white/70">A physical fidget toy (designed by our industrial design teammate) attaches to the back of the phone via magnetic snap and mechanical clip. Inside: embedded magnets and NFC zones. Comes in multiple colour profiles, which also unlock as the user levels up.</p>
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">硬體設計</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/70">可透過磁吸附著在手機背面的實體舒壓玩具（由工設隊友負責）。內建磁鐵和 NFC，並有多種可解鎖的色彩配置。</p>
             </div>
             <div class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
-              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">The app side</div>
-              <p class="text-[13.5px] leading-[1.55] text-white/70">When the toy detects movement, it feeds the user's virtual hamster avatar. The weekly overview shows fidget cycles per day — making attention habits visible without conscious logging. Achievement milestones, not streaks: hitting a level doesn't punish you for the days you missed.</p>
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">軟體設計</div>
+              <p class="text-[13.5px] leading-[1.55] text-white/70">當玩具偵測到動作，就會餵食用戶的「虛擬倉鼠」。每週圖表能將隱性的注意力行為視覺化。採用成就里程碑制，即使忘記打卡也不會有「斷更」的壓力。</p>
             </div>
           </div>
-          <p class="text-[13.5px] leading-[1.55] text-white/50 max-w-[62ch]">
-            My contribution was on the app side: the weekly overview layout, the collection grid, and how achievement states communicated progress without tipping into pressure.
-          </p>
         </div>
       </article>
     </section>
 
+
     <!-- §4 OTHER FEATURES -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 04</span> — Other features
+        <span class="text-white">§ 04</span> — 其他功能
       </div>
 
       <div class="space-y-14">
@@ -438,10 +436,10 @@ const values = [
         <article class="grid grid-cols-12 gap-6 md:gap-8">
           <div class="col-span-12 md:col-span-4">
             <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">4.1</div>
-            <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Manage Task — smart breakdown</h3>
-            <p class="mt-3 text-[14px] leading-[1.6] text-white/60">Auto-decomposes complex tasks into steps, lowering the activation energy to start.</p>
+            <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">任務管理 — 智能拆解</h3>
+            <p class="mt-3 text-[14px] leading-[1.6] text-white/60">自動將複雜的任務拆解成小步驟，降低啟動門檻。</p>
             <div class="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white/40 leading-[1.6]">
-              Addresses:<br/>Daily Forgetfulness · Planning Burnout · Time Blindness
+              解決痛點:<br/>日常健忘 · 規劃倦怠 · 時間盲點
             </div>
           </div>
           <div class="col-span-12 md:col-span-8 space-y-5">
@@ -449,19 +447,19 @@ const values = [
               <div class="bg-white p-4 md:p-6">
                 <img
                   src={`${base}img/manage_task.png`}
-                  alt="Manage Task — task list, focus session, and smart breakdown screens"
+                  alt="任務管理畫面"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
                 />
               </div>
               <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
-                Fig 4.1 — Task list · focus session · smart breakdown
+                Fig 4.1 — 任務清單 · 專注模式 · 智能拆解
               </div>
             </figure>
             <ul class="space-y-3 text-[14.5px] leading-[1.6] text-white/80">
-              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>Today's tasks with colour-coded status (tracking / overdue / complete); each expands into a focus session with the hamster avatar and quick "Take a Break" + "Take a Note" buttons.</span></li>
-              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">Smart Breakdown</strong> — system automatically deconstructs a complex task into smaller steps. Shifts the question from "how do I even begin?" to "which small thing do I do first."</span></li>
-              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>Progress ring with deadline and time-spent data — so users can see how estimates compare to reality. Over time, builds a more accurate sense of how long things actually take.</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>以顏色標記今日任務狀態（追蹤中 / 逾期 / 完成）；每個任務都可展開進入專注模式，並配有倉鼠角色及快速的「休息一下」和「記個筆記」按鈕。</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">智能拆解</strong> — 系統自動將複雜任務解構為較小的步驟。將問題從「我到底該從何開始？」轉化為「第一件小事是什麼？」</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>進度環會顯示截止日期和花費時間——讓用戶對照預估與實際的落差，逐漸建立更準確的時間感知。</span></li>
             </ul>
           </div>
         </article>
@@ -470,10 +468,10 @@ const values = [
         <article class="grid grid-cols-12 gap-6 md:gap-8">
           <div class="col-span-12 md:col-span-4">
             <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-2">4.2</div>
-            <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">Customisable widgets</h3>
-            <p class="mt-3 text-[14px] leading-[1.6] text-white/60">Keeps tasks visible outside the app — countering the out-of-sight, out-of-mind failure mode.</p>
+            <h3 class="font-sans font-semibold text-[20px] leading-[1.25] text-white">自定義桌面小工具</h3>
+            <p class="mt-3 text-[14px] leading-[1.6] text-white/60">讓任務在 APP 之外也保持可見——對抗「眼不見心不念」的狀態。</p>
             <div class="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-white/40 leading-[1.6]">
-              Addresses:<br/>Weak Working Memory · Daily Forgetfulness
+              解決痛點:<br/>工作記憶弱 · 日常健忘
             </div>
           </div>
           <div class="col-span-12 md:col-span-8 space-y-5">
@@ -481,36 +479,36 @@ const values = [
               <div class="bg-white p-4 md:p-6">
                 <img
                   src={`${base}img/widget.png`}
-                  alt="Customisable widgets — fidget tracker, task tracker, calendar on home and lock screen"
+                  alt="自定義小工具"
                   class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
                   loading="lazy"
                 />
               </div>
               <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
-                Fig 4.2 — Widget types · home screen + lock screen implementation
+                Fig 4.2 — 小工具類型 · 桌面與鎖定畫面
               </div>
             </figure>
             <ul class="space-y-3 text-[14.5px] leading-[1.6] text-white/80">
-              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">Fidget Tracker</strong> — focus ring and running timer; <strong class="text-white">Task Tracker</strong> — today's tasks with status and "Start Tracking" button; <strong class="text-white">Calendar</strong> — month view with due / overdue / finished colour coding.</span></li>
-              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>Lock screen implementation keeps the plan on the surface of the phone. For a user whose working memory can't hold plans between glances, this is structural, not cosmetic.</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span><strong class="text-white">舒壓追蹤</strong> — 專注環與計時器；<strong class="text-white">任務追蹤</strong> — 顯示今日任務狀態及「開始追蹤」按鈕；<strong class="text-white">日曆</strong> — 包含顏色編碼的月視圖。</span></li>
+              <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">→</span><span>鎖定畫面實作確保計畫總是浮現在手機表面。對於工作記憶無法將計畫保留太久的用戶來說，這是結構性的設計，而非只是為了美觀。</span></li>
             </ul>
           </div>
         </article>
 
         <!-- 4.3 Supporting features -->
         <div>
-          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-4">4.3 Supporting features</div>
+          <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white mb-4">4.3 輔助功能</div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <article class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
-              <h4 class="font-sans font-semibold text-[16px] text-white">Educational blogs</h4>
-              <p class="mt-2 text-[13.5px] leading-[1.55] text-white/65">Clarify ADHD misconceptions (executive dysfunction, rejection sensitivity) and gently encourage formal diagnosis when patterns resonate. Positioned inside the app so they surface at the right moment.</p>
+              <h4 class="font-sans font-semibold text-[16px] text-white">衛教文章</h4>
+              <p class="mt-2 text-[13.5px] leading-[1.55] text-white/65">澄清對 ADHD 的迷思（例如執行功能障礙、拒絕敏感性），並在用戶行為模式吻合時，溫和地鼓勵他們尋求正式診斷。文章安排在合適的情境下自然出現。</p>
             </article>
             <article class="rounded-[10px] border border-white/12 bg-white/[0.03] p-5">
-              <h4 class="font-sans font-semibold text-[16px] text-white">Cycle Record</h4>
-              <p class="mt-2 text-[13.5px] leading-[1.55] text-white/65">Logs menstrual flow and today's symptoms (inattention spikes, emotional dysregulation, forgetfulness), feeding into the calendar's hormone-phase layer. Users can select common symptoms or add their own.</p>
+              <h4 class="font-sans font-semibold text-[16px] text-white">週期紀錄</h4>
+              <p class="mt-2 text-[13.5px] leading-[1.55] text-white/65">記錄經期與今日症狀（注意力渙散、情緒波動、健忘等），並連動至日曆的賀爾蒙圖層。用戶可選擇常見症狀或自行新增。</p>
             </article>
           </div>
-          <p class="mt-4 text-[13.5px] leading-[1.55] text-white/50">Each addresses a specific pain point from §01.</p>
+          <p class="mt-4 text-[13.5px] leading-[1.55] text-white/50">每個功能都對應解決 §01 中的一個痛點。</p>
         </div>
       </div>
     </section>
@@ -518,31 +516,28 @@ const values = [
     <!-- §5 DESIGN ITERATION -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 05</span> — Design iteration
+        <span class="text-white">§ 05</span> — 設計迭代
       </div>
       <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        V1 leaned pink. <span class="italic text-white/60">V2 leaned purposeful.</span>
+        V1 偏向柔美。 <span class="italic text-white/60">V2 更具目的性。</span>
       </h2>
       <p class="mt-8 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        An earlier version of the app leaned pink and soft, with a feed-style home screen mixing smart
-        reminders, a hormone tracker, a social community, and blog posts. We rebuilt the visual system
-        around our three design values: higher-contrast blue and yellow, a focus-forward home screen
-        anchored by the hamster avatar and focus timer, and a cleaner task list.
+        早期的版本偏向柔和的粉色系，首頁採用了混雜智能提醒、賀爾蒙追蹤、社群和文章的動態消息佈局。我們根據三大設計價值重建了視覺系統：更高對比的藍色與黃色、以倉鼠和專注計時器為核心的主頁，以及更乾淨的任務列表。
       </p>
       <p class="mt-4 text-[15px] leading-[1.65] text-white/60 max-w-[62ch]">
-        The iteration sharpened what the app was <em class="italic text-white" style="font-family:'Fraunces',serif">for</em> — less wellness-feed, more daily companion.
+        這次迭代讓我們釐清了這款 APP 的<em class="italic text-white" style="font-family:'Fraunces',serif">目的</em>——不再像個健康社群軟體，而是專注於成為日常陪伴工具。
       </p>
       <figure class="mt-10 rounded-[16px] border border-white/12 overflow-hidden">
         <div class="bg-white p-4 md:p-6">
           <img
             src={`${base}img/iteration.png`}
-            alt="Design iteration — V1 pink feed-style vs V2 focus-forward layout"
+            alt="V1 與 V2 設計對比"
             class="w-full h-auto rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.10)]"
             loading="lazy"
           />
         </div>
         <div class="px-5 py-2.5 bg-white/[0.04] border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/40">
-          Fig 5 — Design iteration · V1 (feed-style) vs. V2 (focus-forward)
+          Fig 5 — 設計迭代 · V1 (動態消息佈局) vs. V2 (專注導向)
         </div>
       </figure>
     </section>
@@ -550,28 +545,25 @@ const values = [
     <!-- §6 USER TESTING -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 06</span> — User testing
+        <span class="text-white">§ 06</span> — 用戶測試
       </div>
       <p class="text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        Qualitative testing with participants who self-identify as having ADHD.
-        A full SUS-style quantitative comparison wasn't in scope — what we were testing was whether the
-        product's <em class="italic text-white" style="font-family:'Fraunces',serif">core premise</em> resonated.
+        我們與自認為有 ADHD 傾向的參與者進行了質性測試。雖然完整的量化比較（如 SUS 測試）不在專案範圍內，但我們測試的核心是：這個產品的<em class="italic text-white" style="font-family:'Fraunces',serif">前提</em>是否能產生共鳴。
       </p>
       <figure class="mt-10 border-l-2 border-white/40 pl-6 md:pl-10">
         <blockquote class="text-white/90 max-w-[30ch]" style="font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,3.2vw,34px);line-height:1.3;letter-spacing:-0.02em">
-          "As someone with ADHD, I think this design is incredibly ADHD-friendly. The toy and hormone function differentiate the app from other productivity apps."
+          "身為 ADHD 患者，我覺得這個設計非常對 ADHD 友善。實體玩具和賀爾蒙功能讓這款 APP 有別於其他生產力工具。"
         </blockquote>
       </figure>
       <p class="mt-6 text-[14.5px] leading-[1.6] text-white/60 max-w-[60ch]">
-        The second sentence is what mattered to us most. The differentiation we'd been arguing about in team
-        meetings for weeks had actually landed.
+        第二句話對我們來說最為重要。我們在團隊會議中爭論了數週的差異化設計，確實成功打動了使用者。
       </p>
     </section>
 
     <!-- §7 VALUES -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 07</span> — Design values
+        <span class="text-white">§ 07</span> — 設計價值
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {values.map((v, i) => (
@@ -587,29 +579,29 @@ const values = [
     <!-- §8 REFLECTION -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 08</span> — Reflection
+        <span class="text-white">§ 08</span> — 反思
       </div>
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-8 space-y-10">
           <div>
-            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">Key takeaway</h3>
+            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">關鍵收穫</h3>
             <p class="text-[15px] leading-[1.65] text-white/75">
-              Research isn't just a pre-design checklist. Our insights fundamentally reshaped the product from "an ADHD app for women" to "a productivity app that happens to be ADHD-informed".
+              研究不只是一份設計前的檢查清單。我們的洞察從根本上重塑了這個產品，從「為女性設計的 ADHD APP」變成了「一款剛好對 ADHD 友善的生產力 APP」。
             </p>
           </div>
           <div>
-            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">What I'd do differently</h3>
+            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">我會改進的地方</h3>
             <p class="text-[15px] leading-[1.65] text-white/75">
-              Run a head-to-head quantitative test against Todoist or Tiimo to validate that our design choices measurably improve task completion for ADHD users.
+              與 Todoist 或 Tiimo 等競品進行直接的量化比較測試，來驗證我們的設計是否真的在數據上幫助 ADHD 用戶更有效地完成任務。
             </p>
           </div>
         </div>
 
         <aside class="col-span-12 md:col-span-4">
           <div class="rounded-[14px] border border-white/15 bg-white/[0.04] p-5">
-            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">Status</div>
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">狀態</div>
             <p class="text-[14px] leading-[1.6] text-white/70 mb-5">
-              Completed academic project. Prototype available for review.
+              已完成的學術專案。可預覽 Prototype。
             </p>
             <a
               href="https://www.figma.com/proto/lMFiihwsdyM07jfMH6S59d/ADHD?node-id=0-468&p=f&viewport=275%2C25%2C0.19&t=MRcXL2vjFYe4No7X-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=0%3A1651&page-id=0%3A1"
@@ -628,8 +620,8 @@ const values = [
     <!-- FOOTER NAV -->
     <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">
       <div class="flex items-center justify-between">
-        <a href={base} class="text-white/70 hover:text-white transition-colors">← Back to home</a>
-        <a href={`${base}emotion-shredder`} class="text-white/70 hover:text-white transition-colors">§03 Emotion Shredder →</a>
+        <a href={`${base}zh/`} class="text-white/70 hover:text-white transition-colors">← 回到首頁</a>
+        <a href={`${base}zh/emotion-shredder`} class="text-white/70 hover:text-white transition-colors">§03 Emotion Shredder →</a>
       </div>
     </footer>
 

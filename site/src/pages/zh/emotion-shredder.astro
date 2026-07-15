@@ -1,44 +1,44 @@
 ---
-import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import BaseCaseStudy from '../../layouts/BaseCaseStudy.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 
 const base = import.meta.env.BASE_URL;
 
 const roleItems = [
   {
-    title: 'Research & Concept',
-    body: 'Translated psychological research on affect-labeling into product mechanics.',
+    title: '研究與概念發想',
+    body: '將關於「情緒標記 (Affect-labeling)」的心理學研究轉化為產品機制。',
   },
   {
-    title: 'UI/UX Design',
-    body: 'Designed 10 core screens and the 12-flower visual system.',
+    title: 'UI/UX 設計',
+    body: '設計 10 個核心畫面以及包含 12 種花朵的視覺系統。',
   },
   {
-    title: 'Development',
-    body: 'Built the prototype using React, Supabase, and Gemini API.',
+    title: '程式開發',
+    body: '使用 React、Supabase 和 Gemini API 建立可用的原型。',
   },
 ];
 
 const designDecisions = [
   {
     no: '01',
-    title: 'Flower meanings, not mood scores',
-    body: 'Scoring turns emotion into a good/bad performance metric. Instead, the AI matches the input emotion to a specific flower based on its symbolic meaning — open, subjective, and free from judgment.',
+    title: '沒有情緒分數，而是花語',
+    body: '臨床評分會讓人覺得情緒有「好壞之分」。我們根據使用者輸入的情緒，分配對應花語的花朵作為象徵——這更主觀、開放且不帶評判。',
   },
   {
     no: '02',
-    title: 'Free input first, AI names it after',
-    body: "When emotions are messy, users often can't name the feeling accurately up front. The AI steps in only after the shredding ritual — never before.",
+    title: '先發洩，後分析',
+    body: "用戶先抒發情緒，AI 事後才進行分析。這消除了在情緒當下必須「準確命名複雜感受」的壓力。",
   },
   {
     no: '03',
-    title: "Today's entry shows only a sprout",
-    body: "Separating the moment of venting from later reflection, so users aren't staring at raw text at the peak of an emotion. The flower blooms the next day.",
+    title: '延遲綻放',
+    body: "今天的紀錄只會顯示為一株嫩芽，直到明天才會開花。這將「情緒發洩的當下」與「事後的反思」明確區隔開來。",
   },
   {
     no: '04',
-    title: 'Raw text is never saved',
-    body: 'The original input text is only used momentarily for AI analysis. Once shredded, it is permanently destroyed. The database only records the AI-generated emotion label, keywords, and the matched flower.',
+    title: '不保留原始文字，只留關鍵字',
+    body: '輸入的原始文字只會短暫用於 AI 分析，粉碎後便永久消失，絕對不會進入資料庫。系統最終只會記錄 AI 提取的情緒標籤、關鍵字與對應的花朵。這能徹底卸下使用者的防備心。',
   },
 ];
 
@@ -46,8 +46,8 @@ const screens = [
   {
     id: 'login',
     no: '4.1',
-    title: 'Login',
-    desc: 'Three entry paths ranked by friction: email, one-tap Google, or guest mode at the very bottom — lowest commitment, never hidden. The soft wordmark and illustrated flowers set the emotional register before any interaction.',
+    title: '登入 (Login)',
+    desc: '提供三種進入方式，依照門檻高低排序：Email、一鍵 Google 登入，以及放在最下方但不隱藏的「訪客模式」——給予最低的承諾要求。柔和的標準字與花卉插圖在任何互動發生前，就先設定了情緒基調。',
     media: `${base}img/es_login.jpg`,
     mediaType: 'img' as const,
     alt: 'Login screen',
@@ -55,8 +55,8 @@ const screens = [
   {
     id: 'shredder',
     no: '4.2',
-    title: 'Shredder (Home)',
-    desc: "The only required interaction. Write anything into the torn paper, press the shredder button — no character limit, no tags, no confirmation dialog. The text disappears and that disappearance is the ritual. The bottom tab bar stays visible throughout so navigation never competes with venting.",
+    title: '碎紙機 (Home)',
+    desc: "唯一強制的互動。在撕裂的紙片上寫下任何東西，按下碎紙機按鈕——沒有字數限制、沒有標籤、沒有確認對話框。文字會消失，而這個「消失」的過程就是一場儀式。底部的導覽列始終保持可見，確保導航功能永遠不會與情緒宣洩競爭。",
     media: `${base}img/es_shredder_animation.mp4`,
     mediaType: 'video' as const,
     alt: 'Shredder animation',
@@ -64,8 +64,8 @@ const screens = [
   {
     id: 'calendar',
     no: '4.3',
-    title: 'Calendar',
-    desc: "Each day with a completed entry shows a flower instead of a number. A month reads as a field of blooms — emotional history at a glance, no score attached. A gift icon in the corner unlocks once the month is complete.",
+    title: '日曆 (Calendar)',
+    desc: "有完成紀錄的每一天都會顯示一朵花，而不是數字。一個月看過去就像是一片花海——這是一種一目了然的情緒歷史，不帶任何評分。當月完成後，角落的禮物圖示就會解鎖。",
     media: `${base}img/es_calendar.jpg`,
     mediaType: 'img' as const,
     alt: 'Calendar view',
@@ -73,8 +73,8 @@ const screens = [
   {
     id: 'daily',
     no: '4.4',
-    title: 'Daily record',
-    desc: "One tap from the calendar. Shows the flower name and its meaning, keyword scraps from the AI, a short reframing reflection in a handwritten-style font — and an open note field for hindsight writing. Left/right arrows let the user page through days without returning to the calendar.",
+    title: '每日紀錄 (Daily record)',
+    desc: "從日曆點擊進入。顯示花的名字和它的涵義，以及 AI 提取的關鍵字碎片、一段手寫體風格的簡短反思與重塑文字——另外還有一個空白筆記欄位，供事後回顧填寫。左右箭頭讓使用者可以切換日期，而不用退回日曆。",
     media: `${base}img/es_daily_record.jpg`,
     mediaType: 'img' as const,
     alt: 'Daily record view',
@@ -82,8 +82,8 @@ const screens = [
   {
     id: 'bouquet',
     no: '4.5',
-    title: 'Monthly bouquet',
-    desc: "On the 1st of each month, every flower earned that month is gathered into a single illustrated bouquet with a handwritten note. The product's one moment of ceremony — downloadable and shareable, and the app's only built-in growth loop.",
+    title: '每月花束 (Monthly bouquet)',
+    desc: "每個月的 1 號，上個月獲得的所有花朵會被聚集在一張帶有手寫筆記的插畫花束中。這是這個產品唯一的儀式感時刻——可以下載與分享，也是 APP 中唯一的成長循環機制。",
     media: `${base}img/es_monthly_bouquet.jpg`,
     mediaType: 'img' as const,
     alt: 'Monthly bouquet reveal',
@@ -91,8 +91,8 @@ const screens = [
   {
     id: 'garden',
     no: '4.6',
-    title: 'Garden',
-    desc: "Every unlocked flower planted on a rolling hillside. Tap a flower to make it sway; tap the background to cycle a weather layer. No list, no timestamps, no counts — built to be looked at, not read.",
+    title: '花園 (Garden)',
+    desc: "每一朵解鎖的花都會被種植在一片起伏的山丘上。點擊花朵會讓它搖曳；點擊背景可以切換天氣圖層。沒有清單、沒有時間戳記、沒有統計數字——這裡是為了「觀賞」而建造，而不是為了「閱讀」。",
     media: `${base}img/es_garden_interaction.mp4`,
     mediaType: 'video' as const,
     alt: 'Garden interaction',
@@ -100,8 +100,8 @@ const screens = [
   {
     id: 'collection',
     no: '4.7',
-    title: 'Collection',
-    desc: "A grid of all 12 flowers. Unlocked ones appear in full color; locked ones render as grayscale silhouettes. A light collectible mechanic — the only way to unlock a flower is to go through the shredding ritual on a day that produces that emotional tone.",
+    title: '圖鑑 (Collection)',
+    desc: "包含所有 12 朵花的網格。已經解鎖的會以全彩顯示；尚未解鎖的則會呈現灰階剪影。這是一種輕度的收集機制——唯一解鎖花朵的方式，就是在產生該種情緒基調的日子裡完成碎紙儀式。",
     media: `${base}img/es_collection.jpg`,
     mediaType: 'img' as const,
     alt: 'Flower collection grid',
@@ -109,8 +109,8 @@ const screens = [
   {
     id: 'flower-detail',
     no: '4.8',
-    title: 'Flower detail',
-    desc: 'Large illustration, a badge showing how many times earned, and a short paragraph on what the flower represents — written to validate rather than label. Writing all 12 meanings was as much a content-design task as a UI one.',
+    title: '花朵細節 (Flower detail)',
+    desc: '大尺寸插畫、顯示獲得次數的徽章，以及一段解釋這朵花代表什麼的簡短段落——撰寫這些文字是為了「接納」而非「貼標籤」。寫出全部 12 種涵義，與 UI 設計一樣，是極具挑戰的內容設計工作。',
     media: `${base}img/es_flower_detail.jpg`,
     mediaType: 'img' as const,
     alt: 'Flower detail card',
@@ -118,8 +118,8 @@ const screens = [
   {
     id: 'settings',
     no: '4.9',
-    title: 'Settings',
-    desc: '"Privacy / AI use" and "Delete all records" sit at the same visual level as the sign-out button. For a product asking people to write things they might not want kept, the ability to fully undo that trust must be easy to find.',
+    title: '設定 (Settings)',
+    desc: '「隱私 / AI 使用」與「刪除所有紀錄」在視覺層級上與登出按鈕相同。對於一個要求人們寫下他們可能不想保留的內容的產品來說，能夠輕易找到「完全撤銷這份信任」的功能是必須的。',
     media: `${base}img/es_settings.jpg`,
     mediaType: 'img' as const,
     alt: 'Settings screen',
@@ -132,12 +132,12 @@ const screens = [
 
     <!-- TOP CHROME -->
     <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
-      <a href={base} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
-        <span>←</span> Home
+      <a href={`${base}zh/`} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+        <span>←</span> 回到首頁
       </a>
       <div class="text-right space-y-0.5 text-white/55">
-        <div class="text-white/80">§ 03 — Case study</div>
-        <div>Solo project · 2026.05 — present</div>
+        <div class="text-white/80">§ 03 — 案例研究</div>
+        <div>個人專案 · 2026.05 — 至今</div>
         <LanguageSwitcher class="mt-4 justify-end" />
       </div>
     </header>
@@ -161,18 +161,18 @@ const screens = [
         </h1>
 
         <p class="mt-10 max-w-[52ch] text-[17px] leading-[1.55] text-white/80">
-          A mobile ritual for emotional release —
-          <span class="italic text-white" style="font-family:'Fraunces',serif">type it out, shred it, and watch it grow into a flower.</span>
+          一個為釋放情緒而生的行動版儀式 ——
+          <span class="italic text-white" style="font-family:'Fraunces',serif">寫下來、粉碎它，然後看著它成長為一朵花。</span>
         </p>
       </div>
 
       <aside class="col-span-12 md:col-span-4 md:pt-16">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50 border-b border-white/15 pb-2 mb-5">
-          At a glance
+          專案亮點
         </div>
         <ul class="space-y-4 text-[15px] leading-[1.4] text-white/75" style="font-family: 'Fraunces', serif; font-style: italic;">
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>A space free from performance and self-censorship.</span></li>
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>Replaces mood scores with floral symbolism.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>一個沒有表現壓力與自我審查的空間。</span></li>
+          <li class="flex gap-3"><span class="text-white/60">→</span><span>用花朵象徵取代傳統的情緒量化分數。</span></li>
         </ul>
         <a
           href="https://jielle2453.github.io/emotion-shredder-demo/"
@@ -181,7 +181,7 @@ const screens = [
           class="mt-8 inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#FBBFCA] hover:text-white transition-colors"
         >
           <span>↗</span>
-          <span>Live demo</span>
+          <span>體驗 Demo</span>
         </a>
       </aside>
     </section>
@@ -190,18 +190,18 @@ const screens = [
     <section class="mt-20 md:mt-28 grid grid-cols-12 gap-10">
       <div class="col-span-12 md:col-span-4">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> Project meta
+          <span class="text-white/80">§</span> 專案資訊
         </div>
         <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Type</dt><dd>Solo project</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Timeline</dt><dd>2026.05 — present</dd></div>
-          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Tools</dt><dd>Figma · React · Vite · Supabase · Gemini API</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">類型</dt><dd>個人專案</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">時程</dt><dd>2026.05 — 至今</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">工具</dt><dd>Figma · React · Vite · Supabase · Gemini API</dd></div>
         </dl>
       </div>
 
       <div class="col-span-12 md:col-span-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> My role
+          <span class="text-white/80">§</span> 我的角色
         </div>
         <ul class="space-y-4">
           {roleItems.map((r) => (
@@ -217,40 +217,40 @@ const screens = [
     <!-- §1 THE PROBLEM -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 01</span> — The problem
+        <span class="text-white">§ 01</span> — 痛點與設計挑戰
       </div>
       <h2 class="text-white leading-[0.95] max-w-[24ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        Every existing tool
-        <span class="italic text-white/60"> hits the same three walls.</span>
+        傳統的情緒紀錄工具，
+        <span class="italic text-white/60"> 總是會撞上三面高牆。</span>
       </h2>
 
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
         <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]">
           <div class="text-white leading-none text-[44px] mb-4" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">01</div>
-          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">High input cost</h3>
-          <p class="text-[14px] leading-[1.6] text-white/65">Naming an emotion, writing at length. When you're mid-anxiety, the bar is already too high.</p>
+          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">輸入成本高</h3>
+          <p class="text-[14px] leading-[1.6] text-white/65">要求命名情緒、寫大量文字。但人在焦慮或委屈時，這樣的門檻實在太高。</p>
         </article>
         <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]">
           <div class="text-white leading-none text-[44px] mb-4" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">02</div>
-          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">Feedback that's too clinical</h3>
-          <p class="text-[14px] leading-[1.6] text-white/65">Charts and mood scores can't hold a raw feeling. A number doesn't make you feel understood.</p>
+          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">回饋過於理性</h3>
+          <p class="text-[14px] leading-[1.6] text-white/65">傳統的圖表與分數，根本承接不了人類情感的脆弱與混亂感。</p>
         </article>
         <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]">
           <div class="text-white leading-none text-[44px] mb-4" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">03</div>
-          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">Pressure of keeping a record</h3>
-          <p class="text-[14px] leading-[1.6] text-white/65">Negative text sitting in a journal you don't want to revisit. Self-censorship creeps in everywhere.</p>
+          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">保存有壓力</h3>
+          <p class="text-[14px] leading-[1.6] text-white/65">負面文字留在日記裡只會讓人不想回看，甚至在寫的當下就開始自我審查。</p>
         </article>
       </div>
 
       <p class="mt-10 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        Social media triggers image-management, therapy feels too heavy for daily frustrations, traditional diaries induce self-censorship, and mindfulness apps demand that you calm down first — but when people are deeply anxious or hurt, they aren't always ready to be guided to peace immediately.
+        除了工具本身的問題，我們也面臨許多場景限制：社群媒體怕形象受損、心理諮商不適合日常小情緒、傳統日記讓人自我審查、而正念工具則要求先平靜下來——但人在情緒最滿的時候，未必願意立刻被引導。
       </p>
 
       <figure class="mt-10 border-l-2 border-white/40 pl-6 md:pl-8">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45 mb-3">Design question (How might we)</div>
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45 mb-3">設計問題 (How might we)</div>
         <blockquote class="text-white leading-[1.15] max-w-[38ch]" style="font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,32px);letter-spacing:-0.02em">
-          How might we let someone release an overwhelming feeling with very little effort, even when they don't want to fully articulate it —
-          <span class="italic text-white/60 block mt-2">and later let them look back without it feeling heavy?</span>
+          如何讓使用者在情緒很滿、但不想完整表達時，也能用很低的負擔完成一次釋放，
+          <span class="italic text-white/60 block mt-2">並在日後用不沉重的方式回看自己的情緒軌跡？</span>
         </blockquote>
       </figure>
     </section>
@@ -258,29 +258,29 @@ const screens = [
     <!-- §2 CONCEPT -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 02</span> — The solution: Shredder + Garden
+        <span class="text-white">§ 02</span> — 解決方案：碎紙機 + 花園
       </div>
       
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 md:col-span-8 flex flex-col justify-center">
           <h2 class="text-white leading-[1.1] mb-8" style="font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);letter-spacing:-0.03em">
-            Turning destruction into growth.
+            將破壞轉化為成長。
           </h2>
           <p class="text-[15.5px] leading-[1.65] text-white/80 mb-8">
-            Emotion Shredder uses the psychological framework of <strong>affect-labeling</strong> (putting feelings into words reduces their intensity), but pairs it with an immediate visual and interactive closure. It's an ephemeral space to scream into the void, which then gives you a quiet garden in return.
+            Emotion Shredder 運用了心理學中的<strong>情緒標記（Affect-labeling）</strong>概念——將感受化為文字能有效降低情緒的強烈程度。但更進一步的是，它結合了立即的視覺回饋與互動閉環。它為你提供一個可以對著虛空吶喊的安全空間，然後回贈你一座靜謐的花園。
           </p>
           <ul class="space-y-6">
             <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">Shredding = Letting Go</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Typing out raw thoughts and physically "destroying" them on screen creates immediate psychological closure. The user doesn't have to keep the negative words around.</p>
+              <h3 class="font-sans font-semibold text-[16px] text-white">粉碎 = 放下</h3>
+              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">打出最真實、原始的想法，然後在畫面上看著它被物理性地「粉碎」，能創造立即的心理閉環。用戶不需要一直把這些負面文字留在身邊。</p>
             </li>
             <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">AI Analysis = Gentle Reframing</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Instead of a cold diagnosis or a score, AI acts as a gentle listener. It translates raw venting into a core emotional keyword and matches it with a flower meaning, offering an empathetic reflection.</p>
+              <h3 class="font-sans font-semibold text-[16px] text-white">AI 分析 = 溫柔的重塑</h3>
+              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">AI 不是用來診斷你的狀態。它扮演的是一個溫柔的傾聽者，將混亂的情緒發洩轉化為一個核心關鍵字與一朵花的含義，提供充滿同理心的反思。</p>
             </li>
             <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">Garden = Beautiful Archive</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Past struggles become a peaceful landscape of accumulated flowers. This rewards the habit of emotional release without forcing users to re-read their past negative thoughts or stare at a line chart of their misery.</p>
+              <h3 class="font-sans font-semibold text-[16px] text-white">花園 = 美麗的檔案庫</h3>
+              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">過去的掙扎會變成一片由花朵累積而成的寧靜風景。這獎勵了用戶釋放情緒的習慣，卻不會強迫他們再次閱讀負面的日記，或是盯著一條記錄著悲傷程度的折線圖。</p>
             </li>
           </ul>
         </div>
@@ -290,11 +290,11 @@ const screens = [
     <!-- §3 KEY DECISIONS -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 03</span> — Design decisions
+        <span class="text-white">§ 03</span> — 設計決策
       </div>
       <h2 class="text-white leading-[0.95] max-w-[22ch] mb-12" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        Four choices, each one
-        <span class="italic text-white/60"> deliberately against the norm.</span>
+        4 個刻意
+        <span class="italic text-white/60"> 反常規的設計選擇。</span>
       </h2>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -311,11 +311,11 @@ const screens = [
     <!-- §4 SCREENS -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 04</span> — Key screens
+        <span class="text-white">§ 04</span> — 關鍵畫面
       </div>
       <h2 class="text-white leading-[0.95] max-w-[20ch] mb-14" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        10 screens,
-        <span class="italic text-white/60"> one continuous ritual.</span>
+        10 個畫面，
+        <span class="italic text-white/60"> 一場連續的儀式。</span>
       </h2>
 
       <div class="space-y-16 mt-12">
@@ -345,8 +345,8 @@ const screens = [
     <!-- FOOTER NAV -->
     <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">
       <div class="flex items-center justify-between">
-        <a href={base} class="text-white/70 hover:text-white transition-colors">← Back to home</a>
-        <a href={`${base}linepay`} class="text-white/70 hover:text-white transition-colors">§01 LinePay Redesign →</a>
+        <a href={`${base}zh/`} class="text-white/70 hover:text-white transition-colors">← 回到首頁</a>
+        <a href={`${base}zh/linepay`} class="text-white/70 hover:text-white transition-colors">§01 LinePay 改版設計 →</a>
       </div>
     </footer>
 
