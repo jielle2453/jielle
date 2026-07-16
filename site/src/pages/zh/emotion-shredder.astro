@@ -240,14 +240,38 @@ const screens = [
         </article>
       </div>
 
-      <p class="mt-10 text-[15px] leading-[1.65] text-white/75 max-w-[58ch]">
-        社群媒體引發自我審查、心理諮商過於沉重、正念工具則要求先平靜下來。
-      </p>
-      <p class="mt-4 text-[15px] leading-[1.65] text-white/75 max-w-[58ch]">
-        人在極度焦慮時，未必準備好被引導向平靜。
-      </p>
+      <div class="mt-16 pt-10 border-t border-white/15 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+        <div class="md:col-span-8 lg:col-span-9">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div>
+              <div class="font-sans font-semibold text-[16px] text-white mb-2 flex items-center gap-2">
+                <span class="text-white/40 font-mono text-[11px] mt-0.5">■</span> 社群媒體
+              </div>
+              <p class="text-[14.5px] leading-[1.6] text-white/70">容易引發自我審查，讓人無法真實表達脆弱。</p>
+            </div>
+            <div>
+              <div class="font-sans font-semibold text-[16px] text-white mb-2 flex items-center gap-2">
+                <span class="text-white/40 font-mono text-[11px] mt-0.5">■</span> 心理諮商
+              </div>
+              <p class="text-[14.5px] leading-[1.6] text-white/70">門檻較高且過程沉重，無法在情緒當下隨時取用。</p>
+            </div>
+            <div>
+              <div class="font-sans font-semibold text-[16px] text-white mb-2 flex items-center gap-2">
+                <span class="text-white/40 font-mono text-[11px] mt-0.5">■</span> 正念工具
+              </div>
+              <p class="text-[14.5px] leading-[1.6] text-white/70">多半要求使用者「先平靜下來」，難以承接強烈情緒。</p>
+            </div>
+          </div>
+          <p class="mt-10 text-[16px] leading-[1.65] text-white max-w-[58ch]">
+            人在極度焦慮時，未必準備好被引導向平靜。
+          </p>
+        </div>
+        <div class="md:col-span-4 lg:col-span-3 flex justify-center md:justify-end">
+          <img src={`${base}img/es_character.png`} alt="Character illustration" class="w-full max-w-[160px] h-auto object-contain opacity-90" />
+        </div>
+      </div>
 
-      <figure class="mt-10 border-l-2 border-white/40 pl-6 md:pl-8">
+      <figure class="mt-16 border-l-2 border-white/40 pl-6 md:pl-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45 mb-3">設計問題</div>
         <blockquote class="text-white leading-[1.15] max-w-[38ch]" style="font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,32px);letter-spacing:-0.02em">
           如何讓人在情緒潰堤時，用最低的負擔完成釋放——
@@ -263,27 +287,24 @@ const screens = [
       </div>
       
       <div class="grid grid-cols-12 gap-8">
-        <div class="col-span-12 md:col-span-8 flex flex-col justify-center">
-          <h2 class="text-white leading-[1.1] mb-8" style="font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);letter-spacing:-0.03em">
+        <div class="col-span-12 flex flex-col justify-center">
+          <h2 class="text-white leading-[1.1] mb-12" style="font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);letter-spacing:-0.03em">
             將破壞轉化為成長。
           </h2>
-          <p class="text-[15px] leading-[1.65] text-white/75 mb-8">
-            將<strong class="text-white">情緒標記</strong>與立即的互動閉環結合。提供一個對著虛空吶喊的安全空間，然後回贈你一座靜謐的花園。
-          </p>
-          <ul class="space-y-6">
-            <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">粉碎 = 放下</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">看著真實的想法被「粉碎」，創造立即的心理閉環。無須將負面文字留在身邊。</p>
-            </li>
-            <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">AI 分析 = 溫柔的重塑</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">AI 作為傾聽者，將情緒發洩轉化為關鍵字與花朵含義，提供同理心的反思。</p>
-            </li>
-            <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">花園 = 美麗的檔案庫</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">過去的掙扎化為寧靜風景。獎勵情緒釋放，而不強迫用戶重溫悲傷紀錄。</p>
-            </li>
-          </ul>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <article class="rounded-[16px] border border-white/15 bg-white/[0.03] p-6 md:p-8">
+              <h3 class="font-sans font-semibold text-[18px] text-white mb-3">粉碎 = 放下</h3>
+              <p class="text-[15px] leading-[1.65] text-white/70">看著真實的想法被粉碎，創造立即心理閉環。無須保留負面文字。</p>
+            </article>
+            <article class="rounded-[16px] border border-white/15 bg-white/[0.03] p-6 md:p-8">
+              <h3 class="font-sans font-semibold text-[18px] text-white mb-3">AI = 溫柔重塑</h3>
+              <p class="text-[15px] leading-[1.65] text-white/70">AI 作為傾聽者，將情緒發洩轉化為關鍵字與花朵含義，提供反思。</p>
+            </article>
+            <article class="rounded-[16px] border border-white/15 bg-white/[0.03] p-6 md:p-8">
+              <h3 class="font-sans font-semibold text-[18px] text-white mb-3">花園 = 檔案庫</h3>
+              <p class="text-[15px] leading-[1.65] text-white/70">過去掙扎化為寧靜風景。獎勵情緒釋放，而不強迫重溫悲傷。</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>

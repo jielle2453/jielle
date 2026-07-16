@@ -1,0 +1,470 @@
+﻿---
+import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const roleItems = [
+  {
+    title: 'Research synthesis',
+    body: 'Turned desk research and literature (affect labeling, expressive writing, gamification in mental-health apps) into concrete design decisions, with source-by-source credibility checks.',
+  },
+  {
+    title: 'Interaction design',
+    body: "Designed the shred ??sprout ??bloom delay mechanic as the product's core emotional-pacing device.",
+  },
+  {
+    title: 'UI design',
+    body: 'All 10 screens, the 12-flower visual language, and the monthly bouquet share card.',
+  },
+  {
+    title: 'Prototype implementation',
+    body: 'React/Vite front end, Supabase Auth + database with Row-Level Security, a Gemini-powered /analyze endpoint, and PWA packaging.',
+  },
+];
+
+const researchInsights = [
+  {
+    key: 'A',
+    title: 'Emotional expression is inherently conflicted',
+    body: "The more fluent people are in social media norms, the more they self-censor. They need a space where they don't have to maintain an image.",
+  },
+  {
+    key: 'B',
+    title: 'Usefulness builds attachment more than being "heard"',
+    body: 'If each release produces a flower or a flower\'s meaning, people are more likely to feel "I did something good for myself."',
+  },
+  {
+    key: 'C',
+    title: 'Privacy is a precondition, not a feature',
+    body: "The product must clearly state what's sent to AI, what's stored, and how to delete it ??before trust can form.",
+  },
+  {
+    key: 'D',
+    title: 'Late-night use needs low-stimulation design',
+    body: 'No onboarding or achievements needed. Just a quiet, direct interaction with a clear sense of closure.',
+  },
+];
+
+const designDecisions = [
+  {
+    no: '01',
+    title: 'No mood scores',
+    body: 'Scoring turns emotion into a good/bad performance metric. Flowers and their meanings are used as symbols instead ??subjective, open, and free from judgment.',
+  },
+  {
+    no: '02',
+    title: 'Free input first, AI names it after',
+    body: "When emotions are messy, users often can't name the feeling accurately up front. The AI steps in only after the shredding ritual ??never before.",
+  },
+  {
+    no: '03',
+    title: "Today's entry shows only a sprout",
+    body: "Separating the moment of venting from later reflection, so users aren't staring at raw text at the peak of an emotion. The flower blooms the next day.",
+  },
+  {
+    no: '04',
+    title: 'Guest mode is available',
+    body: 'Trust in an emotional product takes time. Forcing sign-in raises the barrier too early ??a guest can experience the core ritual before committing.',
+  },
+  {
+    no: '05',
+    title: 'Raw text is decoupled from the record',
+    body: 'Raw text is only used momentarily for AI analysis and never enters long-term storage. Only keyword, label, summary, and flower ID are kept.',
+  },
+];
+
+const conceptTable = [
+  { element: 'Paper', meaning: 'An unprocessed feeling' },
+  { element: 'Shredder', meaning: 'The act of actively letting go' },
+  { element: 'AI analysis', meaning: 'Turns raw text into a keyword, a gentle summary, and a matching flower ??never a diagnosis' },
+  { element: 'Sprout', meaning: "The feeling is still settling ??it only blooms into a flower the next day" },
+  { element: 'Flower / Garden', meaning: 'A settled emotional record, and the long-term accumulated landscape' },
+];
+
+const screens = [
+  {
+    id: 'login',
+    no: '4.1',
+    title: 'Login',
+    desc: 'Three entry paths ranked by friction: email, one-tap Google, or guest mode at the very bottom ??lowest commitment, never hidden. The soft wordmark and illustrated flowers set the emotional register before any interaction.',
+    media: `${base}img/es_login.jpg`,
+    mediaType: 'img' as const,
+    alt: 'Login screen',
+  },
+  {
+    id: 'shredder',
+    no: '4.2',
+    title: 'Shredder (Home)',
+    desc: "The only required interaction. Write anything into the torn paper, press the shredder button ??no character limit, no tags, no confirmation dialog. The text disappears and that disappearance is the ritual. The bottom tab bar stays visible throughout so navigation never competes with venting.",
+    media: `${base}img/es_shredder_animation.mp4`,
+    mediaType: 'video' as const,
+    alt: 'Shredder animation',
+  },
+  {
+    id: 'calendar',
+    no: '4.3',
+    title: 'Calendar',
+    desc: "Each day with a completed entry shows a flower instead of a number. A month reads as a field of blooms ??emotional history at a glance, no score attached. A gift icon in the corner unlocks once the month is complete.",
+    media: `${base}img/es_calendar.jpg`,
+    mediaType: 'img' as const,
+    alt: 'Calendar view',
+  },
+  {
+    id: 'daily',
+    no: '4.4',
+    title: 'Daily record',
+    desc: "One tap from the calendar. Shows the flower name and its meaning, keyword scraps from the AI, a short reframing reflection in a handwritten-style font ??and an open note field for hindsight writing. Left/right arrows let the user page through days without returning to the calendar.",
+    media: `${base}img/es_daily_record.jpg`,
+    mediaType: 'img' as const,
+    alt: 'Daily record view',
+  },
+  {
+    id: 'bouquet',
+    no: '4.5',
+    title: 'Monthly bouquet',
+    desc: "On the 1st of each month, every flower earned that month is gathered into a single illustrated bouquet with a handwritten note. The product's one moment of ceremony ??downloadable and shareable, and the app's only built-in growth loop.",
+    media: `${base}img/es_monthly_bouquet.jpg`,
+    mediaType: 'img' as const,
+    alt: 'Monthly bouquet reveal',
+  },
+  {
+    id: 'garden',
+    no: '4.6',
+    title: 'Garden',
+    desc: "Every unlocked flower planted on a rolling hillside. Tap a flower to make it sway; tap the background to cycle a weather layer. No list, no timestamps, no counts ??built to be looked at, not read.",
+    media: `${base}img/es_garden_interaction.mp4`,
+    mediaType: 'video' as const,
+    alt: 'Garden interaction',
+  },
+  {
+    id: 'collection',
+    no: '4.7',
+    title: 'Collection',
+    desc: "A grid of all 12 flowers. Unlocked ones appear in full color; locked ones render as grayscale silhouettes. A light collectible mechanic ??the only way to unlock a flower is to go through the shredding ritual on a day that produces that emotional tone.",
+    media: `${base}img/es_collection.jpg`,
+    mediaType: 'img' as const,
+    alt: 'Flower collection grid',
+  },
+  {
+    id: 'flower-detail',
+    no: '4.8',
+    title: 'Flower detail',
+    desc: 'Large illustration, a badge showing how many times earned, and a short paragraph on what the flower represents ??written to validate rather than label. Writing all 12 meanings was as much a content-design task as a UI one.',
+    media: `${base}img/es_flower_detail.jpg`,
+    mediaType: 'img' as const,
+    alt: 'Flower detail card',
+  },
+  {
+    id: 'settings',
+    no: '4.9',
+    title: 'Settings',
+    desc: '"Privacy / AI use" and "Delete all records" sit at the same visual level as the sign-out button. For a product asking people to write things they might not want kept, the ability to fully undo that trust must be easy to find.',
+    media: `${base}img/es_settings.jpg`,
+    mediaType: 'img' as const,
+    alt: 'Settings screen',
+  },
+];
+---
+
+<BaseCaseStudy title="Emotion Shredder ??Jielle Lu">
+  <main class="relative z-10 mx-auto max-w-[1200px] min-h-screen px-6 md:px-12 lg:px-16 pt-8 md:pt-10 pb-24">
+
+    <!-- TOP CHROME -->
+    <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
+      <a href={base} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+        <span>??/span> Home
+      </a>
+      <div class="text-right space-y-0.5 text-white/55">
+        <div class="text-white/80">禮 03 ??Case study</div>
+        <div>Solo project 繚 2026.05 ??present</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="mt-16 md:mt-24 grid grid-cols-12 gap-6 md:gap-10">
+      <div class="col-span-12 md:col-span-8">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-4 flex items-center gap-2">
+          <span class="text-white text-base leading-none">??/span>
+          <span>Chapter Three ??Emotion Shredder APP</span>
+        </div>
+
+        <h1 class="font-sans font-black tracking-[-0.055em] leading-[0.88] text-white text-[clamp(56px,10vw,160px)]">
+          <span class="block">Emotion</span>
+          <span
+            class="block font-light italic text-white/60 tracking-[-0.025em]"
+            style="font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;"
+          >
+            Shredder.
+          </span>
+        </h1>
+
+        <p class="mt-10 max-w-[52ch] text-[17px] leading-[1.55] text-white/80">
+          A mobile ritual for emotional release ??          <span class="italic text-white" style="font-family:'Fraunces',serif">type it out, shred it, and watch it grow into a flower.</span>
+        </p>
+      </div>
+
+      <!-- Reader's guide -->
+      <aside class="col-span-12 md:col-span-4 md:pt-16">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50 border-b border-white/15 pb-2 mb-5">
+          Reader's guide
+        </div>
+        <ul class="space-y-4 text-[15px] leading-[1.4] text-white/75" style="font-family: 'Fraunces', serif; font-style: italic;">
+          <li class="flex gap-3"><span class="text-white/60">??/span><span>禮01 the three walls every emotion app hits.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">??/span><span>禮04 nine screens, one continuous ritual.</span></li>
+          <li class="flex gap-3"><span class="text-white/60">??/span><span>禮05 five decisions that go against the expected playbook.</span></li>
+        </ul>
+        <a
+          href="https://jielle2453.github.io/emotion-shredder-demo/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#FBBFCA] hover:text-white transition-colors"
+        >
+          <span>??/span>
+          <span>Live demo</span>
+        </a>
+      </aside>
+    </section>
+
+    <!-- PROJECT META + MY ROLE -->
+    <section class="mt-20 md:mt-28 grid grid-cols-12 gap-10">
+      <div class="col-span-12 md:col-span-4">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
+          <span class="text-white/80">禮</span> Project meta
+        </div>
+        <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Type</dt><dd>Solo project</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Timeline</dt><dd>2026.05 ??present</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Tools</dt><dd>Figma 繚 React 繚 Vite 繚 Tailwind CSS 繚 Supabase 繚 Gemini API</dd></div>
+          <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Tags</dt><dd class="text-white/55">Mobile 繚 Emotional wellbeing 繚 AI 繚 Solo build</dd></div>
+        </dl>
+      </div>
+
+      <div class="col-span-12 md:col-span-8">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
+          <span class="text-white/80">禮</span> My role
+        </div>
+        <p class="text-[14.5px] leading-[1.6] text-white/65 mb-6">
+          Research, product thinking, interaction design, UI design, and prototype implementation ??all done independently, in collaboration with AI (Claude, Codex).
+        </p>
+        <ul class="space-y-5">
+          {roleItems.map((r) => (
+            <li class="grid grid-cols-[160px_1fr] gap-4">
+              <span class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/80 pt-[2px]">{r.title}</span>
+              <span class="text-[14.5px] leading-[1.6] text-white/70">{r.body}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 禮1 THE PROBLEM -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">禮 01</span> ??The problem
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[24ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        Every existing tool
+        <span class="italic text-white/60"> hits the same three walls.</span>
+      </h2>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+          <div class="text-white leading-none text-[44px] mb-4" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">01</div>
+          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">High input cost</h3>
+          <p class="text-[14px] leading-[1.6] text-white/65">Naming an emotion, writing at length. When you're mid-anxiety, the bar is already too high.</p>
+        </article>
+        <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+          <div class="text-white leading-none text-[44px] mb-4" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">02</div>
+          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">Feedback that's too clinical</h3>
+          <p class="text-[14px] leading-[1.6] text-white/65">Charts and mood scores can't hold a raw feeling. A number doesn't make you feel understood.</p>
+        </article>
+        <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+          <div class="text-white leading-none text-[44px] mb-4" style="font-family:'Fraunces',serif;letter-spacing:-0.03em">03</div>
+          <h3 class="font-sans font-semibold text-[17px] text-white mb-2">Pressure of keeping a record</h3>
+          <p class="text-[14px] leading-[1.6] text-white/65">Negative text sitting in a journal you don't want to revisit. Self-censorship, performance, judgment ??everywhere.</p>
+        </article>
+      </div>
+
+      <figure class="mt-12 border-l-2 border-white/40 pl-6 md:pl-8">
+        <blockquote class="text-white leading-[1.15] max-w-[38ch]" style="font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,32px);letter-spacing:-0.02em">
+          How might we let someone release an overwhelming feeling with very little effort, even when they don't want to fully articulate it ??          <span class="italic text-white/60 block mt-2">and later let them look back without it feeling heavy?</span>
+        </blockquote>
+      </figure>
+    </section>
+
+    <!-- 禮2 RESEARCH -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">禮 02</span> ??Research insights
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        Desk research, competitive analysis,
+        <span class="italic text-white/60"> and affect-labeling literature.</span>
+      </h2>
+      <p class="mt-6 text-[15px] leading-[1.65] text-white/70 max-w-[60ch]">
+        Research targeted 18??2 year-olds who are used to logging their lives on their phones. Theoretical grounding drew on affect-labeling studies (naming an emotion reduces its intensity) and research on psychological "closure" created by physically discarding a written thought.
+      </p>
+
+      <div class="mt-12 space-y-5">
+        {researchInsights.map((r) => (
+          <article class="border-l-2 border-white/25 pl-5">
+            <div class="flex items-baseline gap-3 mb-1">
+              <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-white">{r.key}</span>
+              <h3 class="font-sans font-semibold text-[16px] text-white">{r.title}</h3>
+            </div>
+            <p class="text-[14px] leading-[1.6] text-white/60 max-w-[60ch]">{r.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 禮3 CORE CONCEPT -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">禮 03</span> ??Core concept: Shredder + Garden
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch] mb-10" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        Every element carries
+        <span class="italic text-white/60"> a deliberate meaning.</span>
+      </h2>
+
+      <div class="rounded-[16px] border border-white/12 overflow-hidden">
+        <table class="w-full text-[14.5px]">
+          <thead class="bg-white/[0.05] font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">
+            <tr>
+              <th class="text-left py-3 px-5 md:px-6 font-normal w-[28%]">Element</th>
+              <th class="text-left py-3 px-6 font-normal">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {conceptTable.map((row, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white/[0.015]' : 'bg-white/0'}>
+                <td class="py-3.5 px-5 md:px-6 font-mono text-white/80 text-[11px] uppercase tracking-[0.14em]">{row.element}</td>
+                <td class="py-3.5 px-6 text-white/70 leading-[1.5]">{row.meaning}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 禮4 KEY SCREENS -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">禮 04</span> ??Key screens
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[20ch] mb-14" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        10 screens,
+        <span class="italic text-white/60"> one continuous ritual.</span>
+      </h2>
+
+      <div class="space-y-16">
+        {screens.map((s) => (
+          <article id={s.id} class="grid grid-cols-12 gap-6 md:gap-10 items-start">
+            <div class="col-span-12 md:col-span-4">
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-2">{s.no}</div>
+              <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white mb-3">{s.title}</h3>
+              <p class="text-[14px] leading-[1.7] text-white/65">{s.desc}</p>
+            </div>
+            <div class="col-span-12 md:col-span-8">
+              <figure class="rounded-[14px] border border-white/12 overflow-hidden bg-white/[0.03] max-w-[380px] mx-auto">
+                <div class="p-4 md:p-5">
+                  {s.mediaType === 'video' ? (
+                    <video
+                      src={s.media}
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      class="w-full h-auto block rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.1)]"
+                    />
+                  ) : (
+                    <img
+                      src={s.media}
+                      alt={s.alt}
+                      class="w-full h-auto block rounded-[8px] shadow-[0_2px_16px_rgba(0,0,0,0.1)]"
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+                <div class="px-5 py-2.5 border-t border-white/10 font-mono text-[9.5px] uppercase tracking-[0.22em] text-white/35">
+                  Fig {s.no} ??{s.title}
+                </div>
+              </figure>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 禮5 DESIGN DECISIONS -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">禮 05</span> ??Key design decisions
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        Five choices, each one
+        <span class="italic text-white/60"> deliberately against the norm.</span>
+      </h2>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
+        {designDecisions.map((d) => (
+          <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)]">
+            <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-3">{d.no}</div>
+            <h3 class="font-sans font-semibold text-[17px] text-white mb-2">{d.title}</h3>
+            <p class="text-[14px] leading-[1.65] text-white/65">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 禮6 REFLECTION -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">禮 06</span> ??Reflection & next steps
+      </div>
+      <div class="grid grid-cols-12 gap-8">
+        <div class="col-span-12 md:col-span-8 space-y-7">
+          <div>
+            <h3 class="font-sans font-semibold text-[19px] text-white mb-2">The loop is already closed.</h3>
+            <p class="text-[15px] leading-[1.65] text-white/65 max-w-[56ch]">
+              The prototype covers a complete experience: input and AI analysis, through storage, to garden / calendar / collection review. The next phase is about quality, not quantity.
+            </p>
+          </div>
+          <ul class="space-y-2.5 text-[14.5px] leading-[1.55] text-white/80">
+            <li class="flex gap-3"><span class="text-white/55 font-mono mt-[2px]">??/span>A proper onboarding flow that earns trust before asking for anything</li>
+            <li class="flex gap-3"><span class="text-white/55 font-mono mt-[2px]">??/span>A safety response for high-risk or crisis content</li>
+            <li class="flex gap-3"><span class="text-white/55 font-mono mt-[2px]">??/span>True real-time destruction of raw text ??not just policy, infrastructure</li>
+            <li class="flex gap-3"><span class="text-white/55 font-mono mt-[2px]">??/span>Real user feedback from usability testing</li>
+          </ul>
+        </div>
+        <aside class="col-span-12 md:col-span-4">
+          <div class="rounded-[14px] border border-white/15 bg-white/[0.04] p-5">
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">Status</div>
+            <p class="text-[14px] leading-[1.6] text-white/70 mb-5">
+              Active solo project. Prototype live; usability testing planned.
+            </p>
+            <a
+              href="https://jielle2453.github.io/emotion-shredder-demo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#FBBFCA] hover:text-white transition-colors"
+            >
+              <span>??/span>
+              <span>Try the demo</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FOOTER NAV -->
+    <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">
+      <div class="flex items-center justify-between">
+        <a href={base} class="text-white/70 hover:text-white transition-colors">??Back to home</a>
+        <a href={`${base}linepay`} class="text-white/70 hover:text-white transition-colors">禮01 LinePay Redesign ??/a>
+      </div>
+    </footer>
+
+  </main>
+</BaseCaseStudy>
