@@ -5,6 +5,13 @@ import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 
 const base = import.meta.env.BASE_URL;
 
+const roleItems = [
+  { title: '研究統整', body: '梳理 6 大痛點，並彙整出支撐專案方向的「真實 ADHD 聲音」。' },
+  { title: 'UI 設計', body: 'Wireframe、資料架構，以及各頁面微調。' },
+  { title: '研究與發想', body: '團隊共同研究 ADHD 女性議題與 Idea 發想。' },
+  { title: '策略討論', body: '參與制定「為 ADHD 女性優化，為所有人設計」的產品定位。' },
+];
+
 const pains = [
   { t: '工作記憶弱', d: '計畫與步驟只要一停止回想，就會瞬間從腦海中消失。' },
   { t: '性別表現差異', d: '女性症狀常表現為注意力不集中而非過動，因此容易被忽視。' },
@@ -112,23 +119,13 @@ const values = [
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
           <span class="text-white/80"></span> 我的角色
         </div>
-        <ul class="mt-5 space-y-3 text-[15px] leading-[1.55] text-white/85">
-          <li class="flex gap-3">
-            <span class="text-white/60 font-mono mt-[2px]">·</span>
-            <span><strong class="text-white">研究統整</strong> — 梳理 6 大痛點，並彙整出支撐專案方向的「真實 ADHD 聲音」。</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-white/60 font-mono mt-[2px]">·</span>
-            <span><strong class="text-white">UI 設計</strong> — Wireframe、資料架構，以及各頁面微調。</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-white/60 font-mono mt-[2px]">·</span>
-            <span><strong class="text-white">研究與發想</strong> — 團隊共同研究 ADHD 女性議題與 Idea 發想。</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-white/60 font-mono mt-[2px]">·</span>
-            <span><strong class="text-white">策略討論</strong> — 參與制定「為 ADHD 女性優化，為所有人設計」的產品定位。</span>
-          </li>
+        <ul class="space-y-4">
+          {roleItems.map((r) => (
+            <li class="grid grid-cols-[160px_1fr] gap-4">
+              <span class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/80 pt-[2px]">{r.title}</span>
+              <span class="text-[14.5px] leading-[1.6] text-white/70">{r.body}</span>
+            </li>
+          ))}
         </ul>
       </div>
 

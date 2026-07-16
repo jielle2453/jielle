@@ -4,6 +4,12 @@ import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 
 const base = import.meta.env.BASE_URL;
 
+const roleItems = [
+  { title: 'UI 設計', body: '首頁的 V1 / V2 設計迭代，與好康地圖介面設計' },
+  { title: 'UX 研究', body: '易用性測試的 SUS 分析與圖表製作' },
+  { title: '文件與簡報', body: '最終案例研究文件與簡報設計' },
+];
+
 const glance = [
   { label: '平均任務時間', before: "2'45''", after: "1'59''", delta: '−46s' },
   { label: '任務完成率', before: '92.75%', after: '100%', delta: '+7.25' },
@@ -217,7 +223,6 @@ const voices = {
       <div class="col-span-12 md:col-span-4">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
           <span class="text-white/80"></span> 專案資訊
-          專案資訊
         </div>
         <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
           <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">課程</dt><dd>UI/UX 設計 · 2024</dd></div>
@@ -231,10 +236,13 @@ const voices = {
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
           我的貢獻
         </div>
-        <ul class="mt-5 space-y-2.5 text-[15px] leading-[1.55] text-white/85">
-          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>首頁的 V1 / V2 設計迭代，與好康地圖介面設計</li>
-          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>易用性測試的 SUS 分析與圖表製作</li>
-          <li class="flex gap-3"><span class="text-white/60 font-mono mt-[2px]">·</span>最終案例研究文件與簡報設計</li>
+        <ul class="space-y-4">
+          {roleItems.map((r) => (
+            <li class="grid grid-cols-[160px_1fr] gap-4">
+              <span class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/80 pt-[2px]">{r.title}</span>
+              <span class="text-[14.5px] leading-[1.6] text-white/70">{r.body}</span>
+            </li>
+          ))}
         </ul>
         <p class="mt-5 text-[14px] leading-[1.55] text-white/55 max-w-[62ch]">
           團隊共同完成：App Store 評論編碼、六個頁面的改版發想、四人易用性測試。
