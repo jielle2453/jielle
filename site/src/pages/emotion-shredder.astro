@@ -240,14 +240,38 @@ const screens = [
         </article>
       </div>
 
-      <p class="mt-10 text-[15px] leading-[1.65] text-white/75 max-w-[58ch]">
-        Social media triggers self-censorship; therapy feels heavy; mindfulness apps demand calm.
-      </p>
-      <p class="mt-4 text-[15px] leading-[1.65] text-white/75 max-w-[58ch]">
-        When people are deeply anxious, they aren't ready for guided peace.
-      </p>
+      <div class="mt-16 pt-10 border-t border-white/15 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+        <div class="md:col-span-8 lg:col-span-9">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div>
+              <div class="font-sans font-semibold text-[16px] text-white mb-2 flex items-center gap-2">
+                <span class="text-white/40 font-mono text-[11px] mt-0.5">■</span> Social media
+              </div>
+              <p class="text-[14.5px] leading-[1.6] text-white/70">Triggers self-censorship, making it hard to be truly vulnerable.</p>
+            </div>
+            <div>
+              <div class="font-sans font-semibold text-[16px] text-white mb-2 flex items-center gap-2">
+                <span class="text-white/40 font-mono text-[11px] mt-0.5">■</span> Therapy
+              </div>
+              <p class="text-[14.5px] leading-[1.6] text-white/70">High barrier to entry and feels too heavy for immediate, in-the-moment relief.</p>
+            </div>
+            <div>
+              <div class="font-sans font-semibold text-[16px] text-white mb-2 flex items-center gap-2">
+                <span class="text-white/40 font-mono text-[11px] mt-0.5">■</span> Mindfulness apps
+              </div>
+              <p class="text-[14.5px] leading-[1.6] text-white/70">Demand calm beforehand, failing to support people in states of high anxiety.</p>
+            </div>
+          </div>
+          <p class="mt-10 text-[16px] leading-[1.65] text-white max-w-[58ch]">
+            When people are deeply anxious, they aren't ready for guided peace.
+          </p>
+        </div>
+        <div class="md:col-span-4 lg:col-span-3 flex justify-center md:justify-end">
+          <img src={`${base}img/es_character.png`} alt="Character illustration" class="w-full max-w-[160px] h-auto object-contain opacity-90" />
+        </div>
+      </div>
 
-      <figure class="mt-10 border-l-2 border-white/40 pl-6 md:pl-8">
+      <figure class="mt-16 border-l-2 border-white/40 pl-6 md:pl-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45 mb-3">Design question</div>
         <blockquote class="text-white leading-[1.15] max-w-[38ch]" style="font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,32px);letter-spacing:-0.02em">
           How might we let someone release an overwhelming feeling with minimal effort —
@@ -263,27 +287,24 @@ const screens = [
       </div>
       
       <div class="grid grid-cols-12 gap-8">
-        <div class="col-span-12 md:col-span-8 flex flex-col justify-center">
-          <h2 class="text-white leading-[1.1] mb-8" style="font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);letter-spacing:-0.03em">
+        <div class="col-span-12 flex flex-col justify-center">
+          <h2 class="text-white leading-[1.1] mb-12" style="font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);letter-spacing:-0.03em">
             Turning destruction into growth.
           </h2>
-          <p class="text-[15px] leading-[1.65] text-white/75 mb-8">
-            Pairing <strong class="text-white">emotional labeling</strong> with immediate interactive closure. An ephemeral space to scream into the void, giving you a quiet garden in return.
-          </p>
-          <ul class="space-y-6">
-            <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">Shredding = Letting Go</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">"Destroying" raw thoughts on screen provides immediate closure. No negative words kept.</p>
-            </li>
-            <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">AI Analysis = Gentle Reframing</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">AI acts as a listener, not a diagnostician. It translates venting into an emotional keyword matched with a flower.</p>
-            </li>
-            <li class="border-l-2 border-white/20 pl-4">
-              <h3 class="font-sans font-semibold text-[16px] text-white">Garden = Beautiful Archive</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Past struggles become a peaceful landscape. Rewards emotional release without forcing users to re-read misery.</p>
-            </li>
-          </ul>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <article class="rounded-[16px] border border-white/15 bg-white/[0.03] p-6 md:p-8">
+              <h3 class="font-sans font-semibold text-[18px] text-white mb-3">Shredding = Letting Go</h3>
+              <p class="text-[15px] leading-[1.65] text-white/70">"Destroying" raw thoughts on screen provides immediate closure. No negative words kept.</p>
+            </article>
+            <article class="rounded-[16px] border border-white/15 bg-white/[0.03] p-6 md:p-8">
+              <h3 class="font-sans font-semibold text-[18px] text-white mb-3">AI Analysis = Gentle Reframing</h3>
+              <p class="text-[15px] leading-[1.65] text-white/70">AI acts as a listener, not a diagnostician. It translates venting into an emotional keyword matched with a flower.</p>
+            </article>
+            <article class="rounded-[16px] border border-white/15 bg-white/[0.03] p-6 md:p-8">
+              <h3 class="font-sans font-semibold text-[18px] text-white mb-3">Garden = Beautiful Archive</h3>
+              <p class="text-[15px] leading-[1.65] text-white/70">Past struggles become a peaceful landscape. Rewards emotional release without forcing users to re-read misery.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
