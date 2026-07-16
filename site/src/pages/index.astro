@@ -27,10 +27,10 @@ const nameStep = 55;
 
 const marqueeItems = [
   'Open to 2026 full-time roles',
-  'UX design · user research · learning sciences',
+  'UI design · UX research',
   'Building Emotion Shredder — an emotional-release app',
   'NTNU · exchange at NJU',
-  'Figma, React, Python, SPSS, and the space between them',
+  'Figma, Python, SPSS, and the space between them',
   'Research-led design, designer-grade research',
 ];
 ---
@@ -43,16 +43,11 @@ const marqueeItems = [
       <div class="space-y-0.5 leading-[1.5]">
         <div class="text-white">portfolio of</div>
         <div class="text-neutral-200">jielle lu</div>
-        <div class="text-neutral-500">呂筱婕 · ntnu '26</div>
-        <LanguageSwitcher class="mt-4" />
+        <div class="text-neutral-500">呂筱婕</div>
       </div>
       <div class="text-right space-y-0.5 leading-[1.5]">
-        <div class="flex items-center gap-1.5 justify-end text-neutral-200">
-
-          <LiveClock client:load />
-        </div>
-        <div class="text-neutral-500 hidden sm:block">ux · research · learning sci.</div>
         <div class="text-neutral-500 hidden sm:block">jielle2453@gmail.com</div>
+        <LanguageSwitcher class="mt-4 justify-end" />
       </div>
     </header>
 
@@ -101,7 +96,7 @@ const marqueeItems = [
         <div class="glass-badge">
           <ScrambleText
             client:load
-            words={['freelance · personal projects', 'UX researcher in learning sciences', 'designer who ships interfaces', 'interface designer + coder']}
+            words={['Freelance · Personal Projects', 'Design + Analysis + Programming', 'B.S. Informatics, NTNU', 'UX Researcher', 'UI Designer', 'Aesthetics & Logic']}
             interval={3200}
             scrambleDuration={820}
           />
@@ -118,8 +113,7 @@ const marqueeItems = [
     <!-- WORK — three tiles with scroll reveal + rich hover -->
     <section id="work" class="mt-10 md:mt-14">
       <div class="reveal flex items-end justify-between mb-6 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#F3EFE6]/60" data-reveal>
-        <span><span class="text-[#F3EFE6]">§ work</span> — three studies</span>
-        <span class="text-[#F3EFE6]/40 hidden md:inline">hover to preview</span>
+        <span><span class="text-[#F3EFE6]">work</span> — three studies</span>
       </div>
 
       <div class="grid grid-cols-12 gap-4 md:gap-5 items-stretch">
@@ -128,8 +122,8 @@ const marqueeItems = [
             no="01"
             year="2024"
             title="LinePay redesign"
-            subtitle="Taiwan's most-used mobile payment app, redesigned around saving money effortlessly."
-            meta={['SUS  52.5 → 72.5', 'task time  −46s', 'completion  100%']}
+            subtitle="Taiwan's most-used mobile payment app, redesigned around optimizing the payment process."
+            meta={['SUS  52.5 → 72.5', 'task time  −46s', 'iterative homepage optimization']}
             href={`${import.meta.env.BASE_URL}linepay`}
             revealDelay={0}
             accent="#06C755"
@@ -141,7 +135,7 @@ const marqueeItems = [
             no="02"
             year="2025"
             title="Fidgi Grow"
-            subtitle="An ADHD support app that never mentions ADHD on its cover. With a physical fidget toy."
+            subtitle="An ADHD support app for women that never mentions ADHD on its cover."
             meta={['hormone-aware planner', 'smart task breakdown', 'NFC fidget hardware']}
             href={`${import.meta.env.BASE_URL}fidgi`}
             revealDelay={110}
@@ -168,7 +162,7 @@ const marqueeItems = [
     <!-- ABOUT + CONTACT -->
     <section id="about" class="mt-16 md:mt-24">
       <div class="reveal flex items-end justify-between mb-8 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#F3EFE6]/60" data-reveal>
-        <span><span class="text-[#F3EFE6]">§ about</span> — jielle lu</span>
+        <span><span class="text-[#F3EFE6]">about</span> — jielle lu</span>
       </div>
 
       <!-- display tagline -->
@@ -183,12 +177,12 @@ const marqueeItems = [
       <!-- bio + quick facts -->
       <div class="reveal flex flex-col items-center text-center mb-10 max-w-[680px] mx-auto" data-reveal style="--reveal-delay: 100ms">
         <p class="font-sans text-[15px] leading-[1.68] text-[#ffffff] mb-8">
-          Approaches design through the lens of human-centric analysis. Bridges the gap between aesthetics and technology by combining UI proficiency with technical skills in data analysis and programming. Proficient in leveraging generative AI to conceptualize and develop initial prototypes, allowing for the delivery of design solutions that seamlessly merge aesthetic innovation with rigorous quantitative validation.
+          Approaches design through the lens of human-centric analysis. Unites aesthetic vision with technical execution by combining UI proficiency with data analysis and programming logic. Proficient in leveraging generative AI to accelerate conceptualization and prototyping, delivering design solutions that seamlessly merge aesthetic innovation with rigorous quantitative validation.
         </p>
         
         <!-- Resume Download Button -->
         <a 
-          href="https://drive.google.com/file/d/1oN3fPk1B53t4IPU_RrNUBKRVa9pgAH5O/view?usp=sharing"
+          href="https://drive.google.com/file/d/1uuWMTXZZtOWT4avTmrHH1wXvOmWIUx1L/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           class="resume-button group inline-flex items-center gap-2.5 px-6 py-3 mb-8 font-mono text-[11px] uppercase tracking-[0.2em] text-[#F3EFE6] border border-[#d4a017]/40 rounded-full hover:border-[#d4a017] hover:bg-[#d4a017]/10 transition-all duration-300"
@@ -221,7 +215,7 @@ const marqueeItems = [
       <div class="reveal flex flex-col items-center mb-10 max-w-[680px] mx-auto" data-reveal style="--reveal-delay: 160ms">
         <div class="font-mono text-[9.5px] uppercase tracking-[0.26em] text-[#F3EFE6]/40 mb-3">Tools &amp; methods</div>
         <div class="flex flex-wrap gap-2 justify-center">
-          {['Figma', 'Prototyping', 'User Interviews', 'SUS', 'SPSS', 'Python', 'Usability Testing', 'Information Architecture'].map(t => (
+          {['Figma', 'Prototyping', 'User Surveys', 'Personas', 'Journey Mapping', 'User Interviews', 'SUS', 'SPSS', 'Python', 'Usability Testing', 'Information Architecture'].map(t => (
             <span class="inline-block px-3 py-1 rounded-full border border-[#F3EFE6]/10 font-mono text-[9.5px] uppercase tracking-[0.16em] text-[#F3EFE6]/50 hover:border-[#d4a017] hover:text-[#d4a017] transition-colors">
               {t}
             </span>

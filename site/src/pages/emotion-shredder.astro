@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL;
 const roleItems = [
   {
     title: 'Research & Concept',
-    body: 'Translated psychological research on affect-labeling into product mechanics.',
+    body: 'Translated psychological research into product mechanics.',
   },
   {
     title: 'UI/UX Design',
@@ -23,29 +23,29 @@ const designDecisions = [
   {
     no: '01',
     title: 'Flower meanings, not mood scores',
-    body: 'Scoring turns emotion into a good/bad performance metric. Instead, the AI matches the input emotion to a specific flower based on its symbolic meaning — open, subjective, and free from judgment.',
+    body: 'The AI matches input to a specific flower based on meaning — open and free from judgment, avoiding good/bad performance metrics.',
   },
   {
     no: '02',
     title: 'Free input first, AI names it after',
-    body: "When emotions are messy, users often can't name the feeling accurately up front. The AI steps in only after the shredding ritual — never before.",
+    body: "When emotions are messy, users can't always name them. The AI steps in only after the shredding ritual.",
   },
   {
     no: '03',
     title: "Today's entry shows only a sprout",
-    body: "Separating the moment of venting from later reflection, so users aren't staring at raw text at the peak of an emotion. The flower blooms the next day.",
+    body: "Separates the venting moment from reflection. The flower blooms the next day so users don't stare at raw emotions.",
   },
   {
     no: '04',
     title: 'Raw text is never saved',
-    body: 'The original input text is only used momentarily for AI analysis. Once shredded, it is permanently destroyed. The database only records the AI-generated emotion label, keywords, and the matched flower.',
+    body: 'Input is only used momentarily for AI analysis. Once shredded, it is permanently destroyed.',
   },
 ];
 
 const screens = [
   {
     id: 'login',
-    no: '4.1',
+    no: '3.1',
     title: 'Login',
     desc: 'Three entry paths ranked by friction: email, one-tap Google, or guest mode at the very bottom — lowest commitment, never hidden. The soft wordmark and illustrated flowers set the emotional register before any interaction.',
     media: `${base}img/es_login.jpg`,
@@ -54,7 +54,7 @@ const screens = [
   },
   {
     id: 'shredder',
-    no: '4.2',
+    no: '3.2',
     title: 'Shredder (Home)',
     desc: "The only required interaction. Write anything into the torn paper, press the shredder button — no character limit, no tags, no confirmation dialog. The text disappears and that disappearance is the ritual. The bottom tab bar stays visible throughout so navigation never competes with venting.",
     media: `${base}img/es_shredder_animation.mp4`,
@@ -63,7 +63,7 @@ const screens = [
   },
   {
     id: 'calendar',
-    no: '4.3',
+    no: '3.3',
     title: 'Calendar',
     desc: "Each day with a completed entry shows a flower instead of a number. A month reads as a field of blooms — emotional history at a glance, no score attached. A gift icon in the corner unlocks once the month is complete.",
     media: `${base}img/es_calendar.jpg`,
@@ -72,7 +72,7 @@ const screens = [
   },
   {
     id: 'daily',
-    no: '4.4',
+    no: '3.4',
     title: 'Daily record',
     desc: "One tap from the calendar. Shows the flower name and its meaning, keyword scraps from the AI, a short reframing reflection in a handwritten-style font — and an open note field for hindsight writing. Left/right arrows let the user page through days without returning to the calendar.",
     media: `${base}img/es_daily_record.jpg`,
@@ -81,7 +81,7 @@ const screens = [
   },
   {
     id: 'bouquet',
-    no: '4.5',
+    no: '3.5',
     title: 'Monthly bouquet',
     desc: "On the 1st of each month, every flower earned that month is gathered into a single illustrated bouquet with a handwritten note. The product's one moment of ceremony — downloadable and shareable, and the app's only built-in growth loop.",
     media: `${base}img/es_monthly_bouquet.jpg`,
@@ -90,7 +90,7 @@ const screens = [
   },
   {
     id: 'garden',
-    no: '4.6',
+    no: '3.6',
     title: 'Garden',
     desc: "Every unlocked flower planted on a rolling hillside. Tap a flower to make it sway; tap the background to cycle a weather layer. No list, no timestamps, no counts — built to be looked at, not read.",
     media: `${base}img/es_garden_interaction.mp4`,
@@ -99,7 +99,7 @@ const screens = [
   },
   {
     id: 'collection',
-    no: '4.7',
+    no: '3.7',
     title: 'Collection',
     desc: "A grid of all 12 flowers. Unlocked ones appear in full color; locked ones render as grayscale silhouettes. A light collectible mechanic — the only way to unlock a flower is to go through the shredding ritual on a day that produces that emotional tone.",
     media: `${base}img/es_collection.jpg`,
@@ -108,7 +108,7 @@ const screens = [
   },
   {
     id: 'flower-detail',
-    no: '4.8',
+    no: '3.8',
     title: 'Flower detail',
     desc: 'Large illustration, a badge showing how many times earned, and a short paragraph on what the flower represents — written to validate rather than label. Writing all 12 meanings was as much a content-design task as a UI one.',
     media: `${base}img/es_flower_detail.jpg`,
@@ -117,7 +117,7 @@ const screens = [
   },
   {
     id: 'settings',
-    no: '4.9',
+    no: '3.9',
     title: 'Settings',
     desc: '"Privacy / AI use" and "Delete all records" sit at the same visual level as the sign-out button. For a product asking people to write things they might not want kept, the ability to fully undo that trust must be easy to find.',
     media: `${base}img/es_settings.jpg`,
@@ -136,8 +136,8 @@ const screens = [
         <span>←</span> Home
       </a>
       <div class="text-right space-y-0.5 text-white/55">
-        <div class="text-white/80">§ 03 — Case study</div>
-        <div>Solo project · 2026.05 — present</div>
+        <div class="text-white/80">03-Emotion Shredder</div>
+        <div>Portfolio of Jielle Lu</div>
         <LanguageSwitcher class="mt-4 justify-end" />
       </div>
     </header>
@@ -166,23 +166,21 @@ const screens = [
         </p>
       </div>
 
-      <aside class="col-span-12 md:col-span-4 md:pt-16">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50 border-b border-white/15 pb-2 mb-5">
-          At a glance
+      <aside class="col-span-12 md:col-span-4 md:pt-16 flex justify-start md:justify-center">
+        <div class="flex flex-col items-center md:-ml-8">
+          <figure class="rounded-[12px] overflow-hidden border border-white/10 w-full max-w-[240px] mb-5 mt-8 md:mt-0">
+            <img src={`${base}img/es_cover.png`} alt="Emotion Shredder preview" class="w-full h-auto block" />
+          </figure>
+          <a
+            href="https://jielle2453.github.io/emotion-shredder-demo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#FBBFCA] hover:text-white transition-colors"
+          >
+            <span>↗</span>
+            <span>Live demo</span>
+          </a>
         </div>
-        <ul class="space-y-4 text-[15px] leading-[1.4] text-white/75" style="font-family: 'Fraunces', serif; font-style: italic;">
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>A space free from performance and self-censorship.</span></li>
-          <li class="flex gap-3"><span class="text-white/60">→</span><span>Replaces mood scores with floral symbolism.</span></li>
-        </ul>
-        <a
-          href="https://jielle2453.github.io/emotion-shredder-demo/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-8 inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#FBBFCA] hover:text-white transition-colors"
-        >
-          <span>↗</span>
-          <span>Live demo</span>
-        </a>
       </aside>
     </section>
 
@@ -190,7 +188,7 @@ const screens = [
     <section class="mt-20 md:mt-28 grid grid-cols-12 gap-10">
       <div class="col-span-12 md:col-span-4">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> Project meta
+          <span class="text-white/80"></span> Project meta
         </div>
         <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
           <div class="flex gap-4"><dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[72px] shrink-0 pt-[3px]">Type</dt><dd>Solo project</dd></div>
@@ -201,7 +199,7 @@ const screens = [
 
       <div class="col-span-12 md:col-span-8">
         <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">
-          <span class="text-white/80">§</span> My role
+          <span class="text-white/80"></span> My role
         </div>
         <ul class="space-y-4">
           {roleItems.map((r) => (
@@ -214,10 +212,10 @@ const screens = [
       </div>
     </section>
 
-    <!-- §1 THE PROBLEM -->
+    <!-- 1 THE PROBLEM -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 01</span> — The problem
+        <span class="text-white">01</span> — The problem
       </div>
       <h2 class="text-white leading-[0.95] max-w-[24ch]" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
         Every existing tool
@@ -242,23 +240,26 @@ const screens = [
         </article>
       </div>
 
-      <p class="mt-10 text-[15.5px] leading-[1.65] text-white/80 max-w-[62ch]">
-        Social media triggers image-management, therapy feels too heavy for daily frustrations, traditional diaries induce self-censorship, and mindfulness apps demand that you calm down first — but when people are deeply anxious or hurt, they aren't always ready to be guided to peace immediately.
+      <p class="mt-10 text-[15px] leading-[1.65] text-white/75 max-w-[58ch]">
+        Social media triggers self-censorship; therapy feels heavy; mindfulness apps demand calm.
+      </p>
+      <p class="mt-4 text-[15px] leading-[1.65] text-white/75 max-w-[58ch]">
+        When people are deeply anxious, they aren't ready for guided peace.
       </p>
 
       <figure class="mt-10 border-l-2 border-white/40 pl-6 md:pl-8">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45 mb-3">Design question (How might we)</div>
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45 mb-3">Design question</div>
         <blockquote class="text-white leading-[1.15] max-w-[38ch]" style="font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,32px);letter-spacing:-0.02em">
-          How might we let someone release an overwhelming feeling with very little effort, even when they don't want to fully articulate it —
-          <span class="italic text-white/60 block mt-2">and later let them look back without it feeling heavy?</span>
+          How might we let someone release an overwhelming feeling with minimal effort —
+          <span class="italic text-white/60 block mt-2">and look back later without it feeling heavy?</span>
         </blockquote>
       </figure>
     </section>
 
-    <!-- §2 CONCEPT -->
+    <!-- 2 CONCEPT -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 02</span> — The solution: Shredder + Garden
+        <span class="text-white">02</span> — The solution: Shredder + Garden
       </div>
       
       <div class="grid grid-cols-12 gap-8">
@@ -266,52 +267,31 @@ const screens = [
           <h2 class="text-white leading-[1.1] mb-8" style="font-family:'Fraunces',serif;font-size:clamp(28px,4vw,44px);letter-spacing:-0.03em">
             Turning destruction into growth.
           </h2>
-          <p class="text-[15.5px] leading-[1.65] text-white/80 mb-8">
-            Emotion Shredder uses the psychological framework of <strong>affect-labeling</strong> (putting feelings into words reduces their intensity), but pairs it with an immediate visual and interactive closure. It's an ephemeral space to scream into the void, which then gives you a quiet garden in return.
+          <p class="text-[15px] leading-[1.65] text-white/75 mb-8">
+            Pairing <strong class="text-white">emotional labeling</strong> with immediate interactive closure. An ephemeral space to scream into the void, giving you a quiet garden in return.
           </p>
           <ul class="space-y-6">
             <li class="border-l-2 border-white/20 pl-4">
               <h3 class="font-sans font-semibold text-[16px] text-white">Shredding = Letting Go</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Typing out raw thoughts and physically "destroying" them on screen creates immediate psychological closure. The user doesn't have to keep the negative words around.</p>
+              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">"Destroying" raw thoughts on screen provides immediate closure. No negative words kept.</p>
             </li>
             <li class="border-l-2 border-white/20 pl-4">
               <h3 class="font-sans font-semibold text-[16px] text-white">AI Analysis = Gentle Reframing</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Instead of a cold diagnosis or a score, AI acts as a gentle listener. It translates raw venting into a core emotional keyword and matches it with a flower meaning, offering an empathetic reflection.</p>
+              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">AI acts as a listener, not a diagnostician. It translates venting into an emotional keyword matched with a flower.</p>
             </li>
             <li class="border-l-2 border-white/20 pl-4">
               <h3 class="font-sans font-semibold text-[16px] text-white">Garden = Beautiful Archive</h3>
-              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Past struggles become a peaceful landscape of accumulated flowers. This rewards the habit of emotional release without forcing users to re-read their past negative thoughts or stare at a line chart of their misery.</p>
+              <p class="text-[14.5px] leading-[1.6] text-white/60 mt-2">Past struggles become a peaceful landscape. Rewards emotional release without forcing users to re-read misery.</p>
             </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- §3 KEY DECISIONS -->
+    <!-- 3 SCREENS -->
     <section class="mt-24 md:mt-32">
       <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 03</span> — Design decisions
-      </div>
-      <h2 class="text-white leading-[0.95] max-w-[22ch] mb-12" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
-        Four choices, each one
-        <span class="italic text-white/60"> deliberately against the norm.</span>
-      </h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {designDecisions.map((d) => (
-          <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)]">
-            <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-3">{d.no}</div>
-            <h3 class="font-sans font-semibold text-[17px] text-white mb-2">{d.title}</h3>
-            <p class="text-[14px] leading-[1.65] text-white/65">{d.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <!-- §4 SCREENS -->
-    <section class="mt-24 md:mt-32">
-      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
-        <span class="text-white">§ 04</span> — Key screens
+        <span class="text-white">03</span> — Key screens
       </div>
       <h2 class="text-white leading-[0.95] max-w-[20ch] mb-14" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
         10 screens,
@@ -342,11 +322,32 @@ const screens = [
       </div>
     </section>
 
+    <!-- 4 KEY DECISIONS -->
+    <section class="mt-24 md:mt-32">
+      <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+        <span class="text-white">04</span> — Design decisions
+      </div>
+      <h2 class="text-white leading-[0.95] max-w-[22ch] mb-12" style="font-family:'Fraunces',serif;font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em">
+        Four choices, each one
+        <span class="italic text-white/60"> deliberately against the norm.</span>
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {designDecisions.map((d) => (
+          <article class="rounded-[14px] border border-white/12 bg-white/[0.04] backdrop-blur-md p-6 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)]">
+            <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-3">{d.no}</div>
+            <h3 class="font-sans font-semibold text-[17px] text-white mb-2">{d.title}</h3>
+            <p class="text-[14px] leading-[1.65] text-white/65">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <!-- FOOTER NAV -->
     <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">
       <div class="flex items-center justify-between">
         <a href={base} class="text-white/70 hover:text-white transition-colors">← Back to home</a>
-        <a href={`${base}linepay`} class="text-white/70 hover:text-white transition-colors">§01 LinePay Redesign →</a>
+        <a href={`${base}linepay`} class="text-white/70 hover:text-white transition-colors">01 LinePay Redesign →</a>
       </div>
     </footer>
 

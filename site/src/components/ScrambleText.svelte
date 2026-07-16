@@ -8,7 +8,7 @@
   let display = words[0];
 
   onMount(() => {
-    const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789§∆◇';
+    const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789∆◇';
     let idx = 0;
     let raf = 0;
     let timer = 0;
