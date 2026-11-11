@@ -71,11 +71,9 @@ const socialContacts = contacts.filter((c) => c.external);
     <!-- MIDDLE — name with visual hierarchy -->
     <div class="name-col relative flex flex-col justify-center px-5 py-6 sm:px-8 sm:py-10 sm:w-[37%]">
       <div class="name-content">
-        <div
-          class="name-primary font-sans font-black leading-[0.88] text-[#F3EFE6] tracking-[-0.04em]"
-          style="font-size:clamp(36px,5.2vw,68px);"
-        >
-          JIELLE<br/>LU
+        <!-- one line on phones, two lines from sm up -->
+        <div class="name-primary font-sans font-black leading-[0.88] text-[#F3EFE6] tracking-[-0.04em] whitespace-nowrap text-[26px] sm:text-[clamp(36px,5.2vw,68px)]">
+          JIELLE <br class="hidden sm:inline" />LU
         </div>
         <div class="name-divider"></div>
         <div class="name-secondary font-mono text-[10.5px] uppercase tracking-[0.28em] text-[#F3EFE6]/50">
@@ -84,6 +82,19 @@ const socialContacts = contacts.filter((c) => c.external);
         <div class="name-role mt-3 font-mono text-[9px] uppercase tracking-[0.32em] text-[#F3EFE6]/40">
           Designer &amp; Builder
         </div>
+        <!-- phones: social icons sit under the title -->
+        <ul class="contact-list mt-4 flex gap-2.5 sm:hidden">
+          {socialContacts.map((c) => (
+            <li>
+              <a href={c.href} target="_blank" rel="noopener" aria-label={c.label}
+                 class="contact-link group flex items-center text-[#F3EFE6]/60 hover:text-[#F3EFE6] transition-all duration-400">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" set:html={c.icon} />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
 
@@ -105,8 +116,8 @@ const socialContacts = contacts.filter((c) => c.external);
           </li>
         ))}
       </ul>
-      <!-- social links: icons only on phones, icon + text from sm up -->
-      <ul class="contact-list mt-4 sm:mt-3.5 flex gap-3 sm:block sm:space-y-3.5">
+      <!-- social links with text, from sm up (phones show icons under the title) -->
+      <ul class="contact-list hidden sm:block sm:mt-3.5 sm:space-y-3.5">
         {socialContacts.map((c) => (
           <li>
             <a
@@ -119,7 +130,7 @@ const socialContacts = contacts.filter((c) => c.external);
               <span class="contact-icon" aria-hidden="true">
                 <svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" set:html={c.icon} />
               </span>
-              <span class="contact-text hidden sm:inline">{c.label}</span>
+              <span class="contact-text">{c.label}</span>
             </a>
           </li>
         ))}
