@@ -37,18 +37,21 @@ const contacts = [
     icon: `<rect x="1" y="1" width="12" height="12" rx="2"/><path d="M3.5 7h3M3.5 4.5h3a1.5 1.5 0 0 1 0 3M3.5 7h3.5a1.5 1.5 0 0 1 0 3H3.5V4.5M8.5 4h3"/>`,
   },
 ];
+const primaryContacts = contacts.filter((c) => !c.external);
+const socialContacts = contacts.filter((c) => c.external);
 ---
 
 <div
-  class="name-card-wrap reveal"
+  class="name-card-wrap reveal w-full"
   style={`--reveal-delay: ${revealDelay}ms`}
   data-reveal
 >
-  <div class={`name-card relative flex flex-col sm:flex-row rounded-[32px] overflow-hidden`}>
+  <!-- phones: photo and name side by side, contacts below; sm+: three columns -->
+  <div class={`name-card relative grid grid-cols-[auto_1fr] sm:flex sm:flex-row rounded-[28px] sm:rounded-[32px] overflow-hidden`}>
 
     <!-- LEFT — photo with decorative frame -->
-    <div class="photo-col relative flex items-center justify-center w-full sm:w-[26%] pt-8 pb-0 sm:py-10 px-6">
-      <div class="photo-frame relative w-[150px] sm:w-full aspect-square">
+    <div class="photo-col relative flex items-center justify-center sm:w-[26%] pl-6 pr-0 py-6 sm:py-10 sm:px-6">
+      <div class="photo-frame relative w-[104px] sm:w-full aspect-square">
         <div class="photo-inner rounded-[24px] overflow-hidden">
           <img
             src={`${import.meta.env.BASE_URL}img/jielle_portrait_2026.jpg`}
@@ -66,7 +69,7 @@ const contacts = [
     </div>
 
     <!-- MIDDLE — name with visual hierarchy -->
-    <div class="name-col relative flex flex-col justify-center px-8 py-6 sm:py-10 sm:w-[37%]">
+    <div class="name-col relative flex flex-col justify-center px-5 py-6 sm:px-8 sm:py-10 sm:w-[37%]">
       <div class="name-content">
         <div
           class="name-primary font-sans font-black leading-[0.88] text-[#F3EFE6] tracking-[-0.04em]"
@@ -85,19 +88,38 @@ const contacts = [
     </div>
 
     <!-- RIGHT — contacts with enhanced styling -->
-    <div class="contact-col relative flex flex-col justify-center px-8 py-10 sm:w-[37%]">
+    <div class="contact-col col-span-2 relative flex flex-col justify-center px-6 pt-1 pb-7 sm:px-8 sm:py-10 sm:w-[37%]">
+      <!-- phone and email always show their text -->
       <ul class="contact-list space-y-3.5">
-        {contacts.map((c, idx) => (
-          <li style={`animation-delay: ${idx * 80}ms`}>
+        {primaryContacts.map((c) => (
+          <li>
             <a
               href={c.href}
-              {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}
               class="contact-link group flex items-center gap-3.5 font-mono text-[11.5px] text-[#F3EFE6]/60 hover:text-[#F3EFE6] transition-all duration-400"
             >
               <span class="contact-icon" aria-hidden="true">
                 <svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" set:html={c.icon} />
               </span>
               <span class="contact-text">{c.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <!-- social links: icons only on phones, icon + text from sm up -->
+      <ul class="contact-list mt-4 sm:mt-3.5 flex gap-3 sm:block sm:space-y-3.5">
+        {socialContacts.map((c) => (
+          <li>
+            <a
+              href={c.href}
+              target="_blank"
+              rel="noopener"
+              aria-label={c.label}
+              class="contact-link group flex items-center gap-3.5 font-mono text-[11.5px] text-[#F3EFE6]/60 hover:text-[#F3EFE6] transition-all duration-400"
+            >
+              <span class="contact-icon" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" set:html={c.icon} />
+              </span>
+              <span class="contact-text hidden sm:inline">{c.label}</span>
             </a>
           </li>
         ))}
