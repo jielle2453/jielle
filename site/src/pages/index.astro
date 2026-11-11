@@ -3,8 +3,8 @@ import BaseDark from '../layouts/BaseDark.astro';
 import HomeCaseTile from '../components/HomeCaseTile.astro';
 import Marquee from '../components/Marquee.astro';
 import LiveClock from '../components/LiveClock.svelte';
-import ScrambleText from '../components/ScrambleText.svelte';
 import NameCard from '../components/NameCard.astro';
+import WorkStrip from '../components/WorkStrip.astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 interface Chunk {
@@ -13,29 +13,35 @@ interface Chunk {
   startDelay: number;
   step: number;
   muted?: boolean;
+  accent?: boolean;
 }
-// Eyebrow: "UX / UI research designer" — small line above the big name
+// Eyebrow: "designer & builder" — small line above the big name
 const heroChunks: Chunk[] = [
-  { text: 'UX / UI ',   variant: 'bold',   startDelay: 120, step: 28, muted: true },
-  { text: 'research ',  variant: 'italic', startDelay: 344, step: 34 },
-  { text: 'designer',   variant: 'bold',   startDelay: 650, step: 28, muted: true },
+  { text: 'designer ', variant: 'bold', startDelay: 120, step: 28, muted: true },
+  { text: '& ',        variant: 'bold', startDelay: 400, step: 34, accent: true },
+  { text: 'builder',   variant: 'bold', startDelay: 480, step: 28, muted: true },
 ];
 // Big name: "Jielle Lu" — the hero anchor
 const nameLetters = 'Jielle Lu';
 const nameStart = 700;
 const nameStep = 55;
 
+const toolGroups = [
+  { label: 'Research', items: ['User Interviews', 'Surveys', 'Usability Testing', 'SUS', 'SPSS'] },
+  { label: 'Design', items: ['Figma', 'Prototyping', 'Personas', 'Journey Maps', 'Info Architecture'] },
+  { label: 'Build', items: ['Python', 'TypeScript', 'React', 'FastAPI', 'Claude Code', 'RAG'] },
+];
+
 const marqueeItems = [
-  'Open to 2026 full-time roles',
-  'UI design · UX research',
-  'Building Emotion Shredder — an emotional-release app',
-  'NTNU · exchange at NJU',
-  'Figma, Python, SPSS, and the space between them',
-  'Research-led design, designer-grade research',
+  'B.S. Informatics, NTNU ’26 · open to full-time roles',
+  'UX research · UI design · AI applications',
+  'NTNU · exchange at Nanjing University',
+  'Top 20 · ASUS UGen AI League',
+  'Figma · Python · FastAPI · React',
 ];
 ---
 
-<BaseDark title="Jielle Lu — UX / UI Research Designer">
+<BaseDark title="Jielle Lu — Designer & Builder">
   <main class="relative z-10 min-h-screen flex flex-col px-6 md:px-10 lg:px-14 py-8 md:py-10">
 
     <!-- TOP CHROME -->
@@ -54,17 +60,13 @@ const marqueeItems = [
     <!-- HERO — tagline + h1 bottom-aligned; Currently below fold -->
     <section class="relative flex-1 flex flex-col justify-end pb-2 md:pb-4 pt-12 md:pt-20">
 
-      <div class="fade-up font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F3EFE6]/60 mb-4 md:mb-6 flex items-center gap-2" style="animation-delay: 60ms">
-        <span class="text-[#d4a017] text-base leading-none">◆</span>
-        <span>Research-led design, designer-grade research.</span>
-      </div>
 
       <h1 class="font-sans font-black tracking-[-0.055em] text-white">
         <!-- eyebrow -->
         <span class="block leading-[2] text-[clamp(14px,1.8vw,22px)]">
           {heroChunks.map((chunk) => (
             <span class:list={[
-              chunk.variant === 'italic' ? 'font-light italic text-[#d4a017]' : (chunk.muted ? 'text-[#F3EFE6]/50' : 'text-[#F3EFE6]'),
+              chunk.variant === 'italic' ? 'font-light italic text-[#d4a017]' : (chunk.accent ? 'text-[#d4a017]' : chunk.muted ? 'text-[#F3EFE6]/50' : 'text-[#F3EFE6]'),
               'tracking-[-0.01em]',
             ]}
             style={chunk.variant === 'italic'
@@ -85,35 +87,22 @@ const marqueeItems = [
         </span>
       </h1>
 
-    </section>
-
-    <!-- Currently + description — sits below DESIGNER, outside justify-end scope -->
-    <div class="mt-8 md:mt-10 pb-6 md:pb-10 grid grid-cols-12 gap-6">
-      <div class="fade-up col-span-12 md:col-span-6" style="animation-delay: 1200ms">
-        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#F3EFE6]/60 mb-3">
-          Currently —
-        </div>
-        <div class="glass-badge">
-          <ScrambleText
-            client:load
-            words={['Freelance · Personal Projects', 'Design + Analysis + Programming', 'B.S. Informatics, NTNU', 'UX Researcher', 'UI Designer', 'Aesthetics & Logic']}
-            interval={3200}
-            scrambleDuration={820}
-          />
-        </div>
+      <div class="fade-up mt-6 md:mt-8 font-sans text-[clamp(17px,1.7vw,24px)] leading-[1.5] tracking-[0.01em] text-[#F3EFE6]/80 flex items-center gap-3" style="animation-delay: 1200ms">
+        <span class="text-[#d4a017] text-[0.7em] leading-none">◆</span>
+        <span>I start from user research, design the interface, and build it too.</span>
       </div>
 
-    </div>
+    </section>
 
     <!-- MARQUEE — between hero and work -->
-    <div class="fade-up my-2 md:my-4" style="animation-delay: 1500ms">
+    <div class="fade-up mt-10 md:mt-14 mb-2 md:mb-4" style="animation-delay: 1500ms">
       <Marquee items={marqueeItems} durationSec={58} />
     </div>
 
-    <!-- WORK — three tiles with scroll reveal + rich hover -->
+    <!-- WORK — six tiles, then two long strips -->
     <section id="work" class="mt-10 md:mt-14">
       <div class="reveal flex items-end justify-between mb-6 font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#F3EFE6]/60" data-reveal>
-        <span><span class="text-[#F3EFE6]">work</span> — three studies</span>
+        <span><span class="text-[#F3EFE6]">work</span> — design &amp; engineering</span>
       </div>
 
       <div class="grid grid-cols-12 gap-4 md:gap-5 items-stretch">
@@ -122,8 +111,7 @@ const marqueeItems = [
             no="01"
             year="2024"
             title="LinePay redesign"
-            subtitle="Taiwan's most-used mobile payment app, redesigned around optimizing the payment process."
-            meta={['SUS  52.5 → 72.5', 'task time  −46s', 'iterative homepage optimization']}
+            subtitle="A payment flow redesigned so you can pay the moment the app opens."
             href={`${import.meta.env.BASE_URL}linepay`}
             revealDelay={0}
             accent="#06C755"
@@ -136,7 +124,6 @@ const marqueeItems = [
             year="2025"
             title="Fidgi Grow"
             subtitle="An ADHD support app for women that never mentions ADHD on its cover."
-            meta={['hormone-aware planner', 'smart task breakdown', 'NFC fidget hardware']}
             href={`${import.meta.env.BASE_URL}fidgi`}
             revealDelay={110}
             accent="#38BDF8"
@@ -148,14 +135,68 @@ const marqueeItems = [
             no="03"
             year="2026—"
             title="Emotion Shredder"
-            subtitle="An emotional-release ritual app. Write it, shred it, watch it bloom into a flower."
-            meta={['solo project · UX + dev', 'AI emotion analysis', 'React · Vite · Supabase']}
+            subtitle="Write a worry down, shred it, and watch it grow into a flower."
             href={`${import.meta.env.BASE_URL}emotion-shredder`}
             revealDelay={220}
             accent="#FBBFCA"
             previewImg={`${import.meta.env.BASE_URL}img/es_cover.png`}
           />
         </div>
+
+        <div class="col-span-12 md:col-span-4 flex flex-col">
+          <HomeCaseTile
+            no="04"
+            year="2026"
+            title="Whyscope"
+            subtitle="Answers kids’ “why” questions, with no cloud at run time."
+            href={`${import.meta.env.BASE_URL}whyscope`}
+            revealDelay={0}
+            accent="#d4a017"
+          />
+        </div>
+        <div class="col-span-12 md:col-span-4 flex flex-col">
+          <HomeCaseTile
+            no="05"
+            year="2026"
+            title="Chitchat Tour"
+            subtitle="An AI walking guide that explains everyday things on the street."
+            href={`${import.meta.env.BASE_URL}chitchat-tour`}
+            revealDelay={110}
+            accent="#86EFAC"
+          />
+        </div>
+        <div class="col-span-12 md:col-span-4 flex flex-col">
+          <HomeCaseTile
+            no="06"
+            year="2026"
+            title="Viral Town"
+            subtitle="Whisper one sentence and watch AI play out a whole town’s reaction."
+            href={`${import.meta.env.BASE_URL}viral-town`}
+            revealDelay={220}
+            accent="#C4B5FD"
+          />
+        </div>
+      </div>
+
+      <!-- long strips -->
+      <div class="mt-4 md:mt-5 flex flex-col gap-4 md:gap-5">
+        <WorkStrip
+          label="Engineering · 2026"
+          title="wiki-with-willy"
+          summary="Turns years of folders into a knowledge base that answers questions and cites its sources."
+          cta="GitHub"
+          href="https://github.com/jielle2453/wiki-dev"
+          accent="#7DD3FC"
+        />
+        <WorkStrip
+          label="Research · 2025"
+          title="PTT Stock Sentiment × TAIEX"
+          summary="Used BERT to study stock-board sentiment and the TAIEX during the 2025 tariff shock. Three-person team; I led research planning and synthesis."
+          cta="GitHub"
+          href="https://github.com/theroyatlas/ptt-sentiment-stock-analysis"
+          accent="#F3EFE6"
+          revealDelay={80}
+        />
       </div>
     </section>
 
@@ -169,15 +210,15 @@ const marqueeItems = [
       <div class="reveal mb-10 md:mb-14 flex justify-center" data-reveal style="--reveal-delay: 40ms">
         <p class="text-[#F3EFE6]/90 leading-[1.05] max-w-[20ch] text-center"
            style="font-family:'Fraunces',serif;font-variation-settings:'SOFT' 100,'opsz' 144;font-size:clamp(28px,4vw,52px);letter-spacing:-0.025em;font-style:italic;">
-          Research-led design,<br/>
-          <span style="color:#d4a017">designer</span>-grade research.
+          Understand people, <span style="color:#d4a017">design</span>,<br/>
+          then build it.
         </p>
       </div>
 
       <!-- bio + quick facts -->
       <div class="reveal flex flex-col items-center text-center mb-10 max-w-[680px] mx-auto" data-reveal style="--reveal-delay: 100ms">
         <p class="font-sans text-[15px] leading-[1.68] text-[#ffffff] mb-8">
-          Approaches design through the lens of human-centric analysis. Unites aesthetic vision with technical execution by combining UI proficiency with data analysis and programming logic. Proficient in leveraging generative AI to accelerate conceptualization and prototyping, delivering design solutions that seamlessly merge aesthetic innovation with rigorous quantitative validation.
+          I studied learning sciences, so I start from user research: interviews and usability tests first, then data to set the design direction. Beyond designing interfaces in Figma, I write code to turn designs into products people can use, with a recent focus on LLM agents and RAG. I also use generative AI to speed up ideation and prototyping, so designs get validated earlier.
         </p>
         
         <!-- Resume Download Button -->
@@ -198,7 +239,7 @@ const marqueeItems = [
         <div class="flex flex-col md:flex-row gap-8 w-full">
           <div class="flex-1">
             <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Currently</div>
-            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">Freelance · personal projects<br/><span class="text-[#F3EFE6]/55">2026 — present</span></div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">Open to full-time roles<br/><span class="text-[#F3EFE6]/55">NTNU class of 2026</span></div>
           </div>
           <div class="flex-1">
             <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Education</div>
@@ -206,7 +247,7 @@ const marqueeItems = [
           </div>
           <div class="flex-1">
             <div class="font-mono text-[9px] uppercase tracking-[0.28em] text-[#F3EFE6]/40 mb-1.5">Experience</div>
-            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">Design Intern · PictureCook<br/><span class="text-[#F3EFE6]/55">2025.08 — 2026.02</span></div>
+            <div class="font-sans text-[13.5px] leading-[1.5] text-[#F3EFE6]/85">UI/UX Intern · PictureCook<br/><span class="text-[#F3EFE6]/55">2025.08 — 2026.02</span></div>
           </div>
         </div>
       </div>
@@ -214,11 +255,15 @@ const marqueeItems = [
       <!-- tools strip -->
       <div class="reveal flex flex-col items-center mb-10 max-w-[680px] mx-auto" data-reveal style="--reveal-delay: 160ms">
         <div class="font-mono text-[9.5px] uppercase tracking-[0.26em] text-[#F3EFE6]/40 mb-3">Tools &amp; methods</div>
-        <div class="flex flex-wrap gap-2 justify-center">
-          {['Figma', 'Prototyping', 'User Surveys', 'Personas', 'Journey Mapping', 'User Interviews', 'SUS', 'SPSS', 'Python', 'Usability Testing', 'Information Architecture'].map(t => (
-            <span class="inline-block px-3 py-1 rounded-full border border-[#F3EFE6]/10 font-mono text-[9.5px] uppercase tracking-[0.16em] text-[#F3EFE6]/50 hover:border-[#d4a017] hover:text-[#d4a017] transition-colors">
-              {t}
-            </span>
+        <div class="flex flex-col items-center gap-2">
+          {toolGroups.map((g) => (
+            <div class="flex flex-wrap gap-2 justify-center" aria-label={g.label}>
+              {g.items.map((t) => (
+                <span class="inline-block px-3 py-1 rounded-full border border-[#F3EFE6]/10 font-mono text-[9.5px] uppercase tracking-[0.16em] text-[#F3EFE6]/50 hover:border-[#d4a017] hover:text-[#d4a017] transition-colors">
+                  {t}
+                </span>
+              ))}
+            </div>
           ))}
         </div>
       </div>
@@ -340,28 +385,6 @@ const marqueeItems = [
       border-color: rgba(255,255,255,0.55);
     }
 
-    /* ── Frosted glass badge (Currently section) ──────────────────── */
-    .glass-badge {
-      display: block;
-      padding: 14px 20px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(24px) saturate(0.9);
-      -webkit-backdrop-filter: blur(24px) saturate(0.9);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.04),
-        0 4px 24px rgba(0,0,0,0.3);
-      font-family: 'Fraunces', serif;
-      font-variation-settings: 'SOFT' 100, 'opsz' 144;
-      font-size: clamp(18px, 4.5vw, 30px);
-      letter-spacing: -0.02em;
-      color: #fff;
-      /* Lock height so scrambling text never shifts layout */
-      min-height: 2.2em;
-      display: flex;
-      align-items: center;
-    }
 
   </style>
 </BaseDark>

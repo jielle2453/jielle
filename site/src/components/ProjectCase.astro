@@ -1,0 +1,314 @@
+---
+// Case-study page for the projects added in 2026-11 (Whyscope, Chitchat Tour, Viral Town).
+// Mirrors the layout and styling of the hand-written case pages (emotion-shredder.astro etc.);
+// all copy comes from src/data/cases.ts so the zh and en pages stay in step.
+import BaseCaseStudy from '../layouts/BaseCaseStudy.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { CaseContent } from '../data/cases';
+
+interface Props {
+  c: CaseContent;
+}
+const { c } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const home = c.lang === 'zh' ? `${base}zh/` : base;
+const isExternal = (href: string) => href.startsWith('http');
+
+// Section numbers follow the order the sections actually appear in.
+const order = ['problem', 'approach', 'screens', 'decisions', 'results', 'reflection'].filter(
+  (k) => (c as Record<string, unknown>)[k],
+);
+const num = (k: string) => String(order.indexOf(k) + 1).padStart(2, '0');
+
+const fraunces = "font-family:'Fraunces',serif;";
+const h2Style = `${fraunces}font-size:clamp(32px,5vw,56px);letter-spacing:-0.03em`;
+const glass =
+  'rounded-[14px] border border-white/12 bg-white/[0.04] p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.06)]';
+---
+
+<BaseCaseStudy title={`${c.pageTitle} — Jielle Lu`} description={c.lede + (c.ledeItalic ?? '')}>
+  <main class="relative z-10 mx-auto max-w-[1200px] min-h-screen px-6 md:px-12 lg:px-16 pt-8 md:pt-10 pb-24" lang={c.lang === 'zh' ? 'zh-Hant' : 'en'}>
+
+    <!-- TOP CHROME -->
+    <header class="flex items-start justify-between gap-6 font-mono text-[10.5px] uppercase tracking-[0.2em]">
+      <a href={home} class="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors">
+        <span>←</span> {c.ui.back}
+      </a>
+      <div class="text-right space-y-0.5 text-white/55">
+        <div class="text-white/80">{c.no}-{c.pageTitle}</div>
+        <div>Portfolio of Jielle Lu</div>
+        <LanguageSwitcher class="mt-4 justify-end" />
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="mt-16 md:mt-24 grid grid-cols-12 gap-6 md:gap-10">
+      <div class={`col-span-12 ${c.cover.kind === 'phone' ? 'md:col-span-8' : ''}`}>
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-4 flex items-center gap-2">
+          <span class="text-base leading-none" style={`color:${c.accent}`}>◆</span>
+          <span>{c.chapter}</span>
+        </div>
+
+        <h1 class="font-sans font-black tracking-[-0.055em] leading-[0.88] text-white text-[clamp(56px,10vw,160px)]">
+          <span class="block">{c.titleMain}</span>
+          <span
+            class="block font-light italic text-white/60 tracking-[-0.025em]"
+            style="font-family: 'Fraunces', serif; font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;"
+          >{c.titleItalic}</span>
+        </h1>
+
+        <p class="mt-10 max-w-[52ch] text-[17px] leading-[1.6] text-white/80">
+          {c.lede}
+          {c.ledeItalic && <span class="italic text-white" style={fraunces}>{c.ledeItalic}</span>}
+        </p>
+
+        {c.cover.kind === 'wide' && (
+          <div class="mt-12">
+            <figure class="rounded-[14px] overflow-hidden border border-white/10">
+              <img src={`${base}img/${c.cover.src}`} alt={c.cover.alt} class="w-full h-auto block" />
+            </figure>
+            <div class="mt-5 flex flex-wrap gap-6">
+              {c.links.map((l) => (
+                <a href={l.href} target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] hover:text-white transition-colors"
+                   style={`color:${c.accent}`}>
+                  <span>↗</span><span>{l.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {c.cover.kind === 'phone' && (
+        <aside class="col-span-12 md:col-span-4 md:pt-16 flex justify-start md:justify-center">
+          <div class="flex flex-col items-center md:-ml-8">
+            <figure class="rounded-[12px] overflow-hidden border border-white/10 w-full max-w-[240px] mb-5 mt-8 md:mt-0">
+              <img src={`${base}img/${c.cover.src}`} alt={c.cover.alt} class="w-full h-auto block" />
+            </figure>
+            <div class="flex flex-wrap justify-center gap-5">
+              {c.links.map((l) => (
+                <a href={l.href} target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] hover:text-white transition-colors"
+                   style={`color:${c.accent}`}>
+                  <span>↗</span><span>{l.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </aside>
+      )}
+    </section>
+
+    <!-- PROJECT META + MY ROLE -->
+    <section class="mt-20 md:mt-28 grid grid-cols-12 gap-y-10 md:gap-10">
+      <div class="col-span-12 md:col-span-4">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">{c.ui.info}</div>
+        <dl class="space-y-3 text-[14.5px] leading-[1.55] text-white/75">
+          {c.meta.map((m, i) => (
+            <div class="flex gap-4">
+              <dt class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 w-[88px] shrink-0 pt-[3px]">{m.k}</dt>
+              <dd class={i === c.meta.length - 1 ? 'text-white/55' : ''}>{m.v}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="col-span-12 md:col-span-8">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-b border-white/15 pb-3 mb-5">{c.ui.role}</div>
+        <ul class="space-y-4">
+          {c.roles.map((r) => (
+            <li class="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-1 sm:gap-4">
+              <span class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/80 pt-[2px]">{r.title}</span>
+              <span class="text-[14.5px] leading-[1.6] text-white/70">{r.body}</span>
+            </li>
+          ))}
+        </ul>
+        {c.roleNote && <p class="mt-5 text-[13px] leading-[1.6] text-white/45">{c.roleNote}</p>}
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    {c.problem && (
+      <section class="mt-24 md:mt-32">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+          <span class="text-white">{num('problem')}</span> — {c.problem.label}
+        </div>
+        <h2 class="text-white leading-[1.05]" style={h2Style}>
+          {c.problem.heading}<br /><span class="italic text-white/60">{c.problem.headingItalic}</span>
+        </h2>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+          {c.problem.cards.map((card, i) => (
+            <article class={glass}>
+              <div class="text-white leading-none text-[44px] mb-4" style={`${fraunces}letter-spacing:-0.03em`}>{String(i + 1).padStart(2, '0')}</div>
+              <h3 class="font-sans font-semibold text-[17px] text-white mb-2">{card.title}</h3>
+              <p class="text-[14px] leading-[1.65] text-white/65">{card.body}</p>
+            </article>
+          ))}
+        </div>
+        {c.problem.question && (
+          <figure class="mt-16 border-l-2 pl-6 md:pl-8" style={`border-color:${c.accent}`}>
+            <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45 mb-3">{c.ui.question}</div>
+            <blockquote class="text-white leading-[1.25] max-w-[38ch]" style={`${fraunces}font-size:clamp(20px,2.8vw,32px);letter-spacing:-0.02em`}>
+              {c.problem.question}
+            </blockquote>
+          </figure>
+        )}
+      </section>
+    )}
+
+    <!-- APPROACH -->
+    {c.approach && (
+      <section class="mt-24 md:mt-32">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+          <span class="text-white">{num('approach')}</span> — {c.approach.label}
+        </div>
+        <h2 class="text-white leading-[1.15] mb-12" style={`${fraunces}font-size:clamp(28px,4vw,44px);letter-spacing:-0.03em`}>
+          {c.approach.heading}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {c.approach.cards.map((card) => (
+            <article class="rounded-[16px] border border-white/15 bg-white/[0.03] p-6 md:p-8">
+              <h3 class="font-sans font-semibold text-[18px] text-white mb-3">{card.title}</h3>
+              <p class="text-[15px] leading-[1.65] text-white/70">{card.body}</p>
+            </article>
+          ))}
+        </div>
+        {c.approach.figure && (
+          <figure class="mt-12">
+            <img src={`${base}img/${c.approach.figure.src}`} alt={c.approach.figure.alt} loading="lazy" class="w-full h-auto rounded-[12px] border border-white/10" />
+            <figcaption class="mt-3 font-mono text-[10.5px] uppercase tracking-[0.18em] text-white/45">{c.approach.figure.caption}</figcaption>
+          </figure>
+        )}
+      </section>
+    )}
+
+    <!-- SCREENS -->
+    {c.screens && (
+      <section class="mt-24 md:mt-32">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+          <span class="text-white">{num('screens')}</span> — {c.screens.label}
+        </div>
+        <h2 class="text-white leading-[1.05] mb-14" style={h2Style}>
+          {c.screens.heading}<br /><span class="italic text-white/60">{c.screens.headingItalic}</span>
+        </h2>
+
+        <div class="space-y-16 mt-12">
+          {c.screens.items.map((s, idx) => (
+            s.kind === 'wide' ? (
+              <article>
+                <figure class="rounded-[14px] border border-white/12 overflow-hidden bg-white/[0.03] p-3 md:p-4">
+                  <img src={`${base}img/${s.src}`} alt={s.alt} loading="lazy" class="w-full h-auto block rounded-[8px]" />
+                </figure>
+                <div class="mt-5 grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-4">
+                    <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-2">{s.no}</div>
+                    <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white">{s.title}</h3>
+                  </div>
+                  <p class="col-span-12 md:col-span-8 text-[14.5px] leading-[1.7] text-white/65 md:pt-6">{s.desc}</p>
+                </div>
+              </article>
+            ) : (
+              <article class="grid grid-cols-12 gap-y-6 md:gap-8 items-center">
+                <div class={`col-span-12 md:col-span-5 ${idx % 2 !== 0 ? 'md:order-2 md:col-start-8' : ''}`}>
+                  <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-2">{s.no}</div>
+                  <h3 class="font-sans font-semibold text-[22px] leading-[1.2] text-white mb-3">{s.title}</h3>
+                  <p class="text-[14.5px] leading-[1.7] text-white/65">{s.desc}</p>
+                </div>
+                <div class={`col-span-12 md:col-span-7 ${idx % 2 !== 0 ? 'md:order-1' : ''}`}>
+                  <figure class="rounded-[14px] border border-white/12 overflow-hidden bg-white/[0.03] max-w-[320px] mx-auto">
+                    <div class="p-4 md:p-5">
+                      <img src={`${base}img/${s.src}`} alt={s.alt} loading="lazy" class="w-full h-auto block rounded-[8px]" />
+                    </div>
+                  </figure>
+                </div>
+              </article>
+            )
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- DECISIONS -->
+    {c.decisions && (
+      <section class="mt-24 md:mt-32">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+          <span class="text-white">{num('decisions')}</span> — {c.decisions.label}
+        </div>
+        <h2 class="text-white leading-[1.05] mb-12" style={h2Style}>
+          {c.decisions.heading}<br /><span class="italic text-white/60">{c.decisions.headingItalic}</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {c.decisions.items.map((d, i) => (
+            <article class={glass}>
+              <div class="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/55 mb-3">{String(i + 1).padStart(2, '0')}</div>
+              <h3 class="font-sans font-semibold text-[17px] text-white mb-2">{d.title}</h3>
+              <p class="text-[14px] leading-[1.65] text-white/65">{d.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- RESULTS -->
+    {c.results && (
+      <section class="mt-24 md:mt-32">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-10">
+          <span class="text-white">{num('results')}</span> — {c.results.label}
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+          {c.results.stats.map((s) => (
+            <div class="border-t pt-4" style={`border-color:${c.accent}`}>
+              <div class="text-white leading-none text-[clamp(32px,4vw,48px)]" style={`${fraunces}letter-spacing:-0.03em`}>{s.value}</div>
+              <div class="mt-3 text-[13.5px] leading-[1.5] text-white/60">{s.label}</div>
+            </div>
+          ))}
+        </div>
+        {c.results.note && <p class="mt-8 text-[13.5px] leading-[1.6] text-white/45 max-w-[60ch]">{c.results.note}</p>}
+      </section>
+    )}
+
+    <!-- REFLECTION -->
+    {c.reflection && (
+      <section class="mt-24 md:mt-32">
+        <div class="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50 border-t border-white/15 pt-4 mb-6">
+          <span class="text-white">{num('reflection')}</span> — {c.reflection.label}
+        </div>
+        <div class="grid grid-cols-12 gap-y-8 md:gap-8">
+          <div class="col-span-12 md:col-span-8 space-y-8">
+            {c.reflection.items.map((r) => (
+              <div>
+                <h3 class="font-sans font-semibold text-[19px] text-white mb-2">{r.title}</h3>
+                <p class="text-[15px] leading-[1.7] text-white/70 max-w-[58ch]">{r.body}</p>
+              </div>
+            ))}
+          </div>
+          <aside class="col-span-12 md:col-span-4">
+            <div class="rounded-[14px] border border-white/15 bg-white/[0.04] p-5">
+              <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">Status</div>
+              <p class="text-[14px] leading-[1.6] text-white/70 mb-5">{c.reflection.status}</p>
+              <div class="flex flex-wrap gap-5">
+                {c.links.map((l) => (
+                  <a href={l.href} target="_blank" rel="noopener noreferrer"
+                     class="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] hover:text-white transition-colors"
+                     style={`color:${c.accent}`}>
+                    <span>↗</span><span>{l.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    )}
+
+    <!-- FOOTER NAV -->
+    <footer class="mt-24 md:mt-32 pt-6 border-t border-white/15 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">
+      <div class="flex items-center justify-between gap-6">
+        <a href={home} class="text-white/70 hover:text-white transition-colors">← {c.ui.back}</a>
+        <a href={`${c.lang === 'zh' ? `${base}zh/` : base}${c.next.slug}`} class="text-right text-white/70 hover:text-white transition-colors">{c.next.label} →</a>
+      </div>
+    </footer>
+
+  </main>
+</BaseCaseStudy>

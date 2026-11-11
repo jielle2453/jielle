@@ -10,6 +10,8 @@ interface Props {
   revealDelay?: number;
   accent?: string;     // CSS color — top bar, meta dots, corner lines
   previewImg?: string; // hover-reveal screenshot path
+  cta?: [string, string]; // CTA label, then the label it rolls to on hover
+  external?: boolean;     // open the link in a new tab
 }
 
 const {
@@ -23,14 +25,18 @@ const {
   revealDelay = 0,
   accent = 'rgba(255,255,255,0.4)',
   previewImg,
+  cta,
+  external = false,
 } = Astro.props;
 
 const isLink = href !== '#';
+const [ctaTop, ctaBottom] = cta ?? (isLink ? ['Open', 'Read'] : ['Soon', 'In progress']);
 const Tag = isLink ? 'a' : 'div';
 ---
 
 <Tag
   {...(isLink ? { href } : {})}
+  {...(isLink && external ? { target: '_blank', rel: 'noopener' } : {})}
   class="case-tile reveal group relative block rounded-[16px] border border-white/10
          p-6 md:p-8 min-h-[260px] h-full overflow-hidden
          transition-[transform,border-color,background-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]
@@ -83,8 +89,8 @@ const Tag = isLink ? 'a' : 'div';
   <!-- "Open / Soon →" CTA -->
   <span class="tile-cta absolute bottom-6 right-6 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/65 group-hover:text-white transition-colors duration-500">
     <span class="relative inline-block h-[1.1em] overflow-hidden">
-      <span class="block transition-transform duration-[500ms] ease-[cubic-bezier(0.5,1,0.5,1)] group-hover:-translate-y-full">{isLink ? 'Open' : 'Soon'}</span>
-      <span class="block transition-transform duration-[500ms] ease-[cubic-bezier(0.5,1,0.5,1)] group-hover:-translate-y-full">{isLink ? 'Read' : 'In progress'}</span>
+      <span class="block transition-transform duration-[500ms] ease-[cubic-bezier(0.5,1,0.5,1)] group-hover:-translate-y-full">{ctaTop}</span>
+      <span class="block transition-transform duration-[500ms] ease-[cubic-bezier(0.5,1,0.5,1)] group-hover:-translate-y-full">{ctaBottom}</span>
     </span>
     <span class="inline-block transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-rotate-[35deg]">→</span>
   </span>

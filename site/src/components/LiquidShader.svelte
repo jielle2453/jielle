@@ -6,9 +6,12 @@
   onMount(async () => {
     const { Renderer, Program, Mesh, Triangle } = await import('ogl');
 
+    // The flow is soft and blurry, so it is drawn at a fraction of screen
+    // resolution and stretched by CSS. This cuts the per-frame work by ~90%.
+    const RENDER_SCALE = 0.4;
     const renderer = new Renderer({
       canvas,
-      dpr: Math.min(window.devicePixelRatio, 2),
+      dpr: RENDER_SCALE,
       alpha: false,
     });
     const gl = renderer.gl;
@@ -170,19 +173,27 @@
     };
     window.addEventListener('pointermove', onMove, { passive: true });
 
-    let running = true;
-    const loop = (ts) => {
-      if (!running) return;
-      if (window.innerWidth < 768) {
-        requestAnimationFrame(loop);
-        return;
-      }
+    const draw = (ts) => {
       mx += (tx - mx) * 0.012;
       my += (ty - my) * 0.012;
       program.uniforms.uMouse.value = [mx, my];
       program.uniforms.uTime.value = ts * 0.001;
       renderer.render({ scene: mesh });
+    };
+
+    // Reduced motion: one still frame, no loop.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      draw(20000);
+      return () => window.removeEventListener('resize', onResize);
+    }
+
+    // Keeps animating while scrolling; the low render resolution keeps each frame cheap.
+    let running = true;
+    const loop = (ts) => {
+      if (!running) return;
       requestAnimationFrame(loop);
+      if (document.hidden || window.innerWidth < 768) return;
+      draw(ts);
     };
     requestAnimationFrame(loop);
 
